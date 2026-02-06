@@ -1,0 +1,2342 @@
+﻿<!DOCTYPE html>
+<!--[if !(IE 6) | !(IE 7) | !(IE 8)  ]><!-->
+<html lang="en" class="no-js">
+<!--<![endif]-->
+<head>
+	<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0">
+	    <meta name="theme-color" content="#dfd300"/>	<link rel="profile" href="http://gmpg.org/xfn/11" />
+            <script type="text/javascript">
+            if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
+                var originalAddEventListener = EventTarget.prototype.addEventListener,
+                    oldWidth = window.innerWidth;
+
+                EventTarget.prototype.addEventListener = function (eventName, eventHandler, useCapture) {
+                    if (eventName === "resize") {
+                        originalAddEventListener.call(this, eventName, function (event) {
+                            if (oldWidth === window.innerWidth) {
+                                return;
+                            }
+                            else if (oldWidth !== window.innerWidth) {
+                                oldWidth = window.innerWidth;
+                            }
+                            if (eventHandler.handleEvent) {
+                                eventHandler.handleEvent.call(this, event);
+                            }
+                            else {
+                                eventHandler.call(this, event);
+                            };
+                        }, useCapture);
+                    }
+                    else {
+                        originalAddEventListener.call(this, eventName, eventHandler, useCapture);
+                    };
+                };
+            };
+        </script>
+		<title>Venues &#8211; Acestars Tennis Coaching</title>
+<meta name='robots' content='max-image-preview:large' />
+<link rel='dns-prefetch' href='//cdnjs.cloudflare.com' />
+<link rel='dns-prefetch' href='//www.google.com' />
+<link rel='dns-prefetch' href='//ajax.googleapis.com' />
+<link rel='dns-prefetch' href='//fonts.googleapis.com' />
+<link rel='dns-prefetch' href='//s.w.org' />
+<link rel="alternate" type="application/rss+xml" title="Acestars Tennis Coaching &raquo; Feed" href="https://acestars.co.uk/feed/" />
+<link rel="alternate" type="application/rss+xml" title="Acestars Tennis Coaching &raquo; Comments Feed" href="https://acestars.co.uk/comments/feed/" />
+		<script type="text/javascript">
+			window._wpemojiSettings = {"baseUrl":"https:\/\/s.w.org\/images\/core\/emoji\/13.0.1\/72x72\/","ext":".png","svgUrl":"https:\/\/s.w.org\/images\/core\/emoji\/13.0.1\/svg\/","svgExt":".svg","source":{"concatemoji":"https:\/\/acestars.co.uk\/wp-includes\/js\/wp-emoji-release.min.js?ver=5.7.11"}};
+			!function(e,a,t){var n,r,o,i=a.createElement("canvas"),p=i.getContext&&i.getContext("2d");function s(e,t){var a=String.fromCharCode;p.clearRect(0,0,i.width,i.height),p.fillText(a.apply(this,e),0,0);e=i.toDataURL();return p.clearRect(0,0,i.width,i.height),p.fillText(a.apply(this,t),0,0),e===i.toDataURL()}function c(e){var t=a.createElement("script");t.src=e,t.defer=t.type="text/javascript",a.getElementsByTagName("head")[0].appendChild(t)}for(o=Array("flag","emoji"),t.supports={everything:!0,everythingExceptFlag:!0},r=0;r<o.length;r++)t.supports[o[r]]=function(e){if(!p||!p.fillText)return!1;switch(p.textBaseline="top",p.font="600 32px Arial",e){case"flag":return s([127987,65039,8205,9895,65039],[127987,65039,8203,9895,65039])?!1:!s([55356,56826,55356,56819],[55356,56826,8203,55356,56819])&&!s([55356,57332,56128,56423,56128,56418,56128,56421,56128,56430,56128,56423,56128,56447],[55356,57332,8203,56128,56423,8203,56128,56418,8203,56128,56421,8203,56128,56430,8203,56128,56423,8203,56128,56447]);case"emoji":return!s([55357,56424,8205,55356,57212],[55357,56424,8203,55356,57212])}return!1}(o[r]),t.supports.everything=t.supports.everything&&t.supports[o[r]],"flag"!==o[r]&&(t.supports.everythingExceptFlag=t.supports.everythingExceptFlag&&t.supports[o[r]]);t.supports.everythingExceptFlag=t.supports.everythingExceptFlag&&!t.supports.flag,t.DOMReady=!1,t.readyCallback=function(){t.DOMReady=!0},t.supports.everything||(n=function(){t.readyCallback()},a.addEventListener?(a.addEventListener("DOMContentLoaded",n,!1),e.addEventListener("load",n,!1)):(e.attachEvent("onload",n),a.attachEvent("onreadystatechange",function(){"complete"===a.readyState&&t.readyCallback()})),(n=t.source||{}).concatemoji?c(n.concatemoji):n.wpemoji&&n.twemoji&&(c(n.twemoji),c(n.wpemoji)))}(window,document,window._wpemojiSettings);
+		</script>
+		<style type="text/css">
+img.wp-smiley,
+img.emoji {
+	display: inline !important;
+	border: none !important;
+	box-shadow: none !important;
+	height: 1em !important;
+	width: 1em !important;
+	margin: 0 .07em !important;
+	vertical-align: -0.1em !important;
+	background: none !important;
+	padding: 0 !important;
+}
+</style>
+	<link rel='stylesheet' id='layerslider-css'  href='https://acestars.co.uk/wp-content/plugins/LayerSlider/static/layerslider/css/layerslider.css?ver=6.10.2' type='text/css' media='all' />
+<link rel='stylesheet' id='wp-block-library-css'  href='https://acestars.co.uk/wp-includes/css/dist/block-library/style.min.css?ver=5.7.11' type='text/css' media='all' />
+<link rel='stylesheet' id='wp-block-library-theme-css'  href='https://acestars.co.uk/wp-includes/css/dist/block-library/theme.min.css?ver=5.7.11' type='text/css' media='all' />
+<link rel='stylesheet' id='contact-form-7-css'  href='https://acestars.co.uk/wp-content/plugins/contact-form-7/includes/css/styles.css?ver=5.4.1' type='text/css' media='all' />
+<link rel='stylesheet' id='cf7msm_styles-css'  href='https://acestars.co.uk/wp-content/plugins/contact-form-7-multi-step-module/resources/cf7msm.css?ver=4.1.5' type='text/css' media='all' />
+<link rel='stylesheet' id='jquery-ui-theme-css'  href='https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/themes/smoothness/jquery-ui.min.css?ver=1.11.4' type='text/css' media='all' />
+<link rel='stylesheet' id='jquery-ui-timepicker-css'  href='https://acestars.co.uk/wp-content/plugins/contact-form-7-datepicker/js/jquery-ui-timepicker/jquery-ui-timepicker-addon.min.css?ver=5.7.11' type='text/css' media='all' />
+<link rel='stylesheet' id='go-pricing-styles-css'  href='https://acestars.co.uk/wp-content/plugins/go_pricing/assets/css/go_pricing_styles.css?ver=3.3.18' type='text/css' media='all' />
+<link rel='stylesheet' id='tp_twitter_plugin_css-css'  href='https://acestars.co.uk/wp-content/plugins/recent-tweets-widget/tp_twitter_plugin.css?ver=1.0' type='text/css' media='screen' />
+<link rel='stylesheet' id='rs-plugin-settings-css'  href='https://acestars.co.uk/wp-content/plugins/revslider/public/assets/css/rs6.css?ver=6.4.6' type='text/css' media='all' />
+<style id='rs-plugin-settings-inline-css' type='text/css'>
+#rs-demo-id {}
+</style>
+<link rel='stylesheet' id='the7-Defaults-css'  href='https://acestars.co.uk/wp-content/uploads/smile_fonts/Defaults/Defaults.css?ver=5.7.11' type='text/css' media='all' />
+<link rel='stylesheet' id='js_composer_front-css'  href='https://acestars.co.uk/wp-content/plugins/js_composer/assets/css/js_composer.min.css?ver=6.6.0.1' type='text/css' media='all' />
+<link rel='stylesheet' id='dt-web-fonts-css'  href='https://fonts.googleapis.com/css?family=Roboto:400,500,600,700%7CRoboto+Condensed:400,600,700' type='text/css' media='all' />
+<link rel='stylesheet' id='dt-main-css'  href='https://acestars.co.uk/wp-content/themes/dt-the7/css/main.min.css?ver=9.10.1' type='text/css' media='all' />
+<style id='dt-main-inline-css' type='text/css'>
+body #load {
+  display: block;
+  height: 100%;
+  overflow: hidden;
+  position: fixed;
+  width: 100%;
+  z-index: 9901;
+  opacity: 1;
+  visibility: visible;
+  transition: all .35s ease-out;
+}
+.load-wrap {
+  width: 100%;
+  height: 100%;
+  background-position: center center;
+  background-repeat: no-repeat;
+  text-align: center;
+}
+.load-wrap > svg {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%,-50%);
+}
+#load {
+  background-color: #1e2333;
+}
+.uil-default rect:not(.bk) {
+  fill: rgba(51,51,51,0.3);
+}
+.uil-ring > path {
+  fill: rgba(51,51,51,0.3);
+}
+.ring-loader .circle {
+  fill: rgba(51,51,51,0.3);
+}
+.ring-loader .moving-circle {
+  fill: #333333;
+}
+.uil-hourglass .glass {
+  stroke: #333333;
+}
+.uil-hourglass .sand {
+  fill: rgba(51,51,51,0.3);
+}
+.spinner-loader .load-wrap {
+  background-image: url("data:image/svg+xml,%3Csvg width='75px' height='75px' xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100' preserveAspectRatio='xMidYMid' class='uil-default'%3E%3Crect x='0' y='0' width='100' height='100' fill='none' class='bk'%3E%3C/rect%3E%3Crect  x='46.5' y='40' width='7' height='20' rx='5' ry='5' fill='rgba%2851%2C51%2C51%2C0.3%29' transform='rotate(0 50 50) translate(0 -30)'%3E  %3Canimate attributeName='opacity' from='1' to='0' dur='1s' begin='0s' repeatCount='indefinite'/%3E%3C/rect%3E%3Crect  x='46.5' y='40' width='7' height='20' rx='5' ry='5' fill='rgba%2851%2C51%2C51%2C0.3%29' transform='rotate(30 50 50) translate(0 -30)'%3E  %3Canimate attributeName='opacity' from='1' to='0' dur='1s' begin='0.08333333333333333s' repeatCount='indefinite'/%3E%3C/rect%3E%3Crect  x='46.5' y='40' width='7' height='20' rx='5' ry='5' fill='rgba%2851%2C51%2C51%2C0.3%29' transform='rotate(60 50 50) translate(0 -30)'%3E  %3Canimate attributeName='opacity' from='1' to='0' dur='1s' begin='0.16666666666666666s' repeatCount='indefinite'/%3E%3C/rect%3E%3Crect  x='46.5' y='40' width='7' height='20' rx='5' ry='5' fill='rgba%2851%2C51%2C51%2C0.3%29' transform='rotate(90 50 50) translate(0 -30)'%3E  %3Canimate attributeName='opacity' from='1' to='0' dur='1s' begin='0.25s' repeatCount='indefinite'/%3E%3C/rect%3E%3Crect  x='46.5' y='40' width='7' height='20' rx='5' ry='5' fill='rgba%2851%2C51%2C51%2C0.3%29' transform='rotate(120 50 50) translate(0 -30)'%3E  %3Canimate attributeName='opacity' from='1' to='0' dur='1s' begin='0.3333333333333333s' repeatCount='indefinite'/%3E%3C/rect%3E%3Crect  x='46.5' y='40' width='7' height='20' rx='5' ry='5' fill='rgba%2851%2C51%2C51%2C0.3%29' transform='rotate(150 50 50) translate(0 -30)'%3E  %3Canimate attributeName='opacity' from='1' to='0' dur='1s' begin='0.4166666666666667s' repeatCount='indefinite'/%3E%3C/rect%3E%3Crect  x='46.5' y='40' width='7' height='20' rx='5' ry='5' fill='rgba%2851%2C51%2C51%2C0.3%29' transform='rotate(180 50 50) translate(0 -30)'%3E  %3Canimate attributeName='opacity' from='1' to='0' dur='1s' begin='0.5s' repeatCount='indefinite'/%3E%3C/rect%3E%3Crect  x='46.5' y='40' width='7' height='20' rx='5' ry='5' fill='rgba%2851%2C51%2C51%2C0.3%29' transform='rotate(210 50 50) translate(0 -30)'%3E  %3Canimate attributeName='opacity' from='1' to='0' dur='1s' begin='0.5833333333333334s' repeatCount='indefinite'/%3E%3C/rect%3E%3Crect  x='46.5' y='40' width='7' height='20' rx='5' ry='5' fill='rgba%2851%2C51%2C51%2C0.3%29' transform='rotate(240 50 50) translate(0 -30)'%3E  %3Canimate attributeName='opacity' from='1' to='0' dur='1s' begin='0.6666666666666666s' repeatCount='indefinite'/%3E%3C/rect%3E%3Crect  x='46.5' y='40' width='7' height='20' rx='5' ry='5' fill='rgba%2851%2C51%2C51%2C0.3%29' transform='rotate(270 50 50) translate(0 -30)'%3E  %3Canimate attributeName='opacity' from='1' to='0' dur='1s' begin='0.75s' repeatCount='indefinite'/%3E%3C/rect%3E%3Crect  x='46.5' y='40' width='7' height='20' rx='5' ry='5' fill='rgba%2851%2C51%2C51%2C0.3%29' transform='rotate(300 50 50) translate(0 -30)'%3E  %3Canimate attributeName='opacity' from='1' to='0' dur='1s' begin='0.8333333333333334s' repeatCount='indefinite'/%3E%3C/rect%3E%3Crect  x='46.5' y='40' width='7' height='20' rx='5' ry='5' fill='rgba%2851%2C51%2C51%2C0.3%29' transform='rotate(330 50 50) translate(0 -30)'%3E  %3Canimate attributeName='opacity' from='1' to='0' dur='1s' begin='0.9166666666666666s' repeatCount='indefinite'/%3E%3C/rect%3E%3C/svg%3E");
+}
+.ring-loader .load-wrap {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32' width='72' height='72' fill='rgba%2851%2C51%2C51%2C0.3%29'%3E   %3Cpath opacity='.25' d='M16 0 A16 16 0 0 0 16 32 A16 16 0 0 0 16 0 M16 4 A12 12 0 0 1 16 28 A12 12 0 0 1 16 4'/%3E   %3Cpath d='M16 0 A16 16 0 0 1 32 16 L28 16 A12 12 0 0 0 16 4z'%3E     %3CanimateTransform attributeName='transform' type='rotate' from='0 16 16' to='360 16 16' dur='0.8s' repeatCount='indefinite' /%3E   %3C/path%3E %3C/svg%3E");
+}
+.hourglass-loader .load-wrap {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32' width='72' height='72' fill='rgba%2851%2C51%2C51%2C0.3%29'%3E   %3Cpath transform='translate(2)' d='M0 12 V20 H4 V12z'%3E      %3Canimate attributeName='d' values='M0 12 V20 H4 V12z; M0 4 V28 H4 V4z; M0 12 V20 H4 V12z; M0 12 V20 H4 V12z' dur='1.2s' repeatCount='indefinite' begin='0' keytimes='0;.2;.5;1' keySplines='0.2 0.2 0.4 0.8;0.2 0.6 0.4 0.8;0.2 0.8 0.4 0.8' calcMode='spline'  /%3E   %3C/path%3E   %3Cpath transform='translate(8)' d='M0 12 V20 H4 V12z'%3E     %3Canimate attributeName='d' values='M0 12 V20 H4 V12z; M0 4 V28 H4 V4z; M0 12 V20 H4 V12z; M0 12 V20 H4 V12z' dur='1.2s' repeatCount='indefinite' begin='0.2' keytimes='0;.2;.5;1' keySplines='0.2 0.2 0.4 0.8;0.2 0.6 0.4 0.8;0.2 0.8 0.4 0.8' calcMode='spline'  /%3E   %3C/path%3E   %3Cpath transform='translate(14)' d='M0 12 V20 H4 V12z'%3E     %3Canimate attributeName='d' values='M0 12 V20 H4 V12z; M0 4 V28 H4 V4z; M0 12 V20 H4 V12z; M0 12 V20 H4 V12z' dur='1.2s' repeatCount='indefinite' begin='0.4' keytimes='0;.2;.5;1' keySplines='0.2 0.2 0.4 0.8;0.2 0.6 0.4 0.8;0.2 0.8 0.4 0.8' calcMode='spline' /%3E   %3C/path%3E   %3Cpath transform='translate(20)' d='M0 12 V20 H4 V12z'%3E     %3Canimate attributeName='d' values='M0 12 V20 H4 V12z; M0 4 V28 H4 V4z; M0 12 V20 H4 V12z; M0 12 V20 H4 V12z' dur='1.2s' repeatCount='indefinite' begin='0.6' keytimes='0;.2;.5;1' keySplines='0.2 0.2 0.4 0.8;0.2 0.6 0.4 0.8;0.2 0.8 0.4 0.8' calcMode='spline' /%3E   %3C/path%3E   %3Cpath transform='translate(26)' d='M0 12 V20 H4 V12z'%3E     %3Canimate attributeName='d' values='M0 12 V20 H4 V12z; M0 4 V28 H4 V4z; M0 12 V20 H4 V12z; M0 12 V20 H4 V12z' dur='1.2s' repeatCount='indefinite' begin='0.8' keytimes='0;.2;.5;1' keySplines='0.2 0.2 0.4 0.8;0.2 0.6 0.4 0.8;0.2 0.8 0.4 0.8' calcMode='spline' /%3E   %3C/path%3E %3C/svg%3E");
+}
+
+</style>
+<link rel='stylesheet' id='the7-font-css'  href='https://acestars.co.uk/wp-content/themes/dt-the7/fonts/icomoon-the7-font/icomoon-the7-font.min.css?ver=9.10.1' type='text/css' media='all' />
+<link rel='stylesheet' id='the7-awesome-fonts-css'  href='https://acestars.co.uk/wp-content/themes/dt-the7/fonts/FontAwesome/css/all.min.css?ver=9.10.1' type='text/css' media='all' />
+<link rel='stylesheet' id='the7-awesome-fonts-back-css'  href='https://acestars.co.uk/wp-content/themes/dt-the7/fonts/FontAwesome/back-compat.min.css?ver=9.10.1' type='text/css' media='all' />
+<link rel='stylesheet' id='the7-custom-scrollbar-css'  href='https://acestars.co.uk/wp-content/themes/dt-the7/lib/custom-scrollbar/custom-scrollbar.min.css?ver=9.10.1' type='text/css' media='all' />
+<link rel='stylesheet' id='the7-wpbakery-css'  href='https://acestars.co.uk/wp-content/themes/dt-the7/css/wpbakery.min.css?ver=9.10.1' type='text/css' media='all' />
+<link rel='stylesheet' id='the7-core-css'  href='https://acestars.co.uk/wp-content/plugins/dt-the7-core/assets/css/post-type.min.css?ver=2.5.6.2' type='text/css' media='all' />
+<link rel='stylesheet' id='cf7cf-style-css'  href='https://acestars.co.uk/wp-content/plugins/cf7-conditional-fields/style.css?ver=2.0.3' type='text/css' media='all' />
+<link rel='stylesheet' id='the7-css-vars-css'  href='https://acestars.co.uk/wp-content/uploads/the7-css/css-vars.css?ver=0d77256ae415' type='text/css' media='all' />
+<link rel='stylesheet' id='dt-custom-css'  href='https://acestars.co.uk/wp-content/uploads/the7-css/custom.css?ver=0d77256ae415' type='text/css' media='all' />
+<link rel='stylesheet' id='dt-media-css'  href='https://acestars.co.uk/wp-content/uploads/the7-css/media.css?ver=0d77256ae415' type='text/css' media='all' />
+<link rel='stylesheet' id='the7-mega-menu-css'  href='https://acestars.co.uk/wp-content/uploads/the7-css/mega-menu.css?ver=0d77256ae415' type='text/css' media='all' />
+<link rel='stylesheet' id='the7-elements-albums-portfolio-css'  href='https://acestars.co.uk/wp-content/uploads/the7-css/the7-elements-albums-portfolio.css?ver=0d77256ae415' type='text/css' media='all' />
+<link rel='stylesheet' id='the7-elements-css'  href='https://acestars.co.uk/wp-content/uploads/the7-css/post-type-dynamic.css?ver=0d77256ae415' type='text/css' media='all' />
+<link rel='stylesheet' id='style-css'  href='https://acestars.co.uk/wp-content/themes/dt-the7-child/style.css?ver=9.10.1' type='text/css' media='all' />
+<link rel='stylesheet' id='ultimate-style-css'  href='https://acestars.co.uk/wp-content/plugins/Ultimate_VC_Addons/assets/min-css/style.min.css?ver=3.19.9' type='text/css' media='all' />
+<script type='text/javascript' id='jquery-core-js-extra'>
+/* <![CDATA[ */
+var slide_in = {"demo_dir":"https:\/\/acestars.co.uk\/wp-content\/plugins\/convertplug\/modules\/slide_in\/assets\/demos"};
+/* ]]> */
+</script>
+<script type='text/javascript' src='https://acestars.co.uk/wp-includes/js/jquery/jquery.min.js?ver=3.5.1' id='jquery-core-js'></script>
+<script type='text/javascript' src='https://acestars.co.uk/wp-includes/js/jquery/jquery-migrate.min.js?ver=3.3.2' id='jquery-migrate-js'></script>
+<script type='text/javascript' id='layerslider-greensock-js-extra'>
+/* <![CDATA[ */
+var LS_Meta = {"v":"6.10.2"};
+/* ]]> */
+</script>
+<script type='text/javascript' src='https://acestars.co.uk/wp-content/plugins/LayerSlider/static/layerslider/js/greensock.js?ver=1.19.0' id='layerslider-greensock-js'></script>
+<script type='text/javascript' src='https://acestars.co.uk/wp-content/plugins/LayerSlider/static/layerslider/js/layerslider.kreaturamedia.jquery.js?ver=6.10.2' id='layerslider-js'></script>
+<script type='text/javascript' src='https://acestars.co.uk/wp-content/plugins/LayerSlider/static/layerslider/js/layerslider.transitions.js?ver=6.10.2' id='layerslider-transitions-js'></script>
+<script type='text/javascript' id='gw-tweenmax-js-before'>
+var oldGS=window.GreenSockGlobals,oldGSQueue=window._gsQueue,oldGSDefine=window._gsDefine;window._gsDefine=null;delete(window._gsDefine);var gwGS=window.GreenSockGlobals={};
+</script>
+<script type='text/javascript' src='https://cdnjs.cloudflare.com/ajax/libs/gsap/1.11.2/TweenMax.min.js' id='gw-tweenmax-js'></script>
+<script type='text/javascript' id='gw-tweenmax-js-after'>
+try{window.GreenSockGlobals=null;window._gsQueue=null;window._gsDefine=null;delete(window.GreenSockGlobals);delete(window._gsQueue);delete(window._gsDefine);window.GreenSockGlobals=oldGS;window._gsQueue=oldGSQueue;window._gsDefine=oldGSDefine;}catch(e){}
+</script>
+<script type='text/javascript' src='https://acestars.co.uk/wp-content/plugins/revslider/public/assets/js/rbtools.min.js?ver=6.4.4' id='tp-tools-js'></script>
+<script type='text/javascript' src='https://acestars.co.uk/wp-content/plugins/revslider/public/assets/js/rs6.min.js?ver=6.4.6' id='revmin-js'></script>
+<script type='text/javascript' id='dt-above-fold-js-extra'>
+/* <![CDATA[ */
+var dtLocal = {"themeUrl":"https:\/\/acestars.co.uk\/wp-content\/themes\/dt-the7","passText":"To view this protected post, enter the password below:","moreButtonText":{"loading":"Loading...","loadMore":"Load more"},"postID":"9","ajaxurl":"https:\/\/acestars.co.uk\/wp-admin\/admin-ajax.php","REST":{"baseUrl":"https:\/\/acestars.co.uk\/wp-json\/the7\/v1","endpoints":{"sendMail":"\/send-mail"}},"contactMessages":{"required":"One or more fields have an error. Please check and try again.","terms":"Please accept the privacy policy.","fillTheCaptchaError":"Please, fill the captcha."},"captchaSiteKey":"","ajaxNonce":"28d9233cc1","pageData":{"type":"page","template":"page","layout":null},"themeSettings":{"smoothScroll":"off","lazyLoading":false,"accentColor":{"mode":"solid","color":"#dfd300"},"desktopHeader":{"height":100},"ToggleCaptionEnabled":"disabled","ToggleCaption":"Navigation","floatingHeader":{"showAfter":140,"showMenu":true,"height":80,"logo":{"showLogo":true,"html":"<img class=\" preload-me\" src=\"https:\/\/acestars.co.uk\/wp-content\/uploads\/2019\/01\/acestar_logo-whte-70.png\" srcset=\"https:\/\/acestars.co.uk\/wp-content\/uploads\/2019\/01\/acestar_logo-whte-70.png 132w, https:\/\/acestars.co.uk\/wp-content\/uploads\/2019\/01\/acestar_logo-whte-70-x2.png 263w\" width=\"132\" height=\"70\"   sizes=\"132px\" alt=\"Acestars Tennis Coaching\" \/>","url":"https:\/\/acestars.co.uk\/"}},"topLine":{"floatingTopLine":{"logo":{"showLogo":false,"html":""}}},"mobileHeader":{"firstSwitchPoint":1050,"secondSwitchPoint":778,"firstSwitchPointHeight":80,"secondSwitchPointHeight":60,"mobileToggleCaptionEnabled":"disabled","mobileToggleCaption":"Menu"},"stickyMobileHeaderFirstSwitch":{"logo":{"html":"<img class=\" preload-me\" src=\"https:\/\/acestars.co.uk\/wp-content\/uploads\/2019\/01\/acestar_logo-black.png\" srcset=\"https:\/\/acestars.co.uk\/wp-content\/uploads\/2019\/01\/acestar_logo-black.png 188w, https:\/\/acestars.co.uk\/wp-content\/uploads\/2019\/01\/acestar_logo-blackx2.png 376w\" width=\"188\" height=\"100\"   sizes=\"188px\" alt=\"Acestars Tennis Coaching\" \/>"}},"stickyMobileHeaderSecondSwitch":{"logo":{"html":"<img class=\" preload-me\" src=\"https:\/\/acestars.co.uk\/wp-content\/uploads\/2019\/01\/acestar_logo-whte-70.png\" srcset=\"https:\/\/acestars.co.uk\/wp-content\/uploads\/2019\/01\/acestar_logo-whte-70.png 132w, https:\/\/acestars.co.uk\/wp-content\/uploads\/2019\/01\/acestar_logo-whte-70-x2.png 263w\" width=\"132\" height=\"70\"   sizes=\"132px\" alt=\"Acestars Tennis Coaching\" \/>"}},"content":{"textColor":"#676d82","headerColor":"#1e2333"},"sidebar":{"switchPoint":990},"boxedWidth":"1340px","stripes":{"stripe1":{"textColor":"#787d85","headerColor":"#3b3f4a"},"stripe2":{"textColor":"#8b9199","headerColor":"#ffffff"},"stripe3":{"textColor":"#ffffff","headerColor":"#ffffff"}}},"VCMobileScreenWidth":"768"};
+var dtShare = {"shareButtonText":{"facebook":"Share on Facebook","twitter":"Tweet","pinterest":"Pin it","linkedin":"Share on Linkedin","whatsapp":"Share on Whatsapp"},"overlayOpacity":"85"};
+/* ]]> */
+</script>
+<script type='text/javascript' src='https://acestars.co.uk/wp-content/themes/dt-the7/js/above-the-fold.min.js?ver=9.10.1' id='dt-above-fold-js'></script>
+<script type='text/javascript' src='https://acestars.co.uk/wp-content/plugins/Ultimate_VC_Addons/assets/min-js/ultimate-params.min.js?ver=3.19.9' id='ultimate-vc-params-js'></script>
+<meta name="generator" content="Powered by LayerSlider 6.10.2 - Multi-Purpose, Responsive, Parallax, Mobile-Friendly Slider Plugin for WordPress." />
+<!-- LayerSlider updates and docs at: https://layerslider.kreaturamedia.com -->
+<link rel="https://api.w.org/" href="https://acestars.co.uk/wp-json/" /><link rel="alternate" type="application/json" href="https://acestars.co.uk/wp-json/wp/v2/pages/9" /><link rel="EditURI" type="application/rsd+xml" title="RSD" href="https://acestars.co.uk/xmlrpc.php?rsd" />
+<link rel="wlwmanifest" type="application/wlwmanifest+xml" href="https://acestars.co.uk/wp-includes/wlwmanifest.xml" /> 
+<meta name="generator" content="WordPress 5.7.11" />
+<link rel="canonical" href="https://acestars.co.uk/venues/" />
+<link rel='shortlink' href='https://acestars.co.uk/?p=9' />
+<link rel="alternate" type="application/json+oembed" href="https://acestars.co.uk/wp-json/oembed/1.0/embed?url=https%3A%2F%2Facestars.co.uk%2Fvenues%2F" />
+<link rel="alternate" type="text/xml+oembed" href="https://acestars.co.uk/wp-json/oembed/1.0/embed?url=https%3A%2F%2Facestars.co.uk%2Fvenues%2F&#038;format=xml" />
+<meta property="og:site_name" content="Acestars Tennis Coaching" />
+<meta property="og:title" content="Venues" />
+<meta property="og:url" content="https://acestars.co.uk/venues/" />
+<meta property="og:type" content="article" />
+<style type="text/css">.recentcomments a{display:inline !important;padding:0 !important;margin:0 !important;}</style><meta name="generator" content="Powered by WPBakery Page Builder - drag and drop page builder for WordPress."/>
+<meta name="generator" content="Powered by Slider Revolution 6.4.6 - responsive, Mobile-Friendly Slider Plugin for WordPress with comfortable drag and drop interface." />
+<script type="text/javascript" id="the7-loader-script">
+document.addEventListener("DOMContentLoaded", function(event) { 
+	var load = document.getElementById("load");
+	if(!load.classList.contains('loader-removed')){
+		var removeLoading = setTimeout(function() {
+			load.className += " loader-removed";
+		}, 300);
+	}
+});
+</script>
+		<link rel="icon" href="https://acestars.co.uk/wp-content/uploads/2019/04/16x16_PJi_icon.ico" type="image/x-icon" sizes="16x16"/><link rel="icon" href="https://acestars.co.uk/wp-content/uploads/2019/04/32x32_28d_icon.ico" type="image/x-icon" sizes="32x32"/><link rel="apple-touch-icon" href="https://acestars.co.uk/wp-content/uploads/2019/04/60x60_4U7_icon.ico"><link rel="apple-touch-icon" sizes="76x76" href="https://acestars.co.uk/wp-content/uploads/2019/04/76x76_bGZ_icon.ico"><link rel="apple-touch-icon" sizes="120x120" href="https://acestars.co.uk/wp-content/uploads/2019/04/120x120_4jt_icon.ico"><link rel="apple-touch-icon" sizes="152x152" href="https://acestars.co.uk/wp-content/uploads/2019/04/152x152_FOT_icon.ico"><script type="text/javascript">function setREVStartSize(e){
+			//window.requestAnimationFrame(function() {				 
+				window.RSIW = window.RSIW===undefined ? window.innerWidth : window.RSIW;	
+				window.RSIH = window.RSIH===undefined ? window.innerHeight : window.RSIH;	
+				try {								
+					var pw = document.getElementById(e.c).parentNode.offsetWidth,
+						newh;
+					pw = pw===0 || isNaN(pw) ? window.RSIW : pw;
+					e.tabw = e.tabw===undefined ? 0 : parseInt(e.tabw);
+					e.thumbw = e.thumbw===undefined ? 0 : parseInt(e.thumbw);
+					e.tabh = e.tabh===undefined ? 0 : parseInt(e.tabh);
+					e.thumbh = e.thumbh===undefined ? 0 : parseInt(e.thumbh);
+					e.tabhide = e.tabhide===undefined ? 0 : parseInt(e.tabhide);
+					e.thumbhide = e.thumbhide===undefined ? 0 : parseInt(e.thumbhide);
+					e.mh = e.mh===undefined || e.mh=="" || e.mh==="auto" ? 0 : parseInt(e.mh,0);		
+					if(e.layout==="fullscreen" || e.l==="fullscreen") 						
+						newh = Math.max(e.mh,window.RSIH);					
+					else{					
+						e.gw = Array.isArray(e.gw) ? e.gw : [e.gw];
+						for (var i in e.rl) if (e.gw[i]===undefined || e.gw[i]===0) e.gw[i] = e.gw[i-1];					
+						e.gh = e.el===undefined || e.el==="" || (Array.isArray(e.el) && e.el.length==0)? e.gh : e.el;
+						e.gh = Array.isArray(e.gh) ? e.gh : [e.gh];
+						for (var i in e.rl) if (e.gh[i]===undefined || e.gh[i]===0) e.gh[i] = e.gh[i-1];
+											
+						var nl = new Array(e.rl.length),
+							ix = 0,						
+							sl;					
+						e.tabw = e.tabhide>=pw ? 0 : e.tabw;
+						e.thumbw = e.thumbhide>=pw ? 0 : e.thumbw;
+						e.tabh = e.tabhide>=pw ? 0 : e.tabh;
+						e.thumbh = e.thumbhide>=pw ? 0 : e.thumbh;					
+						for (var i in e.rl) nl[i] = e.rl[i]<window.RSIW ? 0 : e.rl[i];
+						sl = nl[0];									
+						for (var i in nl) if (sl>nl[i] && nl[i]>0) { sl = nl[i]; ix=i;}															
+						var m = pw>(e.gw[ix]+e.tabw+e.thumbw) ? 1 : (pw-(e.tabw+e.thumbw)) / (e.gw[ix]);					
+						newh =  (e.gh[ix] * m) + (e.tabh + e.thumbh);
+					}				
+					if(window.rs_init_css===undefined) window.rs_init_css = document.head.appendChild(document.createElement("style"));					
+					document.getElementById(e.c).height = newh+"px";
+					window.rs_init_css.innerHTML += "#"+e.c+"_wrapper { height: "+newh+"px }";				
+				} catch(e){
+					console.log("Failure at Presize of Slider:" + e)
+				}					   
+			//});
+		  };</script>
+<style type="text/css" data-type="vc_shortcodes-custom-css">.vc_custom_1554827305078{margin-top: -70px !important;padding-bottom: 5% !important;background-image: url(https://acestars.co.uk/wp-content/uploads/2019/03/Depositphotos_115174380_xl-2015-wide-outlined.jpg?id=369) !important;background-position: center !important;background-repeat: no-repeat !important;background-size: cover !important;}.vc_custom_1554827240428{margin-bottom: 0px !important;padding-top: 0px !important;padding-bottom: 0px !important;background-color: #f7f9fa !important;}.vc_custom_1551225756822{margin-bottom: 0px !important;padding-top: 0px !important;padding-bottom: 10% !important;background-color: #f7f9fa !important;}.vc_custom_1547418064588{margin-top: 0px !important;margin-right: 0px !important;margin-bottom: 0px !important;margin-left: 0px !important;padding-top: 0px !important;padding-bottom: 0px !important;}.vc_custom_1551041139683{padding-top: 0px !important;padding-bottom: 10% !important;}.vc_custom_1546994464678{margin-top: -10% !important;margin-right: 0px !important;margin-bottom: 0px !important;margin-left: 0px !important;padding-top: 0px !important;padding-bottom: 0px !important;}.vc_custom_1546994979792{padding-top: 0px !important;padding-bottom: 5% !important;background-color: #f7f9fa !important;}.vc_custom_1547075819454{margin-bottom: -1px !important;padding-top: 0px !important;padding-bottom: 0px !important;background-color: #f7f9fa !important;}.vc_custom_1547982656442{margin-top: 0px !important;margin-bottom: 0px !important;padding-top: 0px !important;padding-bottom: 0px !important;background-color: #2e354e !important;}.vc_custom_1583451669165{padding-top: 10% !important;padding-bottom: 15% !important;}.vc_custom_1551042014647{margin-right: 30px !important;}.vc_custom_1551225645255{padding-top: 60px !important;}.vc_custom_1581815927602{background-image: url(https://acestars.co.uk/wp-content/uploads/2019/02/9.jpg?id=316) !important;background-position: center !important;background-repeat: no-repeat !important;background-size: cover !important;}.vc_custom_1581816175938{background-image: url(https://acestars.co.uk/wp-content/uploads/2019/02/10.jpg?id=325) !important;background-position: center !important;background-repeat: no-repeat !important;background-size: cover !important;}.vc_custom_1581816093691{background-image: url(https://acestars.co.uk/wp-content/uploads/2019/02/11.jpg?id=327) !important;background-position: center !important;background-repeat: no-repeat !important;background-size: cover !important;}.vc_custom_1581816215159{background-image: url(https://acestars.co.uk/wp-content/uploads/2019/02/12.jpg?id=339) !important;background-position: center !important;background-repeat: no-repeat !important;background-size: cover !important;}.vc_custom_1581816101344{background-image: url(https://acestars.co.uk/wp-content/uploads/2019/02/8b.jpg?id=232) !important;background-position: center !important;background-repeat: no-repeat !important;background-size: cover !important;}.vc_custom_1547418114806{margin-top: 0px !important;padding-top: 0px !important;}.vc_custom_1547418074705{margin-top: 0px !important;margin-right: 0px !important;margin-bottom: 0px !important;margin-left: 0px !important;padding-top: 0px !important;padding-right: 0px !important;padding-bottom: 0px !important;padding-left: 0px !important;}.vc_custom_1546994921622{margin-top: 0px !important;margin-right: 0px !important;margin-bottom: 0px !important;margin-left: 0px !important;padding-top: 0px !important;padding-right: 0px !important;padding-bottom: 0px !important;padding-left: 0px !important;}.vc_custom_1547983540389{margin-top: 0px !important;margin-right: 0px !important;margin-bottom: 0px !important;margin-left: 0px !important;padding-top: 0px !important;padding-right: 0px !important;padding-bottom: 0px !important;padding-left: 0px !important;}</style><noscript><style> .wpb_animate_when_almost_visible { opacity: 1; }</style></noscript><style id='the7-custom-inline-css' type='text/css'>
+/*---------------------FONTS----------------------*/
+@font-face {
+    font-family: GT-Walsheim-Regular;
+    src: url(https://acestars.co.uk/wp-content/uploads/fonts/GT-Walsheim-Regular.woff);
+     font-weight:500;
+    
+}
+@font-face {
+    font-family: GT-Walsheim-Bold;
+    src: url(https://acestars.co.uk/wp-content/uploads/fonts/GT-Walsheim-Bold.woff);
+     font-weight:700;
+    
+}
+@font-face {
+    font-family: Karla-Regular;
+    src: url(https://acestars.co.uk/wp-content/uploads/fonts/Karla-Regular.woff);
+    font-weight:100;
+    
+}
+@font-face {
+    font-family: Karla-Bold;
+    src: url(https://acestars.co.uk/wp-content/uploads/fonts/Karla-Bold.woff);
+    font-weight:500;
+}    
+
+h1, h2, h3, .team-name, .club-name, .school-name, .default-btn-shortcode, .dt-btn, .primary-button, .team-rollover-heading,.main-nav > li > a .menu-text, .mini-button, .footer-nav ul li, .programme-title, .current > .ult_a > .ult_tab_main > .ult_tab_section > .ult-span-text, input[type="submit"], .step-description, .certificate-heading    {
+    font-family:GT-Walsheim-Bold;
+}
+.wpcf7-form input[type="submit"] {
+	    font-family:GT-Walsheim-Bold !important;
+}
+body, p, h4, h5, .team-rollover-content, .club-location, .school-location, .club-address, .school-address, .programme-day, .programme-time, .programme-cost-text, .programme-level-text, .team-title, ul, label div, input::placeholder, textarea::placeholder, select, input[type="date"], input[type="text"] {
+    font-family:Karla-Regular;
+    font-weight:100;
+}
+h4, h5 {
+        color:#676D82;
+}
+ul.acestar-list {
+	list-style:none;
+	margin:0;
+}
+ul.acestar-list li  {
+	position:relative;
+	margin:0 0 0 15px;
+}
+ul.acestar-list li::before {
+	position:absolute;
+	content:"";
+	top:50%;
+	left:0;
+	width:5px;
+	height:1px;
+	background:black;
+}
+.bold, .bold p, .team-rollover-subheading, .club-location, .section-number ul li, .booking-form-section, .social, .step-indicator {
+     font-family: Karla-Bold;
+     font-weight:700;
+ }
+.programme-cost-price, .ult-span-text 
+{
+    font-family:GT-Walsheim-Regular;
+}
+.white {
+    color:#ffff !important;
+}
+.dark-blue {
+    color:#2E354E;
+}
+.orange {
+    color:#F87D4D;
+}
+.primary-font-color {
+    color:#1E2333;
+}
+.banner-home, .banner-venues {
+    position:relative !important;
+}
+.full-width {
+	width:100% !important;
+}
+.banner-home::after,.banner-home::before, .banner-venues::after, .banner-venues::before {
+ position:absolute !important;
+    content:"";
+    width:101% !important;
+}
+.banner-home::after, .banner-venues:after {
+    height:100px !important;
+    left:0;
+    bottom:-2px;
+    z-index:2;
+	background-size: contain;
+}
+.banner-home::after {
+	 background: url("/wp-content/uploads/2020/02/wave-1.svg") repeat-x center bottom;
+}
+.banner-venues::after {
+	 background: url("/wp-content/uploads/2020/03/wave-2.svg") repeat-x center bottom;
+}
+
+.banner-home::before{
+    height: 600px !important;
+    background: url("wp-content/uploads/2020/03/wave3-homepage.svg") repeat-x left bottom;
+    left: 0;
+    bottom:0;
+    z-index: 1;
+    background-size: contain;
+}
+.banner-venues::before{
+    height:600px !important;
+    background: url("/wp-content/uploads/2020/03/wave3-venues-1.svg") repeat-x left bottom;
+    bottom:-50px;
+    left:0;
+    z-index:1;
+}
+.section-container {
+    position:absolute;
+    left:-75px;
+    top:35px;
+	width:1px;
+		height:1px;
+	transform: rotate(-90deg)
+}
+.section-number {
+position:absolute;
+	width:250px;
+	right:0;
+	color:#1E2333;
+	text-align:right;
+}
+.section-number ul li {
+    display: inline-block;
+}
+.line-section {
+    width:62px;
+    height:1px;
+    background-color:black;
+    margin:5px;
+	color:#1E2333
+}
+.card {
+      min-height:400px;
+	border-radius: 5px;
+	transition: all 0.3s ease-in-out;
+	overflow:hidden;
+   
+}
+.card:hover {
+	margin-top:-3px;
+	      -moz-box-shadow:  0 2px 26px 0 rgba(46, 53, 78, 0.15);
+  -webkit-box-shadow: 0 2px 26px 0 rgba(46, 53, 78, 0.15);
+  box-shadow:  0 2px 26px 0 rgba(46, 53, 78, 0.15);
+	
+}
+.card, .club-card {
+      -moz-box-shadow:  0 2px 16px 0 rgba(46, 53, 78, 0.05);
+  -webkit-box-shadow: 0 2px 16px 0 rgba(46, 53, 78, 0.05);
+  box-shadow:  0 2px 16px 0 rgba(46, 53, 78, 0.05);
+}
+.card, .club-card{
+  padding: 16px;
+  background: #F7F9FA;
+  position:relative;
+	border: solid 1px #EAEDE6;
+}
+
+ 
+.school-box {
+    border: solid 1px #EAEDE6;
+    padding:30px;
+	min-height:350px;
+}
+.card:hover  .overlay-card, .club-card:hover  .overlay-card {
+  opacity: 0.95;
+  cursor:pointer;
+}
+
+.overlay-card {
+      position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 100%;
+  width: 100%;
+  opacity: 0;
+  transition: .5s ease;
+  background-color: #65B863;
+}
+.team-title {
+    font-size:15px;
+    color:#AFB0B3;
+    text-align:right;
+    margin:0 0 20px 0;
+}
+.team-name, .club-name {
+    font-size:22px;
+    color:#1E2333;
+    margin:20px 0 0 0;
+}
+.team-rollover-container {
+        padding:30px;
+}
+.team-rollover-content {
+    font-size:14px;
+    color:#FFFFFF;
+    margin-top:20px;
+	line-height:20px;
+}
+.team-rollover-heading {
+    font-size:26px;
+    color:#F9FAF7;
+}
+.team-rollover-subheading {
+ font-size:15px;
+ color:#2E354E;
+ line-height:20px;
+}
+.school-card, .club-card {
+    vertical-align:bottom;	
+}
+.school-card {
+ min-height:450px;
+}
+.club-card {
+	 min-height:350px;
+}
+.club-container {
+min-height:150px;
+display:inline-block;
+width:100%;
+background-color: rgba(46, 53, 78, 0.7);
+position: absolute;
+left:0;
+bottom:0;
+}
+.club-card-container {
+    padding:30px;
+}
+.club-name {
+    color:#ffff;
+}
+.school-name {
+    color:#1E2333;
+}
+.club-name, .school-name {
+ 		font-size:26px;
+	line-height:28px;
+	margin:0 0 5px 0;
+}
+.club-location, .school-location {
+    font-size:15px;
+    color:#AFB0B3;
+}
+.club-address, .school-address {
+        font-size:18px;
+}
+.club-address {
+    color:#F9FAF7;
+}
+.school-address {
+    color:#1E2333;
+}
+.text-centered {
+    text-align:center;
+}
+.sub-heading-container {
+    max-width:615px;
+    margin:0 auto;
+    display:inline-block;
+}
+a.read-more {
+    color:#1E2333;
+    font-size:15px;
+    text-decoration:none;
+    font-weight:700;
+    
+}
+a.read-more:hover {
+    color:#dfd300;
+    transition: all 0.2s;
+}
+
+.anime {
+        font-size:18px;
+        display:inline-block;
+        margin-left:10px;
+        transition: all 0.2s;
+       
+}
+a.read-more:hover > .anime {
+    color:#dfd300;
+    margin-left:15px;
+}
+.venues-img img {
+    max-width:200%;
+    position:absolute;
+    transform:translate(-50%);
+	z-index:0;
+}
+.default-btn-shortcode, .dt-btn, .primary-button, input[type="submit"]  {
+    padding: 18px 55px 18px 55px !important;
+    font-weight:700;
+    font-size:16px !important;
+    border-radius:50px !important;
+	line-height:normal !important;
+}   
+input[type="submit"]:not([name="update_cart"]):not(.woocommerce-widget-layered-nav-dropdown__submit), .wpcf7-form input[type="submit"], input[type="submit"] {
+	height:60px !important;
+}
+.small-button {
+    padding: 10px 22px 10px 22px !important;
+    font-weight:700;
+    font-size:16px !important;
+    border-radius:50px !important;
+}
+.see-through-button {
+    background-color:transparent !important;
+    border:solid 2px #fff !important;
+}
+.line-above {
+    border-top: solid 1px #EAEDE6;
+}
+.banner-policy::after {
+    position:absolute !important;
+    content:"";
+    width:1920px !important;
+    height:315px !important;
+    background-image: url("https://acestars.co.uk/wp-content/uploads/2019/01/Mask-Group-18.png");
+    left:0;
+    bottom:-200px;
+    z-index:2;
+}
+.banner-booking:after {
+	height:315px !important;
+    background-image: url("https://acestars.co.uk/wp-content/uploads/2019/01/Mask-Group-18-grey.png");
+    bottom:-200px;
+    left:0;
+    z-index:2;
+}
+.banner-policy::before{
+    position: absolute !important;
+    content: "";
+    width: 100%;
+    height: 100%;
+    background: url(https://acestars.co.uk/wp-content/uploads/2019/01/Mask-Group-18-1.png) center bottom repeat-x;
+    left: 0;
+    bottom: 0;
+    z-index: 0;
+    background-size: contain;
+}
+.banner-policy {
+    position:relative !important;
+    height:42vh;
+}
+.footer-nav ul {
+    display:flex;
+    width:80%;
+    margin: 0 auto !important;
+}
+.footer-nav ul li {
+    flex:auto;
+    border:none !important;
+    margin:0px;
+    padding:0px;
+}
+.footer-nav ul li a {
+        color:#fff;
+}
+.footer-nav ul li a:hover {
+        text-decoration:none;
+}
+.centered {
+    text-align:center;
+}
+.footer-copyrights {
+    display:inline-block;
+    padding:0 15px 0 15px;
+    background-color:#2E354E;
+    color:#F9FAF7;
+    font-size:14px;
+	position:relative;
+	z-index:2;
+}
+.full-width-line {
+    position:relative;
+	margin-top:-48px;
+	z-index:1;
+}
+.full-width-line::after {
+    content:"";
+    position:absolute;
+    width:100vw;
+    height:1px;
+    background-color: rgba(249, 250, 247, 0.35);
+    left:0;
+    top:0;
+	    left: 50%;
+    top: 0;
+    transform: translate(-50%);
+}
+.footer-rights {
+    font-size:13px;
+    line-height:22px;
+}
+.clubs-buttons {
+    position:absolute;
+    bottom:30px;
+}
+.small-button-margin-right {
+    margin-right:15px
+}
+.social {
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    color:rgba(247, 250, 247, 0.75) !important;
+  
+}
+.social div:first-child {
+    margin-right:15px;
+      font-weight:700;
+}
+.social .social-icon {
+    font-size:22px;
+    padding:8px;
+}
+.box {
+  height: 100px;
+  width: 100px;
+}
+
+.transform, .transform2 {
+      transition: all 0.6s cubic-bezier(.77,0,.175,1);
+}
+
+.overlay-card2 {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    height: 0%;
+    width: 0%;
+    opacity: 0;
+    background-color: #65B863;
+    overflow:hidden;
+}
+.enlarge {
+    cursor:pointer;
+}
+.cross-container {
+    z-index:2;
+}
+.overlay-card2-active {
+        height: 100%;
+    width: 100%;
+  opacity: 0.95;
+  cursor:pointer;
+}
+.cross-container {
+    width:58px;
+    height:58px;
+    position:absolute;
+    right:0;
+    bottom:0;
+    background-color:#2E354E;
+    display: flex;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+
+    
+}
+/*
+.cross-container:hover {
+    background-color:#f87d4d;
+}*/
+.cross {
+    width:12px;
+    height:12px;
+    position:relative;
+
+		
+}
+.cross::before {
+	    content:"";
+    left:0;
+    top:5px;
+    position:absolute;
+    width:12px;
+    height:2px;
+    background-color:#ffff;
+}
+.cross::after {
+    content:"";
+    left:5px;
+    top:0;
+    position:absolute;
+    width:2px;
+    height:12px;
+    background-color:#ffff;
+    
+    
+}
+.cross-to-cross {
+    	transform:rotate(135deg);
+}
+.social a {
+    color:white;
+    font-weight:300;
+
+}
+.social {
+        font-size:14px;
+}
+
+/* Captcha hide */
+
+.grecaptcha-badge{
+	visibility: collapse !important;  
+}
+
+/* ------------ Booking Form -------------- */
+.flex-box {
+	display:flex;
+	align-items:space-around;
+}
+.wpcf7-select {
+	min-width:100px
+}
+.fullw-checkbox .wpcf7-list-item {
+	width:100%;
+	margin:0 0 10px 0;
+
+}
+.fullw-checkbox .wpcf7-list-item .wpcf7-checkbox span {
+		background:#f5f5f5 !important;
+	border:none;
+}
+.wpcf7-checkbox > span .wpcf7-list-item-label {
+	color:inherit !important;
+	font-size:16px !important;
+	display:flex;
+	align-items:center;
+	width:100% !important;
+		    padding: 0 0 0 50px !important;
+	font-family:Karla-Regular !important;
+    font-weight:100;
+}
+.date {
+	width:30%;
+}
+.visible {
+	display: block;
+}
+.hide {
+	display: none;
+}
+.heading-row {
+	width:100%;
+}
+.booking-form-section input, .wpcf7-radio > span, .wpcf7-select, .wpcf7-textarea, .wpcf7-checkbox span {
+ border: 1px solid #BCBFB9;
+  border-radius: 10px;
+	margin:0px;
+  display: inline-block;
+	background-color: #FEFFFC;
+		height:64px;
+	padding:0 0 0 20px;
+
+}
+.wpcf7-radio > span, .wpcf7-select, wpcf7-checkbox span, wpcf7-date {
+		cursor:pointer;
+}
+input:focus, select:focus, textarea:focus {
+	border: solid 1px #88D286;
+		background:#F5FAF5;
+}
+input:focus::placeholder {
+	color:black;
+}
+.wpcf7-textarea {
+	width: 100%;
+	height:100px;
+	padding-top:20px;
+}
+.input-half-page {
+	display:flex;
+	width: 50%;
+    padding: 0 10px 0 0 !important;
+    box-sizing: border-box;
+}
+.input-half-page:last-child div {
+	width: 50%;
+    padding: 0 0 0 10px !important;
+    box-sizing: border-box;
+}
+.box {
+	width:100%;
+}
+.fullwidth-input {
+	width:100%;
+}
+.wpcf7-radio {
+	padding:0px;
+}
+input label div {
+	color: #BDBFBA;
+}
+input, select {
+	color:#BDBFBA;
+}
+.form-row-input div {
+	display:inline-block;
+}
+.form-row > span {
+	width:100%;
+}
+.input-half-page span {
+	width:100%;
+}
+.confirmation-box {
+	margin: 0% 10% 0 10%;
+	
+
+}
+.booking-form-section {
+	margin:5% 10% 5% 10%;
+	padding:5%;
+	background: #fff;
+	border-radius: 5px;
+	box-shadow: 0 2px 16px 0 rgba(46, 53, 78, 0.05);
+}
+.form-row {
+	width: 100%;
+	align-items:center;
+	display: flex;
+	 justify-content: space-between;
+	padding:20px 0px 20px 0px;
+	flex-wrap: wrap;
+}
+.form-row-question {
+	width: 60%;
+}
+input[type="radio"], input[type="checkbox"] {
+    display: none;
+	width: 0px;
+	height: 0px;
+	position: absolute;
+}
+
+.wpcf7-checkbox > span input[type=checkbox]:checked + .wpcf7-list-item-label {
+	    background-color: #88D286;
+    border-color: #88D286;
+    color: white !important;
+
+}
+.wpcf7-radio > span {
+height: 64px;
+    width: 141px;
+    padding: 0px;
+}
+.wpcf7-checkbox > span {
+	padding: 0 45px 0 45px;
+}
+.wpcf7-radio, .wpcf7-radio label, .wpcf7-checkbox span label  {
+		/*padding: 22px 57px 22px 57px;*/
+	display: flex;
+	align-items: center;
+
+}
+.wpcf7-radio > span {
+	display: inline-block;
+	margin: 0 auto;
+	margin-right:10px;
+}
+.wpcf7-radio > span:last-child, .input-half-page:last-child {
+	margin-right:0px;
+}
+.wpcf7-radio span span input[type=radio]:checked + span:before  {
+    background-color: #88D286 !important;
+	border:none;
+	color: white !important;
+}
+.container {
+	  border: 1px solid #D2D9D2;
+  border-radius: 10px;
+  margin:5px;
+  display: inline-block;
+	padding: 22px 57px 22px 57px;
+
+}
+input:checked ~.container  {
+	 background-color: #88D286 !important;
+	border: 1px solid #88D286 !important;
+	color: white;
+}
+.wpcf7-checkbox span {
+	position: relative;
+}
+.wpcf7-checkbox span::after {
+	position: absolute;
+	display: block;
+	content: '';
+	left: 9px;
+  top: 5px;
+  width: 5px;
+  height: 10px;
+  border: solid red;
+  border-width: 0 3px 3px 0;
+  -webkit-transform: rotate(45deg);
+  -ms-transform: rotate(45deg);
+  transform: rotate(45deg);
+	
+}
+/* input[type="date"]::-webkit-calendar-picker-indicator,
+input[type="date"]::-webkit-inner-spin-button{
+    display: none;
+} */
+.booking-form-title {
+    font-size:28px;
+}
+
+
+/* ------------- LOADER ---------*/
+
+.loader {
+        position: relative;
+        width: 60px;
+        height: 60px;
+        border-radius: 50%;
+        margin: 75px;
+        display: inline-block;
+        vertical-align: middle;
+    }
+    
+    .loader-star {
+        position: absolute;
+        top: calc(50% - 12px);
+    }
+
+/*LOADER-9*/
+    
+    .loader-9 .star1 {
+        -webkit-animation: stars-pulse 1s ease-in-out infinite;
+        animation: stars-pulse 1s ease-in-out infinite;
+        left: 0;
+    }
+    
+    .loader-9 .star2 {
+        -webkit-animation: stars-pulse 1s 0.2s ease-in-out infinite;
+        animation: stars-pulse 1s 0.2s ease-in-out infinite;
+        left: 25px;
+    }
+    
+    .loader-9 .star3 {
+        -webkit-animation: stars-pulse 1s 0.4s ease-in-out infinite;
+        animation: stars-pulse 1s 0.4s ease-in-out infinite;
+        left: 50px;
+    }
+
+@keyframes stars-pulse {
+        0%,
+        100% {
+            -webkit-transform: scale(1);
+            transform: scale(1);
+            opacity: 1;
+        }
+        80% {
+            -webkit-transform: scale(0);
+            transform: scale(0);
+            opacity: 0;
+        }
+    }
+
+/* -----------MEDIA QUERY */
+
+@media only screen and (max-width: 1480px) {
+	h1 {
+		font-size:68px;
+		line-height:72px;
+	}
+	h2 {
+		font-size:38px;
+		line-height:42px;
+	}
+	h3 {
+		font-size:32px;
+		line-height:34px;
+	}
+	h4 {
+		font-size:22px;
+		line-height:28px;
+	}
+		h5 {
+		font-size:18px;
+		line-height:22px;
+	}
+	.school-name {
+		font-size:22px;
+	line-height:24px;
+	}
+	.banner-policy {
+		min-height:250px;
+	}
+}
+@media only screen and (max-width: 768px) {
+	h1 {
+		font-size:48px;
+		line-height:54px;
+	}
+	h2 {
+		font-size:32px;
+		line-height:38px;
+	}
+	h3 {
+		font-size:26px;
+		line-height:32px;
+	}
+	h4 {
+		font-size:22px;
+		line-height:28px;
+	}
+		h5 {
+		font-size:18px;
+		line-height:24px;
+	}
+	.footer-nav ul {
+    display:block;
+	}
+	.footer-nav ul li{
+    margin: 10px 0 10px 0;
+}
+	.primary-button {
+		padding:15px 20px 15px 20px !important;
+	}
+	.banner-overlay-layer::before {
+content:'';
+		position:absolute;
+		top:-50px;
+			left:-50px;
+		width:150%;
+		height:150%;
+		background-color:rgba(0,0,0, 0.5);	
+	}
+
+	.booking-form-section {
+	margin:0;
+	padding:5%;
+	background: #fff;
+	border-radius: 0px;
+}
+	.wpcf7-radio {
+		display: grid;
+		grid-template-columns: auto auto auto;
+
+	}
+	.wpcf7-radio > span {
+		margin:8px !important;
+		max-width: 80px;
+	}
+}
+</style>
+	<link rel="stylesheet" href="https://acestars.co.uk/wp-content/themes/dt-the7-child/library/css/custom.css?=09.41.06"/>
+</head>
+<body class="page-template-default page page-id-9 wp-embed-responsive the7-core-ver-2.5.6.2 transparent title-off dt-responsive-on right-mobile-menu-close-icon ouside-menu-close-icon mobile-hamburger-close-bg-enable mobile-hamburger-close-bg-hover-enable  fade-medium-mobile-menu-close-icon fade-medium-menu-close-icon srcset-enabled btn-flat custom-btn-color custom-btn-hover-color phantom-fade phantom-disable-decoration phantom-custom-logo-on sticky-mobile-header top-header first-switch-logo-left first-switch-menu-right second-switch-logo-left second-switch-menu-right right-mobile-menu layzr-loading-on popup-message-style dt-fa-compatibility the7-ver-9.10.1 wpb-js-composer js-comp-ver-6.6.0.1 vc_responsive">
+<!-- The7 9.10.1 -->
+<div id="load" class="">
+	<div class="load-wrap"><section>
+    <div class="loader loader-9">
+      <svg class="loader-star star1" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="23.172px" height="23.346px" viewBox="0 0 23.172 23.346" xml:space="preserve">
+            <polygon fill="#dfd300" points="11.586,0 8.864,8.9 0,8.9 7.193,14.447 4.471,23.346 11.586,17.84 18.739,23.346 16.77,14.985 23.172,8.9 14.306,8.9" />
+         </svg>
+      <svg class="loader-star star2" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="23.172px" height="23.346px" viewBox="0 0 23.172 23.346" xml:space="preserve">
+            <polygon fill="#dfd300" points="11.586,0 8.864,8.9 0,8.9 7.193,14.447 4.471,23.346 11.586,17.84 18.739,23.346 16.77,14.985 23.172,8.9 14.306,8.9  " />
+         </svg>
+      <svg class="loader-star star3" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="23.172px" height="23.346px" viewBox="0 0 23.172 23.346" xml:space="preserve">
+            <polygon fill="#dfd300" points="11.586,0 8.864,8.9 0,8.9 7.193,14.447 4.471,23.346 11.586,17.84 18.739,23.346 16.77,14.985 23.172,8.9 14.306,8.9  " />
+         </svg>
+    </div>
+  </section></div>
+</div>
+<div id="page">
+	<a class="skip-link screen-reader-text" href="#content">Skip to content</a>
+
+<div class="masthead inline-header right widgets full-height shadow-mobile-header-decoration small-mobile-menu-icon dt-parent-menu-clickable show-sub-menu-on-hover show-mobile-logo"  style="background-color: rgba(0,0,0,0);" role="banner">
+
+	<div class="top-bar top-bar-empty top-bar-line-hide">
+	<div class="top-bar-bg"  style="background-color: rgba(255,255,255,0);"></div>
+	<div class="mini-widgets left-widgets"></div><div class="mini-widgets right-widgets"></div></div>
+
+	<header class="header-bar">
+
+		<div class="branding">
+	<div id="site-title" class="assistive-text">Acestars Tennis Coaching</div>
+	<div id="site-description" class="assistive-text">Book your next Tennis coaching lesson</div>
+	<a class="" href="https://acestars.co.uk/"><img class=" preload-me" src="https://acestars.co.uk/wp-content/uploads/2019/01/acestar_logo-white.png" srcset="https://acestars.co.uk/wp-content/uploads/2019/01/acestar_logo-white.png 188w, https://acestars.co.uk/wp-content/uploads/2019/01/acestar_logo-white-2x.png 376w" width="188" height="100"   sizes="188px" alt="Acestars Tennis Coaching" /><img class="mobile-logo preload-me" src="https://acestars.co.uk/wp-content/uploads/2019/01/acestar_logo-whte-70.png" srcset="https://acestars.co.uk/wp-content/uploads/2019/01/acestar_logo-whte-70.png 132w, https://acestars.co.uk/wp-content/uploads/2019/01/acestar_logo-whte-70-x2.png 263w" width="132" height="70"   sizes="132px" alt="Acestars Tennis Coaching" /></a></div>
+
+		<ul id="primary-menu" class="main-nav outside-item-double-margin" role="menubar"><li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-home menu-item-144 first" role="presentation"><a href='https://acestars.co.uk/' data-level='1' role="menuitem"><span class="menu-item-text"><span class="menu-text">Home</span></span></a></li> <li class="menu-item menu-item-type-post_type menu-item-object-page current-menu-item page_item page-item-9 current_page_item menu-item-143 act" role="presentation"><a href='https://acestars.co.uk/venues/' data-level='1' role="menuitem"><span class="menu-item-text"><span class="menu-text">Venues</span></span></a></li> <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-145" role="presentation"><a href='https://acestars.co.uk/home#team' data-level='1' role="menuitem"><span class="menu-item-text"><span class="menu-text">Team</span></span></a></li> <li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-140" role="presentation"><a href='https://acestars.co.uk/programme/' data-level='1' role="menuitem"><span class="menu-item-text"><span class="menu-text">Programme</span></span></a></li> <li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-141" role="presentation"><a href='https://acestars.co.uk/contact/' data-level='1' role="menuitem"><span class="menu-item-text"><span class="menu-text">Contact</span></span></a></li> </ul>
+		<div class="mini-widgets"><a href="booking-form" class="microwidget-btn mini-button header-elements-button-1 show-on-desktop near-logo-first-switch in-menu-second-switch microwidget-btn-hover-bg-on border-on hover-border-on btn-icon-align-right" ><span>Book a Course</span></a></div>
+	</header>
+
+</div>
+<div class="dt-mobile-header mobile-menu-show-divider">
+	<div class="dt-close-mobile-menu-icon"><div class="close-line-wrap"><span class="close-line"></span><span class="close-line"></span><span class="close-line"></span></div></div>	<ul id="mobile-menu" class="mobile-main-nav" role="menubar">
+		<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-home menu-item-144 first" role="presentation"><a href='https://acestars.co.uk/' data-level='1' role="menuitem"><span class="menu-item-text"><span class="menu-text">Home</span></span></a></li> <li class="menu-item menu-item-type-post_type menu-item-object-page current-menu-item page_item page-item-9 current_page_item menu-item-143 act" role="presentation"><a href='https://acestars.co.uk/venues/' data-level='1' role="menuitem"><span class="menu-item-text"><span class="menu-text">Venues</span></span></a></li> <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-145" role="presentation"><a href='https://acestars.co.uk/home#team' data-level='1' role="menuitem"><span class="menu-item-text"><span class="menu-text">Team</span></span></a></li> <li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-140" role="presentation"><a href='https://acestars.co.uk/programme/' data-level='1' role="menuitem"><span class="menu-item-text"><span class="menu-text">Programme</span></span></a></li> <li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-141" role="presentation"><a href='https://acestars.co.uk/contact/' data-level='1' role="menuitem"><span class="menu-item-text"><span class="menu-text">Contact</span></span></a></li> 	</ul>
+	<div class='mobile-mini-widgets-in-menu'></div>
+</div>
+
+<style id="the7-page-content-style">
+#main {
+  padding-bottom: 0px;
+}
+
+</style>
+
+<div id="main" class="sidebar-none sidebar-divider-vertical">
+
+	
+	<div class="main-gradient"></div>
+	<div class="wf-wrap">
+	<div class="wf-container-main">
+
+	
+
+
+	<div id="content" class="content" role="main">
+
+		<div data-vc-full-width="true" data-vc-full-width-init="false" class="vc_row wpb_row vc_row-fluid banner-venues vc_custom_1554827305078 vc_row-has-fill"><div class="banner-overlay-layer wpb_column vc_column_container vc_col-sm-12"><div class="vc_column-inner"><div class="wpb_wrapper"><div class="vc_row wpb_row vc_inner vc_row-fluid vc_custom_1583451669165 vc_row-o-equal-height vc_row-flex"><div class="wpb_column vc_column_container vc_col-sm-5"><div class="vc_column-inner"><div class="wpb_wrapper">
+	<div class="wpb_text_column wpb_content_element " >
+		<div class="wpb_wrapper">
+			<h1 class="white">Where we<br />
+Coach</h1>
+
+		</div>
+	</div>
+
+	<div class="wpb_text_column wpb_content_element " >
+		<div class="wpb_wrapper">
+			<h5 class="white">Acestars have been providing tennis coaching in schools &amp; clubs covering Berkshire, Hampshire &amp; Surrey.</h5>
+
+		</div>
+	</div>
+<style type="text/css" data-type="the7_shortcodes-inline-css">#default-btn-6fd8bf1dd66eed3c06a3f940d7b1555f {
+  border-radius: 1px;
+  font-size: 16px;
+  line-height: 18px;
+}
+.btn-shadow#default-btn-6fd8bf1dd66eed3c06a3f940d7b1555f {
+  box-shadow: 0 1px 6px rgba(0,0,0,0.12);
+  transition: box-shadow 0.2s ease-out, opacity 0.45s;
+}
+.btn-shadow#default-btn-6fd8bf1dd66eed3c06a3f940d7b1555f:hover {
+  box-shadow: 0 5px 11px 0 rgba(0,0,0,0.18), 0 4px 15px 0 rgba(0,0,0,0.15);
+}
+.btn-flat#default-btn-6fd8bf1dd66eed3c06a3f940d7b1555f {
+  box-shadow: none;
+}
+.btn-flat#default-btn-6fd8bf1dd66eed3c06a3f940d7b1555f:hover {
+  box-shadow: none;
+}
+#default-btn-6fd8bf1dd66eed3c06a3f940d7b1555f.ico-right-side > i {
+  margin-right: 0px;
+  margin-left: 8px;
+}
+#default-btn-6fd8bf1dd66eed3c06a3f940d7b1555f > i {
+  margin-right: 8px;
+  font-size: 12px;
+}
+#default-btn-6fd8bf1dd66eed3c06a3f940d7b1555f:not(:hover) {
+  border-width: 0px;
+  padding: 12px 18px 12px 18px;
+}
+#default-btn-6fd8bf1dd66eed3c06a3f940d7b1555f:hover {
+  border-width: 0px;
+  padding: 12px 18px 12px 18px;
+}
+#default-btn-6fd8bf1dd66eed3c06a3f940d7b1555f.ico-right-side > i {
+  margin-right: 0px;
+  margin-left: 8px;
+}
+#default-btn-6fd8bf1dd66eed3c06a3f940d7b1555f > i {
+  margin-right: 8px;
+}
+#default-btn-6fd8bf1dd66eed3c06a3f940d7b1555f * {
+  vertical-align: middle;
+}
+</style><a href="#Clubs" class="default-btn-shortcode dt-btn link-hover-off ico-right-side anchor-link primary-button btn-inline-left btn-flat  vc_custom_1551042014647" id="default-btn-6fd8bf1dd66eed3c06a3f940d7b1555f"><span>Our Clubs</span><i class="fas fa-chevron-right"></i></a><style type="text/css" data-type="the7_shortcodes-inline-css">#default-btn-e23bdcc7d6de3ac028ca34ea86947fa0 {
+  border-radius: 1px;
+  font-size: 16px;
+  line-height: 18px;
+}
+.btn-shadow#default-btn-e23bdcc7d6de3ac028ca34ea86947fa0 {
+  box-shadow: 0 1px 6px rgba(0,0,0,0.12);
+  transition: box-shadow 0.2s ease-out, opacity 0.45s;
+}
+.btn-shadow#default-btn-e23bdcc7d6de3ac028ca34ea86947fa0:hover {
+  box-shadow: 0 5px 11px 0 rgba(0,0,0,0.18), 0 4px 15px 0 rgba(0,0,0,0.15);
+}
+.btn-3d#default-btn-e23bdcc7d6de3ac028ca34ea86947fa0:hover {
+  box-shadow: 0px 2px 0px 0px #e0e0e0;
+}
+.btn-flat#default-btn-e23bdcc7d6de3ac028ca34ea86947fa0 {
+  box-shadow: none;
+}
+.btn-flat#default-btn-e23bdcc7d6de3ac028ca34ea86947fa0:hover {
+  box-shadow: none;
+}
+#default-btn-e23bdcc7d6de3ac028ca34ea86947fa0.ico-right-side > i {
+  margin-right: 0px;
+  margin-left: 8px;
+}
+#default-btn-e23bdcc7d6de3ac028ca34ea86947fa0 > i {
+  margin-right: 8px;
+  font-size: 12px;
+}
+#default-btn-e23bdcc7d6de3ac028ca34ea86947fa0:not(:hover) {
+  border-width: 0px;
+  padding: 12px 18px 12px 18px;
+}
+#default-btn-e23bdcc7d6de3ac028ca34ea86947fa0:hover {
+  border-width: 0px;
+  color: #2e354e;
+  background: #ffffff !important;
+  padding: 12px 18px 12px 18px;
+}
+#default-btn-e23bdcc7d6de3ac028ca34ea86947fa0:hover * {
+  color: #2e354e;
+}
+#default-btn-e23bdcc7d6de3ac028ca34ea86947fa0.ico-right-side > i {
+  margin-right: 0px;
+  margin-left: 8px;
+}
+#default-btn-e23bdcc7d6de3ac028ca34ea86947fa0 > i {
+  margin-right: 8px;
+}
+#default-btn-e23bdcc7d6de3ac028ca34ea86947fa0 * {
+  vertical-align: middle;
+}
+</style><a href="#Schools" class="default-btn-shortcode dt-btn link-hover-off ico-right-side anchor-link primary-button see-through-button btn-inline-left btn-flat " id="default-btn-e23bdcc7d6de3ac028ca34ea86947fa0"><span>Our Schools</span><i class="fas fa-chevron-right"></i></a></div></div></div></div></div></div></div></div><div class="vc_row-full-width vc_clearfix"></div><!-- Row Backgrounds --><div class="upb_bg_img" data-ultimate-bg="url(https://acestars.co.uk/wp-content/uploads/2019/03/Depositphotos_115174380_xl-2015-wide-outlined.jpg)" data-image-id="369" data-ultimate-bg-style="vcpb-default" data-bg-img-repeat="no-repeat" data-bg-img-size="cover" data-bg-img-position="" data-parallx_sense="30" data-bg-override="0" data-bg_img_attach="scroll" data-upb-overlay-color="" data-upb-bg-animation="" data-fadeout="" data-bg-animation="left-animation" data-bg-animation-type="h" data-animation-repeat="repeat" data-fadeout-percentage="30" data-parallax-content="" data-parallax-content-sense="30" data-row-effect-mobile-disable="true" data-img-parallax-mobile-disable="true" data-rtl="false"  data-custom-vc-row=""  data-vc="6.6.0.1"  data-is_old_vc=""  data-theme-support=""   data-overlay="false" data-overlay-color="" data-overlay-pattern="" data-overlay-pattern-opacity="" data-overlay-pattern-size=""    ></div><div id="Clubs" data-vc-full-width="true" data-vc-full-width-init="false" class="vc_row wpb_row vc_row-fluid vc_custom_1554827240428 vc_row-has-fill"><div class="wpb_column vc_column_container vc_col-sm-12"><div class="vc_column-inner"><div class="wpb_wrapper"><div class="vc_row wpb_row vc_inner vc_row-fluid text-centered"><div class="wpb_column vc_column_container vc_col-sm-12"><div class="vc_column-inner"><div class="wpb_wrapper">
+	<div class="wpb_text_column wpb_content_element " >
+		<div class="wpb_wrapper">
+			<div class="section-container">
+<div class="section-number">
+<ul>
+<li>01.</li>
+<li class="line-section"></li>
+<li>Our Clubs</li>
+</ul>
+</div>
+</div>
+
+		</div>
+	</div>
+
+	<div class="wpb_text_column wpb_content_element " >
+		<div class="wpb_wrapper">
+			<h2>Clubs</h2>
+
+		</div>
+	</div>
+
+	<div class="wpb_text_column wpb_content_element " >
+		<div class="wpb_wrapper">
+			<h5 class="sub-heading-container">Acestars is a well-established professional tennis coaching school, operating in the home counties of Hampshire, Berkshire and Surrey. We currently coach at various clubs and school centres.</h5>
+
+		</div>
+	</div>
+</div></div></div></div></div></div></div></div><div class="vc_row-full-width vc_clearfix"></div><div data-vc-full-width="true" data-vc-full-width-init="false" class="vc_row wpb_row vc_row-fluid vc_custom_1551225756822 vc_row-has-fill"><div class="wpb_column vc_column_container vc_col-sm-12"><div class="vc_column-inner"><div class="wpb_wrapper"><div class="vc_row wpb_row vc_inner vc_row-fluid vc_custom_1551225645255"><div class="wpb_column vc_column_container vc_col-sm-6"><div class="vc_column-inner"><div class="wpb_wrapper">
+	<div class="wpb_text_column wpb_content_element  vc_custom_1581815927602 club-card" >
+		<div class="wpb_wrapper">
+			<div class="club-container">
+<div class="club-card-container">
+<div class="club-location">Farnborough</div>
+<div class="club-name">Farnborough Tennis Club</div>
+<div class="club-address">Tile Barn Cl, Farnborough GU14 8LS</div>
+<div class="club-details"></div>
+</div>
+</div>
+<div class="overlay-card">
+<div class="team-rollover-container">
+<div class="team-rollover-subheading">Farnborough</div>
+<div class="team-rollover-heading">Farnborough Tennis Club</div>
+<div class="team-rollover-content">A great club, offering an excellent opportunity for people of all ages and abilities, to play tennis and table tennis, in a fun and social environment! We have a brilliant large and spacious clubhouse, and have 4 great tennis courts with floodlights for evening play. There is also a knock-up wall, for individual practice.</div>
+<div><div class="gap" style="line-height: 20px; height: 20px;"></div></div>
+<div class="clubs-buttons"><style type="text/css" data-type="the7_shortcodes-inline-css">#default-btn-b5efa209077b756ecf795eab45030246 {
+  border-radius: 1px;
+  font-size: 12px;
+  line-height: 14px;
+}
+.btn-shadow#default-btn-b5efa209077b756ecf795eab45030246 {
+  box-shadow: 0 1px 6px rgba(0,0,0,0.12);
+  transition: box-shadow 0.2s ease-out, opacity 0.45s;
+}
+.btn-shadow#default-btn-b5efa209077b756ecf795eab45030246:hover {
+  box-shadow: 0 5px 11px 0 rgba(0,0,0,0.18), 0 4px 15px 0 rgba(0,0,0,0.15);
+}
+.btn-3d#default-btn-b5efa209077b756ecf795eab45030246 {
+  box-shadow: 0px 2px 0px 0px #1e1e21;
+}
+.btn-3d#default-btn-b5efa209077b756ecf795eab45030246:hover {
+  box-shadow: 0px 2px 0px 0px #28292b;
+}
+.btn-flat#default-btn-b5efa209077b756ecf795eab45030246 {
+  box-shadow: none;
+}
+.btn-flat#default-btn-b5efa209077b756ecf795eab45030246:hover {
+  box-shadow: none;
+}
+#default-btn-b5efa209077b756ecf795eab45030246.ico-right-side > i {
+  margin-right: 0px;
+  margin-left: 8px;
+}
+#default-btn-b5efa209077b756ecf795eab45030246 > i {
+  margin-right: 8px;
+  font-size: 12px;
+}
+#default-btn-b5efa209077b756ecf795eab45030246:not(:hover) {
+  border-width: 0px;
+  background: #2E354E !important;
+  padding: 8px 14px 7px 14px;
+}
+#default-btn-b5efa209077b756ecf795eab45030246:hover {
+  border-width: 0px;
+  color: #fcef04;
+  background: #373F59 !important;
+  padding: 8px 14px 7px 14px;
+}
+#default-btn-b5efa209077b756ecf795eab45030246:hover * {
+  color: #fcef04;
+}
+#default-btn-b5efa209077b756ecf795eab45030246.ico-right-side > i {
+  margin-right: 0px;
+  margin-left: 8px;
+}
+#default-btn-b5efa209077b756ecf795eab45030246 > i {
+  margin-right: 8px;
+}
+#default-btn-b5efa209077b756ecf795eab45030246 * {
+  vertical-align: middle;
+}
+</style><a href="#" class="default-btn-shortcode dt-btn fadeIn animate-element animation-builder link-hover-off ico-right-side small-button small-button-margin-right btn-flat " id="default-btn-b5efa209077b756ecf795eab45030246"><span>Directions</span><i class="fa fa-chevron-circle-right"></i></a><style type="text/css" data-type="the7_shortcodes-inline-css">#default-btn-91ee59abc6404424de77f577eb711be4 {
+  border-radius: 1px;
+  font-size: 12px;
+  line-height: 14px;
+}
+.btn-shadow#default-btn-91ee59abc6404424de77f577eb711be4 {
+  box-shadow: 0 1px 6px rgba(0,0,0,0.12);
+  transition: box-shadow 0.2s ease-out, opacity 0.45s;
+}
+.btn-shadow#default-btn-91ee59abc6404424de77f577eb711be4:hover {
+  box-shadow: 0 5px 11px 0 rgba(0,0,0,0.18), 0 4px 15px 0 rgba(0,0,0,0.15);
+}
+.btn-3d#default-btn-91ee59abc6404424de77f577eb711be4:hover {
+  box-shadow: 0px 2px 0px 0px #e0e0e0;
+}
+.btn-flat#default-btn-91ee59abc6404424de77f577eb711be4 {
+  box-shadow: none;
+}
+.btn-flat#default-btn-91ee59abc6404424de77f577eb711be4:hover {
+  box-shadow: none;
+}
+#default-btn-91ee59abc6404424de77f577eb711be4.ico-right-side > i {
+  margin-right: 0px;
+  margin-left: 8px;
+}
+#default-btn-91ee59abc6404424de77f577eb711be4 > i {
+  margin-right: 8px;
+  font-size: 12px;
+}
+#default-btn-91ee59abc6404424de77f577eb711be4:not(:hover) {
+  border-width: 0px;
+  padding: 8px 14px 7px 14px;
+}
+#default-btn-91ee59abc6404424de77f577eb711be4:hover {
+  border-width: 0px;
+  color: #2E354E;
+  background: #ffffff !important;
+  padding: 8px 14px 7px 14px;
+}
+#default-btn-91ee59abc6404424de77f577eb711be4:hover * {
+  color: #2E354E;
+}
+#default-btn-91ee59abc6404424de77f577eb711be4.ico-right-side > i {
+  margin-right: 0px;
+  margin-left: 8px;
+}
+#default-btn-91ee59abc6404424de77f577eb711be4 > i {
+  margin-right: 8px;
+}
+#default-btn-91ee59abc6404424de77f577eb711be4 * {
+  vertical-align: middle;
+}
+</style><a href="http://www.farnboroughtennis.co.uk" class="default-btn-shortcode dt-btn fadeIn animate-element animation-builder link-hover-off ico-right-side small-button see-through-button btn-flat " id="default-btn-91ee59abc6404424de77f577eb711be4"><span>Website</span><i class="fa fa-chevron-circle-right"></i></a></div>
+</div>
+</div>
+
+		</div>
+	</div>
+</div></div></div><div class="wpb_column vc_column_container vc_col-sm-6"><div class="vc_column-inner"><div class="wpb_wrapper">
+	<div class="wpb_text_column wpb_content_element  vc_custom_1581816175938 club-card" >
+		<div class="wpb_wrapper">
+			<div class="club-container">
+<div class="club-card-container">
+<div class="club-location">Elvetham</div>
+<div class="club-name">Elvetham Heath Tennis</div>
+<div class="club-address"><span class="LrzXr">The Key, Fleet GU51 1HA</span></div>
+<div class="club-details"></div>
+</div>
+</div>
+<div class="overlay-card">
+<div class="team-rollover-container">
+<div class="team-rollover-subheading">Elvetham</div>
+<div class="team-rollover-heading">Elvetham Heath Tennis</div>
+<div class="team-rollover-content">Our courts have been resurfaced and are now an ideal floodlit venue for tennis and netball.<br />
+There are three floodlit tennis courts available which can be hired individually. It is also possible to hire the whole area, which is suitable for team sports such as netball and five-a-side football.</div>
+<div><div class="gap" style="line-height: 20px; height: 20px;"></div></div>
+<div class="clubs-buttons"><style type="text/css" data-type="the7_shortcodes-inline-css">#default-btn-b5efa209077b756ecf795eab45030246 {
+  border-radius: 1px;
+  font-size: 12px;
+  line-height: 14px;
+}
+.btn-shadow#default-btn-b5efa209077b756ecf795eab45030246 {
+  box-shadow: 0 1px 6px rgba(0,0,0,0.12);
+  transition: box-shadow 0.2s ease-out, opacity 0.45s;
+}
+.btn-shadow#default-btn-b5efa209077b756ecf795eab45030246:hover {
+  box-shadow: 0 5px 11px 0 rgba(0,0,0,0.18), 0 4px 15px 0 rgba(0,0,0,0.15);
+}
+.btn-3d#default-btn-b5efa209077b756ecf795eab45030246 {
+  box-shadow: 0px 2px 0px 0px #1e1e21;
+}
+.btn-3d#default-btn-b5efa209077b756ecf795eab45030246:hover {
+  box-shadow: 0px 2px 0px 0px #28292b;
+}
+.btn-flat#default-btn-b5efa209077b756ecf795eab45030246 {
+  box-shadow: none;
+}
+.btn-flat#default-btn-b5efa209077b756ecf795eab45030246:hover {
+  box-shadow: none;
+}
+#default-btn-b5efa209077b756ecf795eab45030246.ico-right-side > i {
+  margin-right: 0px;
+  margin-left: 8px;
+}
+#default-btn-b5efa209077b756ecf795eab45030246 > i {
+  margin-right: 8px;
+  font-size: 12px;
+}
+#default-btn-b5efa209077b756ecf795eab45030246:not(:hover) {
+  border-width: 0px;
+  background: #2E354E !important;
+  padding: 8px 14px 7px 14px;
+}
+#default-btn-b5efa209077b756ecf795eab45030246:hover {
+  border-width: 0px;
+  color: #fcef04;
+  background: #373F59 !important;
+  padding: 8px 14px 7px 14px;
+}
+#default-btn-b5efa209077b756ecf795eab45030246:hover * {
+  color: #fcef04;
+}
+#default-btn-b5efa209077b756ecf795eab45030246.ico-right-side > i {
+  margin-right: 0px;
+  margin-left: 8px;
+}
+#default-btn-b5efa209077b756ecf795eab45030246 > i {
+  margin-right: 8px;
+}
+#default-btn-b5efa209077b756ecf795eab45030246 * {
+  vertical-align: middle;
+}
+</style><a href="#" class="default-btn-shortcode dt-btn fadeIn animate-element animation-builder link-hover-off ico-right-side small-button small-button-margin-right btn-flat " id="default-btn-b5efa209077b756ecf795eab45030246"><span>Directions</span><i class="fa fa-chevron-circle-right"></i></a><style type="text/css" data-type="the7_shortcodes-inline-css">#default-btn-dd89a331ff945666b67f831625a3569e {
+  border-radius: 1px;
+  font-size: 12px;
+  line-height: 14px;
+}
+.btn-shadow#default-btn-dd89a331ff945666b67f831625a3569e {
+  box-shadow: 0 1px 6px rgba(0,0,0,0.12);
+  transition: box-shadow 0.2s ease-out, opacity 0.45s;
+}
+.btn-shadow#default-btn-dd89a331ff945666b67f831625a3569e:hover {
+  box-shadow: 0 5px 11px 0 rgba(0,0,0,0.18), 0 4px 15px 0 rgba(0,0,0,0.15);
+}
+.btn-3d#default-btn-dd89a331ff945666b67f831625a3569e:hover {
+  box-shadow: 0px 2px 0px 0px #e0e0e0;
+}
+.btn-flat#default-btn-dd89a331ff945666b67f831625a3569e {
+  box-shadow: none;
+}
+.btn-flat#default-btn-dd89a331ff945666b67f831625a3569e:hover {
+  box-shadow: none;
+}
+#default-btn-dd89a331ff945666b67f831625a3569e.ico-right-side > i {
+  margin-right: 0px;
+  margin-left: 8px;
+}
+#default-btn-dd89a331ff945666b67f831625a3569e > i {
+  margin-right: 8px;
+  font-size: 12px;
+}
+#default-btn-dd89a331ff945666b67f831625a3569e:not(:hover) {
+  border-width: 0px;
+  padding: 8px 14px 7px 14px;
+}
+#default-btn-dd89a331ff945666b67f831625a3569e:hover {
+  border-width: 0px;
+  color: #2E354E;
+  background: #ffffff !important;
+  padding: 8px 14px 7px 14px;
+}
+#default-btn-dd89a331ff945666b67f831625a3569e:hover * {
+  color: #2E354E;
+}
+#default-btn-dd89a331ff945666b67f831625a3569e.ico-right-side > i {
+  margin-right: 0px;
+  margin-left: 8px;
+}
+#default-btn-dd89a331ff945666b67f831625a3569e > i {
+  margin-right: 8px;
+}
+#default-btn-dd89a331ff945666b67f831625a3569e * {
+  vertical-align: middle;
+}
+</style><a href="https://www.supersaas.com/schedule/EHTennis" class="default-btn-shortcode dt-btn fadeIn animate-element animation-builder link-hover-off ico-right-side small-button see-through-button btn-flat " id="default-btn-dd89a331ff945666b67f831625a3569e"><span>Website</span><i class="fa fa-chevron-circle-right"></i></a></div>
+</div>
+</div>
+
+		</div>
+	</div>
+</div></div></div><div class="wpb_column vc_column_container vc_col-sm-6"><div class="vc_column-inner"><div class="wpb_wrapper">
+	<div class="wpb_text_column wpb_content_element  vc_custom_1581816093691 club-card" >
+		<div class="wpb_wrapper">
+			<div class="club-container">
+<div class="club-card-container">
+<div class="club-location">Sandhurst</div>
+<div class="club-name">Sandhurst Memorial Park</div>
+<div class="club-address">
+<p>Yorktown Road,Sandhurst, Berkshire, GU47 9BJ</p>
+</div>
+<div class="club-details"></div>
+</div>
+</div>
+<div class="overlay-card">
+<div class="team-rollover-container">
+<div class="team-rollover-subheading">Sandhurst</div>
+<div class="team-rollover-heading">Sandhurst Memorial Park</div>
+<div class="team-rollover-content">We are a friendly community club providing residents of Sandhurst and surrounding areas with a great place to play tennis and for all levels and playing abilities. Our three courts offer one of the best playing surfaces in the area having been refurbished by Sandhurst Town Council in the winter of 2017.</div>
+<div><div class="gap" style="line-height: 20px; height: 20px;"></div></div>
+<div class="clubs-buttons"><style type="text/css" data-type="the7_shortcodes-inline-css">#default-btn-b5efa209077b756ecf795eab45030246 {
+  border-radius: 1px;
+  font-size: 12px;
+  line-height: 14px;
+}
+.btn-shadow#default-btn-b5efa209077b756ecf795eab45030246 {
+  box-shadow: 0 1px 6px rgba(0,0,0,0.12);
+  transition: box-shadow 0.2s ease-out, opacity 0.45s;
+}
+.btn-shadow#default-btn-b5efa209077b756ecf795eab45030246:hover {
+  box-shadow: 0 5px 11px 0 rgba(0,0,0,0.18), 0 4px 15px 0 rgba(0,0,0,0.15);
+}
+.btn-3d#default-btn-b5efa209077b756ecf795eab45030246 {
+  box-shadow: 0px 2px 0px 0px #1e1e21;
+}
+.btn-3d#default-btn-b5efa209077b756ecf795eab45030246:hover {
+  box-shadow: 0px 2px 0px 0px #28292b;
+}
+.btn-flat#default-btn-b5efa209077b756ecf795eab45030246 {
+  box-shadow: none;
+}
+.btn-flat#default-btn-b5efa209077b756ecf795eab45030246:hover {
+  box-shadow: none;
+}
+#default-btn-b5efa209077b756ecf795eab45030246.ico-right-side > i {
+  margin-right: 0px;
+  margin-left: 8px;
+}
+#default-btn-b5efa209077b756ecf795eab45030246 > i {
+  margin-right: 8px;
+  font-size: 12px;
+}
+#default-btn-b5efa209077b756ecf795eab45030246:not(:hover) {
+  border-width: 0px;
+  background: #2E354E !important;
+  padding: 8px 14px 7px 14px;
+}
+#default-btn-b5efa209077b756ecf795eab45030246:hover {
+  border-width: 0px;
+  color: #fcef04;
+  background: #373F59 !important;
+  padding: 8px 14px 7px 14px;
+}
+#default-btn-b5efa209077b756ecf795eab45030246:hover * {
+  color: #fcef04;
+}
+#default-btn-b5efa209077b756ecf795eab45030246.ico-right-side > i {
+  margin-right: 0px;
+  margin-left: 8px;
+}
+#default-btn-b5efa209077b756ecf795eab45030246 > i {
+  margin-right: 8px;
+}
+#default-btn-b5efa209077b756ecf795eab45030246 * {
+  vertical-align: middle;
+}
+</style><a href="#" class="default-btn-shortcode dt-btn fadeIn animate-element animation-builder link-hover-off ico-right-side small-button small-button-margin-right btn-flat " id="default-btn-b5efa209077b756ecf795eab45030246"><span>Directions</span><i class="fa fa-chevron-circle-right"></i></a><style type="text/css" data-type="the7_shortcodes-inline-css">#default-btn-fc9aca7bc95f88385382f421e2d1d81d {
+  border-radius: 1px;
+  font-size: 12px;
+  line-height: 14px;
+}
+.btn-shadow#default-btn-fc9aca7bc95f88385382f421e2d1d81d {
+  box-shadow: 0 1px 6px rgba(0,0,0,0.12);
+  transition: box-shadow 0.2s ease-out, opacity 0.45s;
+}
+.btn-shadow#default-btn-fc9aca7bc95f88385382f421e2d1d81d:hover {
+  box-shadow: 0 5px 11px 0 rgba(0,0,0,0.18), 0 4px 15px 0 rgba(0,0,0,0.15);
+}
+.btn-3d#default-btn-fc9aca7bc95f88385382f421e2d1d81d:hover {
+  box-shadow: 0px 2px 0px 0px #e0e0e0;
+}
+.btn-flat#default-btn-fc9aca7bc95f88385382f421e2d1d81d {
+  box-shadow: none;
+}
+.btn-flat#default-btn-fc9aca7bc95f88385382f421e2d1d81d:hover {
+  box-shadow: none;
+}
+#default-btn-fc9aca7bc95f88385382f421e2d1d81d.ico-right-side > i {
+  margin-right: 0px;
+  margin-left: 8px;
+}
+#default-btn-fc9aca7bc95f88385382f421e2d1d81d > i {
+  margin-right: 8px;
+  font-size: 12px;
+}
+#default-btn-fc9aca7bc95f88385382f421e2d1d81d:not(:hover) {
+  border-width: 0px;
+  padding: 8px 14px 7px 14px;
+}
+#default-btn-fc9aca7bc95f88385382f421e2d1d81d:hover {
+  border-width: 0px;
+  color: #2E354E;
+  background: #ffffff !important;
+  padding: 8px 14px 7px 14px;
+}
+#default-btn-fc9aca7bc95f88385382f421e2d1d81d:hover * {
+  color: #2E354E;
+}
+#default-btn-fc9aca7bc95f88385382f421e2d1d81d.ico-right-side > i {
+  margin-right: 0px;
+  margin-left: 8px;
+}
+#default-btn-fc9aca7bc95f88385382f421e2d1d81d > i {
+  margin-right: 8px;
+}
+#default-btn-fc9aca7bc95f88385382f421e2d1d81d * {
+  vertical-align: middle;
+}
+</style><a href="http://sandhursttennisclub.co.uk" class="default-btn-shortcode dt-btn fadeIn animate-element animation-builder link-hover-off ico-right-side small-button see-through-button btn-flat " id="default-btn-fc9aca7bc95f88385382f421e2d1d81d"><span>Website</span><i class="fa fa-chevron-circle-right"></i></a></div>
+</div>
+</div>
+
+		</div>
+	</div>
+</div></div></div><div class="wpb_column vc_column_container vc_col-sm-6"><div class="vc_column-inner"><div class="wpb_wrapper">
+	<div class="wpb_text_column wpb_content_element  vc_custom_1581816215159 club-card" >
+		<div class="wpb_wrapper">
+			<div class="club-container">
+<div class="club-card-container">
+<div class="club-location">Iver</div>
+<div class="club-name">Iver Heath Tennis Club</div>
+<div class="club-address">
+<p>The Recreation Ground, Church Road, Iver Heath, SL0 0RW</p>
+</div>
+<div class="club-details"></div>
+</div>
+</div>
+<div class="overlay-card">
+<div class="team-rollover-container">
+<div class="team-rollover-subheading">Iver</div>
+<div class="team-rollover-heading">Iver Heath Tennis Club</div>
+<div class="team-rollover-content">
+<p>We are a friendly club providing residents of The Ivers and the surrounding areas with a great place to play tennis.</p>
+<p>Iver Heath Tennis Club was founded in 1952 and is situated at The Recreation Ground off Church Road in Iver Heath and near to Pinewood Studios.  The club is in easy reach of The Chalfonts, Gerrards Cross,  Richings Park, Slough &amp; Uxbridge..</p>
+</div>
+<div><div class="gap" style="line-height: 20px; height: 20px;"></div></div>
+<div class="clubs-buttons"><style type="text/css" data-type="the7_shortcodes-inline-css">#default-btn-b5efa209077b756ecf795eab45030246 {
+  border-radius: 1px;
+  font-size: 12px;
+  line-height: 14px;
+}
+.btn-shadow#default-btn-b5efa209077b756ecf795eab45030246 {
+  box-shadow: 0 1px 6px rgba(0,0,0,0.12);
+  transition: box-shadow 0.2s ease-out, opacity 0.45s;
+}
+.btn-shadow#default-btn-b5efa209077b756ecf795eab45030246:hover {
+  box-shadow: 0 5px 11px 0 rgba(0,0,0,0.18), 0 4px 15px 0 rgba(0,0,0,0.15);
+}
+.btn-3d#default-btn-b5efa209077b756ecf795eab45030246 {
+  box-shadow: 0px 2px 0px 0px #1e1e21;
+}
+.btn-3d#default-btn-b5efa209077b756ecf795eab45030246:hover {
+  box-shadow: 0px 2px 0px 0px #28292b;
+}
+.btn-flat#default-btn-b5efa209077b756ecf795eab45030246 {
+  box-shadow: none;
+}
+.btn-flat#default-btn-b5efa209077b756ecf795eab45030246:hover {
+  box-shadow: none;
+}
+#default-btn-b5efa209077b756ecf795eab45030246.ico-right-side > i {
+  margin-right: 0px;
+  margin-left: 8px;
+}
+#default-btn-b5efa209077b756ecf795eab45030246 > i {
+  margin-right: 8px;
+  font-size: 12px;
+}
+#default-btn-b5efa209077b756ecf795eab45030246:not(:hover) {
+  border-width: 0px;
+  background: #2E354E !important;
+  padding: 8px 14px 7px 14px;
+}
+#default-btn-b5efa209077b756ecf795eab45030246:hover {
+  border-width: 0px;
+  color: #fcef04;
+  background: #373F59 !important;
+  padding: 8px 14px 7px 14px;
+}
+#default-btn-b5efa209077b756ecf795eab45030246:hover * {
+  color: #fcef04;
+}
+#default-btn-b5efa209077b756ecf795eab45030246.ico-right-side > i {
+  margin-right: 0px;
+  margin-left: 8px;
+}
+#default-btn-b5efa209077b756ecf795eab45030246 > i {
+  margin-right: 8px;
+}
+#default-btn-b5efa209077b756ecf795eab45030246 * {
+  vertical-align: middle;
+}
+</style><a href="#" class="default-btn-shortcode dt-btn fadeIn animate-element animation-builder link-hover-off ico-right-side small-button small-button-margin-right btn-flat " id="default-btn-b5efa209077b756ecf795eab45030246"><span>Directions</span><i class="fa fa-chevron-circle-right"></i></a><style type="text/css" data-type="the7_shortcodes-inline-css">#default-btn-009816d8180742287b3226bd0e638ad5 {
+  border-radius: 1px;
+  font-size: 12px;
+  line-height: 14px;
+}
+.btn-shadow#default-btn-009816d8180742287b3226bd0e638ad5 {
+  box-shadow: 0 1px 6px rgba(0,0,0,0.12);
+  transition: box-shadow 0.2s ease-out, opacity 0.45s;
+}
+.btn-shadow#default-btn-009816d8180742287b3226bd0e638ad5:hover {
+  box-shadow: 0 5px 11px 0 rgba(0,0,0,0.18), 0 4px 15px 0 rgba(0,0,0,0.15);
+}
+.btn-3d#default-btn-009816d8180742287b3226bd0e638ad5:hover {
+  box-shadow: 0px 2px 0px 0px #e0e0e0;
+}
+.btn-flat#default-btn-009816d8180742287b3226bd0e638ad5 {
+  box-shadow: none;
+}
+.btn-flat#default-btn-009816d8180742287b3226bd0e638ad5:hover {
+  box-shadow: none;
+}
+#default-btn-009816d8180742287b3226bd0e638ad5.ico-right-side > i {
+  margin-right: 0px;
+  margin-left: 8px;
+}
+#default-btn-009816d8180742287b3226bd0e638ad5 > i {
+  margin-right: 8px;
+  font-size: 12px;
+}
+#default-btn-009816d8180742287b3226bd0e638ad5:not(:hover) {
+  border-width: 0px;
+  padding: 8px 14px 7px 14px;
+}
+#default-btn-009816d8180742287b3226bd0e638ad5:hover {
+  border-width: 0px;
+  color: #2E354E;
+  background: #ffffff !important;
+  padding: 8px 14px 7px 14px;
+}
+#default-btn-009816d8180742287b3226bd0e638ad5:hover * {
+  color: #2E354E;
+}
+#default-btn-009816d8180742287b3226bd0e638ad5.ico-right-side > i {
+  margin-right: 0px;
+  margin-left: 8px;
+}
+#default-btn-009816d8180742287b3226bd0e638ad5 > i {
+  margin-right: 8px;
+}
+#default-btn-009816d8180742287b3226bd0e638ad5 * {
+  vertical-align: middle;
+}
+</style><a href="http://www.ihltc.co.uk" class="default-btn-shortcode dt-btn fadeIn animate-element animation-builder link-hover-off ico-right-side small-button see-through-button btn-flat " id="default-btn-009816d8180742287b3226bd0e638ad5"><span>Website</span><i class="fa fa-chevron-circle-right"></i></a></div>
+</div>
+</div>
+
+		</div>
+	</div>
+</div></div></div></div></div></div></div></div><div class="vc_row-full-width vc_clearfix"></div><div data-vc-full-width="true" data-vc-full-width-init="false" data-vc-stretch-content="true" class="vc_row wpb_row vc_row-fluid vc_custom_1547418064588 vc_row-no-padding vc_row-o-content-bottom vc_row-flex"><div class="wpb_column vc_column_container vc_col-sm-12"><div class="vc_column-inner vc_custom_1547418114806"><div class="wpb_wrapper">
+	<div  class="wpb_single_image wpb_content_element vc_align_center  vc_custom_1547418074705">
+		
+		<figure class="wpb_wrapper vc_figure">
+			<div class="vc_single_image-wrapper   vc_box_border_grey"><img width="1920" height="284" src="https://acestars.co.uk/wp-content/uploads/2019/01/Mask-Group-16-1.png" class="vc_single_image-img attachment-full" alt="" loading="lazy" srcset="https://acestars.co.uk/wp-content/uploads/2019/01/Mask-Group-16-1.png 1920w, https://acestars.co.uk/wp-content/uploads/2019/01/Mask-Group-16-1-300x44.png 300w, https://acestars.co.uk/wp-content/uploads/2019/01/Mask-Group-16-1-768x114.png 768w, https://acestars.co.uk/wp-content/uploads/2019/01/Mask-Group-16-1-1024x151.png 1024w" sizes="(max-width: 1920px) 100vw, 1920px"  data-dt-location="https://acestars.co.uk/venues/mask-group-16-3/" /></div>
+		</figure>
+	</div>
+</div></div></div></div><div class="vc_row-full-width vc_clearfix"></div><div id="Schools" data-vc-full-width="true" data-vc-full-width-init="false" class="vc_row wpb_row vc_row-fluid vc_custom_1551041139683"><div class="wpb_column vc_column_container vc_col-sm-12"><div class="vc_column-inner"><div class="wpb_wrapper"><div class="vc_row wpb_row vc_inner vc_row-fluid"><div class="wpb_column vc_column_container vc_col-sm-6"><div class="vc_column-inner"><div class="wpb_wrapper">
+	<div class="wpb_text_column wpb_content_element " >
+		<div class="wpb_wrapper">
+			<div class="section-container">
+<div class="section-number">
+<ul>
+<li>02.</li>
+<li class="line-section"></li>
+<li>Our Schools</li>
+</ul>
+</div>
+</div>
+
+		</div>
+	</div>
+
+	<div class="wpb_text_column wpb_content_element " >
+		<div class="wpb_wrapper">
+			<h3>Our Schools</h3>
+
+		</div>
+	</div>
+</div></div></div><div class="wpb_column vc_column_container vc_col-sm-6"><div class="vc_column-inner"><div class="wpb_wrapper"></div></div></div></div><div class="vc_row wpb_row vc_inner vc_row-fluid"><div class="school-card wpb_column vc_column_container vc_col-sm-3"><div class="vc_column-inner"><div class="wpb_wrapper">
+	<div class="wpb_text_column wpb_content_element  school-box" >
+		<div class="wpb_wrapper">
+			<div class="team-image"><img loading="lazy" class="aligncenter wp-image-221 size-full" src="https://acestars.co.uk/wp-content/uploads/2019/02/2s.jpg" alt="" width="600" height="400" srcset="https://acestars.co.uk/wp-content/uploads/2019/02/2s.jpg 600w, https://acestars.co.uk/wp-content/uploads/2019/02/2s-300x200.jpg 300w" sizes="(max-width: 600px) 100vw, 600px" /></div>
+<div class="school-location"><div class="gap" style="line-height: 30px; height: 30px;"></div></div>
+<div class="school-location">Elvetham</div>
+<div class="school-name">Elvetham Heath Primary School</div>
+<div class="school-address">The Key, Elvetham Heath,</div>
+<div class="school-address">Fleet, GU51 1DP</div>
+
+		</div>
+	</div>
+</div></div></div><div class="school-card wpb_column vc_column_container vc_col-sm-3"><div class="vc_column-inner"><div class="wpb_wrapper">
+	<div class="wpb_text_column wpb_content_element  school-box" >
+		<div class="wpb_wrapper">
+			<div class="team-image"><img loading="lazy" class="aligncenter wp-image-223 size-full" src="https://acestars.co.uk/wp-content/uploads/2019/02/3s.jpg" alt="" width="600" height="400" srcset="https://acestars.co.uk/wp-content/uploads/2019/02/3s.jpg 600w, https://acestars.co.uk/wp-content/uploads/2019/02/3s-300x200.jpg 300w" sizes="(max-width: 600px) 100vw, 600px" /></div>
+<div class="school-location"><div class="gap" style="line-height: 30px; height: 30px;"></div></div>
+<div class="school-location">Wokingham</div>
+<div class="school-name">Ludgrove School</div>
+<div class="school-address">Ludgrove, Wokingham,</div>
+<div class="school-address">Berkshire, RG40 3AB</div>
+
+		</div>
+	</div>
+</div></div></div><div class="school-card wpb_column vc_column_container vc_col-sm-3"><div class="vc_column-inner"><div class="wpb_wrapper">
+	<div class="wpb_text_column wpb_content_element  school-box" >
+		<div class="wpb_wrapper">
+			<div class="team-image"><img loading="lazy" class="alignnone wp-image-227 size-full" src="https://acestars.co.uk/wp-content/uploads/2019/02/5s.jpg" alt="" width="600" height="400" srcset="https://acestars.co.uk/wp-content/uploads/2019/02/5s.jpg 600w, https://acestars.co.uk/wp-content/uploads/2019/02/5s-300x200.jpg 300w" sizes="(max-width: 600px) 100vw, 600px" /></div>
+<div class="school-location"><div class="gap" style="line-height: 30px; height: 30px;"></div></div>
+<div class="school-location">Crowthorne</div>
+<div class="school-name">Edgbarrow School</div>
+<div class="school-address">Grant Road, Crowthorne,</div>
+<div class="school-address">Berkshire, RG45 7HZ</div>
+
+		</div>
+	</div>
+</div></div></div><div class="school-card wpb_column vc_column_container vc_col-sm-3"><div class="vc_column-inner"><div class="wpb_wrapper">
+	<div class="wpb_text_column wpb_content_element  school-box" >
+		<div class="wpb_wrapper">
+			<div class="team-image"><img loading="lazy" class="alignnone wp-image-219 size-full" src="https://acestars.co.uk/wp-content/uploads/2019/02/1s.jpg" alt="" width="600" height="400" srcset="https://acestars.co.uk/wp-content/uploads/2019/02/1s.jpg 600w, https://acestars.co.uk/wp-content/uploads/2019/02/1s-300x200.jpg 300w" sizes="(max-width: 600px) 100vw, 600px" /></div>
+<div class="school-location"><div class="gap" style="line-height: 30px; height: 30px;"></div></div>
+<div class="school-location">Yateley</div>
+<div class="school-name">Yateley Manor</div>
+<div class="school-address">51 Reading Road,</div>
+<div class="school-address">Yateley, GU46 7UQ</div>
+
+		</div>
+	</div>
+</div></div></div></div><div class="vc_row wpb_row vc_inner vc_row-fluid"><div class="school-card wpb_column vc_column_container vc_col-sm-3"><div class="vc_column-inner"><div class="wpb_wrapper">
+	<div class="wpb_text_column wpb_content_element  school-box" >
+		<div class="wpb_wrapper">
+			<div class="team-image"><img loading="lazy" class="aligncenter wp-image-378 size-full" src="https://acestars.co.uk/wp-content/uploads/2019/03/ninemile-ride-s.jpg" alt="" width="600" height="400" srcset="https://acestars.co.uk/wp-content/uploads/2019/03/ninemile-ride-s.jpg 600w, https://acestars.co.uk/wp-content/uploads/2019/03/ninemile-ride-s-300x200.jpg 300w" sizes="(max-width: 600px) 100vw, 600px" /></div>
+<div class="school-location"><div class="gap" style="line-height: 30px; height: 30px;"></div></div>
+<div class="school-location">Wokingham</div>
+<div class="school-name">Nine Mile Ride Junior School</div>
+<div class="school-address">430 Finchampstead Rd, Finchampstead,</div>
+<div class="school-address">Wokingham, RG40 3RB</div>
+
+		</div>
+	</div>
+</div></div></div><div class="school-card wpb_column vc_column_container vc_col-sm-3"><div class="vc_column-inner"><div class="wpb_wrapper">
+	<div class="wpb_text_column wpb_content_element  school-box" >
+		<div class="wpb_wrapper">
+			<div class="team-image"><img loading="lazy" class="alignnone wp-image-380 size-full" src="https://acestars.co.uk/wp-content/uploads/2019/03/st-sebastian-school2.jpg" alt="" width="600" height="400" srcset="https://acestars.co.uk/wp-content/uploads/2019/03/st-sebastian-school2.jpg 600w, https://acestars.co.uk/wp-content/uploads/2019/03/st-sebastian-school2-300x200.jpg 300w" sizes="(max-width: 600px) 100vw, 600px" /></div>
+<div class="school-location"><div class="gap" style="line-height: 30px; height: 30px;"></div></div>
+<div class="school-location">Wokingham</div>
+<div class="school-name">St. Sebastian’s CE Primary School</div>
+<div class="school-address">Nine Mile Ride,</div>
+<div class="school-address">Wokingham, RG40 3AT</div>
+
+		</div>
+	</div>
+</div></div></div><div class="school-card wpb_column vc_column_container vc_col-sm-3"><div class="vc_column-inner"><div class="wpb_wrapper">
+	<div class="wpb_text_column wpb_content_element  school-box" >
+		<div class="wpb_wrapper">
+			<div class="team-image"><img loading="lazy" class="alignnone wp-image-491 size-full" src="https://acestars.co.uk/wp-content/uploads/2020/02/Photo-of-Luckley.jpg" alt="" width="422" height="281" srcset="https://acestars.co.uk/wp-content/uploads/2020/02/Photo-of-Luckley.jpg 422w, https://acestars.co.uk/wp-content/uploads/2020/02/Photo-of-Luckley-300x200.jpg 300w" sizes="(max-width: 422px) 100vw, 422px" /></div>
+<div class="school-location"><div class="gap" style="line-height: 30px; height: 30px;"></div></div>
+<div class="school-location">Wokingham</div>
+<div class="school-name">Luckley House School</div>
+<div class="school-address">Luckley Road, Wokingham,</div>
+<div class="school-address">Berkshire, RG40 3EU</div>
+
+		</div>
+	</div>
+</div></div></div><div class="wpb_column vc_column_container vc_col-sm-3"><div class="vc_column-inner"><div class="wpb_wrapper">
+	<div class="wpb_text_column wpb_content_element  school-box" >
+		<div class="wpb_wrapper">
+			<div class="team-image"><img loading="lazy" class="alignnone wp-image-551 size-full" src="https://acestars.co.uk/wp-content/uploads/2021/05/forest-school.jpg" alt="" width="600" height="400" srcset="https://acestars.co.uk/wp-content/uploads/2021/05/forest-school.jpg 600w, https://acestars.co.uk/wp-content/uploads/2021/05/forest-school-300x200.jpg 300w" sizes="(max-width: 600px) 100vw, 600px" /></div>
+<div class="school-location"><div class="gap" style="line-height: 30px; height: 30px;"></div></div>
+<div class="school-location">Wokingham</div>
+<div class="school-name">The Forest School</div>
+<div class="school-address">Robin Hood Ln, Winnersh,</div>
+<div class="school-address">Wokingham RG41 5NE</div>
+
+		</div>
+	</div>
+</div></div></div></div><div class="vc_row wpb_row vc_inner vc_row-fluid"><div class="school-card wpb_column vc_column_container vc_col-sm-3"><div class="vc_column-inner"><div class="wpb_wrapper">
+	<div class="wpb_text_column wpb_content_element  school-box" >
+		<div class="wpb_wrapper">
+			<div class="team-image"><img loading="lazy" class="alignnone wp-image-549 size-full" src="https://acestars.co.uk/wp-content/uploads/2021/05/coe-school.jpg" alt="" width="600" height="400" srcset="https://acestars.co.uk/wp-content/uploads/2021/05/coe-school.jpg 600w, https://acestars.co.uk/wp-content/uploads/2021/05/coe-school-300x200.jpg 300w" sizes="(max-width: 600px) 100vw, 600px" /></div>
+<div class="school-location"><div class="gap" style="line-height: 30px; height: 30px;"></div></div>
+<div class="school-location">Crowthorne</div>
+<div class="school-name">C of E Primary School</div>
+<div class="school-address">Duke&#8217;s Ride,</div>
+<div class="school-address">Crowthorne RG45 6ND</div>
+
+		</div>
+	</div>
+</div></div></div><div class="school-card wpb_column vc_column_container vc_col-sm-3"><div class="vc_column-inner"><div class="wpb_wrapper">
+	<div class="wpb_text_column wpb_content_element  school-box" >
+		<div class="wpb_wrapper">
+			<div class="team-image"><img loading="lazy" class="alignnone wp-image-548 size-full" src="https://acestars.co.uk/wp-content/uploads/2021/05/oaklands-school.jpg" alt="" width="600" height="400" srcset="https://acestars.co.uk/wp-content/uploads/2021/05/oaklands-school.jpg 600w, https://acestars.co.uk/wp-content/uploads/2021/05/oaklands-school-300x200.jpg 300w" sizes="(max-width: 600px) 100vw, 600px" /></div>
+<div class="school-location"><div class="gap" style="line-height: 30px; height: 30px;"></div></div>
+<div class="school-location">Wokingham</div>
+<div class="school-name">Oaklands Junior School</div>
+<div class="school-address">Butler Rd,</div>
+<div class="school-address">Crowthorne RG45 6QZ</div>
+
+		</div>
+	</div>
+</div></div></div><div class="school-card wpb_column vc_column_container vc_col-sm-3"><div class="vc_column-inner"><div class="wpb_wrapper">
+	<div class="wpb_text_column wpb_content_element  school-box" >
+		<div class="wpb_wrapper">
+			<div class="team-image"><img loading="lazy" class="alignnone wp-image-550 size-full" src="https://acestars.co.uk/wp-content/uploads/2021/05/ourladyspreparatory-school.jpg" alt="" width="600" height="400" srcset="https://acestars.co.uk/wp-content/uploads/2021/05/ourladyspreparatory-school.jpg 600w, https://acestars.co.uk/wp-content/uploads/2021/05/ourladyspreparatory-school-300x200.jpg 300w" sizes="(max-width: 600px) 100vw, 600px" /></div>
+<div class="school-location"><div class="gap" style="line-height: 30px; height: 30px;"></div></div>
+<div class="school-location">Crowthorne</div>
+<div class="school-name">Our Lady&#8217;s Preparatory School</div>
+<div class="school-address">19 The Avenue,</div>
+<div class="school-address">Crowthorne RG45 6PB</div>
+
+		</div>
+	</div>
+</div></div></div><div class="wpb_column vc_column_container vc_col-sm-3"><div class="vc_column-inner"><div class="wpb_wrapper"></div></div></div></div></div></div></div></div><div class="vc_row-full-width vc_clearfix"></div><div data-vc-full-width="true" data-vc-full-width-init="false" data-vc-stretch-content="true" class="vc_row wpb_row vc_row-fluid vc_custom_1546994464678 vc_row-no-padding vc_row-o-content-bottom vc_row-flex"><div class="wpb_column vc_column_container vc_col-sm-12"><div class="vc_column-inner"><div class="wpb_wrapper">
+	<div  class="wpb_single_image wpb_content_element vc_align_center  vc_custom_1546994921622">
+		
+		<figure class="wpb_wrapper vc_figure">
+			<div class="vc_single_image-wrapper   vc_box_border_grey"><img width="1920" height="225" src="https://acestars.co.uk/wp-content/uploads/2019/01/Mask-Group-16.png" class="vc_single_image-img attachment-full" alt="" loading="lazy" srcset="https://acestars.co.uk/wp-content/uploads/2019/01/Mask-Group-16.png 1920w, https://acestars.co.uk/wp-content/uploads/2019/01/Mask-Group-16-300x35.png 300w, https://acestars.co.uk/wp-content/uploads/2019/01/Mask-Group-16-768x90.png 768w, https://acestars.co.uk/wp-content/uploads/2019/01/Mask-Group-16-1024x120.png 1024w" sizes="(max-width: 1920px) 100vw, 1920px"  data-dt-location="https://acestars.co.uk/home/mask-group-16-2/" /></div>
+		</figure>
+	</div>
+</div></div></div></div><div class="vc_row-full-width vc_clearfix"></div><div data-vc-full-width="true" data-vc-full-width-init="false" class="vc_row wpb_row vc_row-fluid vc_custom_1546994979792 vc_row-has-fill"><div class="wpb_column vc_column_container vc_col-sm-12"><div class="vc_column-inner"><div class="wpb_wrapper"><div class="vc_row wpb_row vc_inner vc_row-fluid vc_row-o-equal-height vc_row-o-content-middle vc_row-flex"><div class="wpb_column vc_column_container vc_col-sm-5"><div class="vc_column-inner"><div class="wpb_wrapper">
+	<div class="wpb_text_column wpb_content_element " >
+		<div class="wpb_wrapper">
+			<h2>Join Us Now!</h2>
+
+		</div>
+	</div>
+
+	<div class="wpb_text_column wpb_content_element " >
+		<div class="wpb_wrapper">
+			<h5>Are you ready to take your tennis to the next level with us? Click below to find our booking form.</h5>
+
+		</div>
+	</div>
+<style type="text/css" data-type="the7_shortcodes-inline-css">#default-btn-797cddfb217f2d4c40cfd5900bcb8387 {
+  border-radius: 1px;
+  font-size: 16px;
+  line-height: 18px;
+}
+.btn-shadow#default-btn-797cddfb217f2d4c40cfd5900bcb8387 {
+  box-shadow: 0 1px 6px rgba(0,0,0,0.12);
+  transition: box-shadow 0.2s ease-out, opacity 0.45s;
+}
+.btn-shadow#default-btn-797cddfb217f2d4c40cfd5900bcb8387:hover {
+  box-shadow: 0 5px 11px 0 rgba(0,0,0,0.18), 0 4px 15px 0 rgba(0,0,0,0.15);
+}
+.btn-flat#default-btn-797cddfb217f2d4c40cfd5900bcb8387 {
+  box-shadow: none;
+}
+.btn-flat#default-btn-797cddfb217f2d4c40cfd5900bcb8387:hover {
+  box-shadow: none;
+}
+#default-btn-797cddfb217f2d4c40cfd5900bcb8387.ico-right-side > i {
+  margin-right: 0px;
+  margin-left: 8px;
+}
+#default-btn-797cddfb217f2d4c40cfd5900bcb8387 > i {
+  margin-right: 8px;
+  font-size: 12px;
+}
+#default-btn-797cddfb217f2d4c40cfd5900bcb8387:not(:hover) {
+  border-width: 0px;
+  padding: 12px 18px 12px 18px;
+}
+#default-btn-797cddfb217f2d4c40cfd5900bcb8387:hover {
+  border-width: 0px;
+  padding: 12px 18px 12px 18px;
+}
+#default-btn-797cddfb217f2d4c40cfd5900bcb8387.ico-right-side > i {
+  margin-right: 0px;
+  margin-left: 8px;
+}
+#default-btn-797cddfb217f2d4c40cfd5900bcb8387 > i {
+  margin-right: 8px;
+}
+#default-btn-797cddfb217f2d4c40cfd5900bcb8387 * {
+  vertical-align: middle;
+}
+</style><a href="https://acestars.co.uk/booking-form/" class="default-btn-shortcode dt-btn link-hover-off ico-right-side anchor-link primary-button btn-inline-left btn-flat " id="default-btn-797cddfb217f2d4c40cfd5900bcb8387"><span>Become Ace Now!</span><i class="fas fa-chevron-right"></i></a></div></div></div><div class="wpb_column vc_column_container vc_col-sm-7"><div class="vc_column-inner"><div class="wpb_wrapper">
+	<div  class="wpb_single_image wpb_content_element vc_align_left">
+		
+		<figure class="wpb_wrapper vc_figure">
+			<div class="vc_single_image-wrapper   vc_box_border_grey"><img width="786" height="704" src="https://acestars.co.uk/wp-content/uploads/2019/01/Mask-Group-23.png" class="vc_single_image-img attachment-full" alt="" loading="lazy" srcset="https://acestars.co.uk/wp-content/uploads/2019/01/Mask-Group-23.png 786w, https://acestars.co.uk/wp-content/uploads/2019/01/Mask-Group-23-300x269.png 300w, https://acestars.co.uk/wp-content/uploads/2019/01/Mask-Group-23-768x688.png 768w" sizes="(max-width: 786px) 100vw, 786px"  data-dt-location="https://acestars.co.uk/home/mask-group-23/" /></div>
+		</figure>
+	</div>
+</div></div></div></div></div></div></div></div><div class="vc_row-full-width vc_clearfix"></div><div data-vc-full-width="true" data-vc-full-width-init="false" data-vc-stretch-content="true" class="vc_row wpb_row vc_row-fluid vc_custom_1547075819454 vc_row-has-fill vc_row-no-padding vc_row-o-content-bottom vc_row-flex"><div class="wpb_column vc_column_container vc_col-sm-12"><div class="vc_column-inner"><div class="wpb_wrapper">
+	<div  class="wpb_single_image wpb_content_element vc_align_center  vc_custom_1547983540389">
+		
+		<figure class="wpb_wrapper vc_figure">
+			<div class="vc_single_image-wrapper   vc_box_border_grey"><img width="1920" height="205" src="https://acestars.co.uk/wp-content/uploads/2019/01/Mask-Group-19-2.png" class="vc_single_image-img attachment-full" alt="" loading="lazy" srcset="https://acestars.co.uk/wp-content/uploads/2019/01/Mask-Group-19-2.png 1920w, https://acestars.co.uk/wp-content/uploads/2019/01/Mask-Group-19-2-300x32.png 300w, https://acestars.co.uk/wp-content/uploads/2019/01/Mask-Group-19-2-768x82.png 768w, https://acestars.co.uk/wp-content/uploads/2019/01/Mask-Group-19-2-1024x109.png 1024w" sizes="(max-width: 1920px) 100vw, 1920px"  data-dt-location="https://acestars.co.uk/home/mask-group-19-4/" /></div>
+		</figure>
+	</div>
+</div></div></div></div><div class="vc_row-full-width vc_clearfix"></div><div data-vc-full-width="true" data-vc-full-width-init="false" class="vc_row wpb_row vc_row-fluid vc_custom_1547982656442 vc_row-has-fill"><div class="wpb_column vc_column_container vc_col-sm-12"><div class="vc_column-inner"><div class="wpb_wrapper"><div class="vc_row wpb_row vc_inner vc_row-fluid"><div class="text-centered wpb_column vc_column_container vc_col-sm-12"><div class="vc_column-inner"><div class="wpb_wrapper">
+	<div  class="wpb_single_image wpb_content_element vc_align_center">
+		
+		<figure class="wpb_wrapper vc_figure">
+			<div class="vc_single_image-wrapper   vc_box_border_grey"><img width="132" height="70" src="https://acestars.co.uk/wp-content/uploads/2019/01/acestar_logo-whte-70.png" class="vc_single_image-img attachment-full" alt="" loading="lazy"  data-dt-location="https://acestars.co.uk/acestar_logo-whte-70/" /></div>
+		</figure>
+	</div>
+<div  class="vc_wp_custommenu wpb_content_element footer-nav"><div class="widget widget_nav_menu"><div class="menu-footer-menu-container"><ul id="menu-footer-menu" class="menu"><li id="menu-item-134" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-home menu-item-134"><a href="https://acestars.co.uk/">Home</a></li>
+<li id="menu-item-133" class="menu-item menu-item-type-post_type menu-item-object-page current-menu-item page_item page-item-9 current_page_item menu-item-133"><a href="https://acestars.co.uk/venues/" aria-current="page">Venues</a></li>
+<li id="menu-item-131" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-131"><a href="https://acestars.co.uk/programme/">Programme</a></li>
+<li id="menu-item-130" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-130"><a href="https://acestars.co.uk/privacy-policy/">Privacy Policy</a></li>
+<li id="menu-item-206" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-206"><a href="https://acestars.co.uk/safeguarding/">Safeguarding</a></li>
+<li id="menu-item-132" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-132"><a href="https://acestars.co.uk/contact/">Contact</a></li>
+</ul></div></div></div>
+	<div class="wpb_text_column wpb_content_element  bold footer-copyrights centered white" >
+		<div class="wpb_wrapper">
+			<p>©2019 Acestars, Ascot</p>
+
+		</div>
+	</div>
+
+	<div class="wpb_text_column wpb_content_element  full-width-line" >
+		<div class="wpb_wrapper">
+			
+		</div>
+	</div>
+
+	<div class="wpb_text_column wpb_content_element  footer-rights" >
+		<div class="wpb_wrapper">
+			<p>All trademarks, logos and brands are property of their respective owners.<br />
+All company, product and service names used in this website are for identification purposes only.</p>
+
+		</div>
+	</div>
+
+	<div class="wpb_raw_code wpb_content_element wpb_raw_html" >
+		<div class="wpb_wrapper">
+			<div class="social">
+
+<div>Follow us:</div>
+<div class="social-icon"><a href="#"><i class="fab fa-facebook-f"></i></a></div>
+<div class="social-icon"><a href="#"><i class="fab fa-twitter"></i></a></div>
+<div class="social-icon"><a href="#"><i class="fab fa-instagram"></i></a></div>
+</div>
+		</div>
+	</div>
+</div></div></div></div></div></div></div></div><div class="vc_row-full-width vc_clearfix"></div>
+<span class="cp-load-after-post"></span>
+	</div><!-- #content -->
+
+	
+
+
+			</div><!-- .wf-container -->
+		</div><!-- .wf-wrap -->
+
+	
+	</div><!-- #main -->
+
+	
+
+	
+	<a href="#" class="scroll-top"><span class="screen-reader-text">Go to Top</span></a>
+
+</div><!-- #page -->
+<script src="https://acestars.co.uk/wp-content/themes/dt-the7-child/library/js/custom.js?=09.41.06"></script>
+			<script type="text/javascript" id="modal">
+				document.addEventListener("DOMContentLoaded", function(){
+					startclock();
+				});
+				function stopclock (){
+					if(timerRunning) clearTimeout(timerID);
+					timerRunning = false;
+						//document.cookie="time=0";
+					}
+					function showtime () {
+						var now = new Date();
+						var my = now.getTime() ;
+						now = new Date(my-diffms) ;
+						//document.cookie="time="+now.toLocaleString();
+						timerID = setTimeout('showtime()',10000);
+						timerRunning = true;
+					}
+					function startclock () {
+						stopclock();
+						showtime();
+					}
+					var timerID = null;
+					var timerRunning = false;
+					var x = new Date() ;
+					var now = x.getTime() ;
+					var gmt = 1770111666 * 1000 ;
+					var diffms = (now - gmt) ;
+				</script>
+								<script type="text/javascript" id="info-bar">
+					document.addEventListener("DOMContentLoaded", function(){
+						startclock();
+					});
+					function stopclock (){
+						if(timerRunning) clearTimeout(timerID);
+						timerRunning = false;
+						//document.cookie="time=0";
+					}
+					function showtime () {
+						var now = new Date();
+						var my = now.getTime() ;
+						now = new Date(my-diffms) ;
+						//document.cookie="time="+now.toLocaleString();
+						timerID = setTimeout('showtime()',10000);
+						timerRunning = true;
+					}
+					function startclock () {
+						stopclock();
+						showtime();
+					}
+					var timerID = null;
+					var timerRunning = false;
+					var x = new Date() ;
+					var now = x.getTime() ;
+					var gmt = 1770111666 * 1000 ;
+					var diffms = (now - gmt) ;
+				</script>
+								<script type="text/javascript" id="slidein">
+					document.addEventListener("DOMContentLoaded", function(){
+						startclock();
+					});
+					function stopclock (){
+						if(timerRunning) clearTimeout(timerID);
+						timerRunning = false;
+						//document.cookie="time=0";
+					}
+
+					function showtime () {
+						var now = new Date();
+						var my = now.getTime() ;
+						now = new Date(my-diffms) ;
+						//document.cookie="time="+now.toLocaleString();
+						timerID = setTimeout('showtime()',10000);
+						timerRunning = true;
+					}
+
+					function startclock () {
+						stopclock();
+						showtime();
+					}
+					var timerID = null;
+					var timerRunning = false;
+					var x = new Date() ;
+					var now = x.getTime() ;
+					var gmt = 1770111666 * 1000 ;
+					var diffms = (now - gmt) ;
+				</script>
+				<script type="text/html" id="wpb-modifications"></script><link rel='stylesheet' id='ult-background-style-css'  href='https://acestars.co.uk/wp-content/plugins/Ultimate_VC_Addons/assets/min-css/background-style.min.css?ver=3.19.9' type='text/css' media='all' />
+<script type='text/javascript' src='https://acestars.co.uk/wp-content/themes/dt-the7/js/main.min.js?ver=9.10.1' id='dt-main-js'></script>
+<script type='text/javascript' src='https://acestars.co.uk/wp-includes/js/dist/vendor/wp-polyfill.min.js?ver=7.4.4' id='wp-polyfill-js'></script>
+<script type='text/javascript' id='wp-polyfill-js-after'>
+( 'fetch' in window ) || document.write( '<script src="https://acestars.co.uk/wp-includes/js/dist/vendor/wp-polyfill-fetch.min.js?ver=3.0.0"></scr' + 'ipt>' );( document.contains ) || document.write( '<script src="https://acestars.co.uk/wp-includes/js/dist/vendor/wp-polyfill-node-contains.min.js?ver=3.42.0"></scr' + 'ipt>' );( window.DOMRect ) || document.write( '<script src="https://acestars.co.uk/wp-includes/js/dist/vendor/wp-polyfill-dom-rect.min.js?ver=3.42.0"></scr' + 'ipt>' );( window.URL && window.URL.prototype && window.URLSearchParams ) || document.write( '<script src="https://acestars.co.uk/wp-includes/js/dist/vendor/wp-polyfill-url.min.js?ver=3.6.4"></scr' + 'ipt>' );( window.FormData && window.FormData.prototype.keys ) || document.write( '<script src="https://acestars.co.uk/wp-includes/js/dist/vendor/wp-polyfill-formdata.min.js?ver=3.0.12"></scr' + 'ipt>' );( Element.prototype.matches && Element.prototype.closest ) || document.write( '<script src="https://acestars.co.uk/wp-includes/js/dist/vendor/wp-polyfill-element-closest.min.js?ver=2.0.2"></scr' + 'ipt>' );( 'objectFit' in document.documentElement.style ) || document.write( '<script src="https://acestars.co.uk/wp-includes/js/dist/vendor/wp-polyfill-object-fit.min.js?ver=2.3.4"></scr' + 'ipt>' );
+</script>
+<script type='text/javascript' id='contact-form-7-js-extra'>
+/* <![CDATA[ */
+var wpcf7 = {"api":{"root":"https:\/\/acestars.co.uk\/wp-json\/","namespace":"contact-form-7\/v1"}};
+/* ]]> */
+</script>
+<script type='text/javascript' src='https://acestars.co.uk/wp-content/plugins/contact-form-7/includes/js/index.js?ver=5.4.1' id='contact-form-7-js'></script>
+<script type='text/javascript' id='cf7msm-js-extra'>
+/* <![CDATA[ */
+var cf7msm_posted_data = [];
+/* ]]> */
+</script>
+<script type='text/javascript' src='https://acestars.co.uk/wp-content/plugins/contact-form-7-multi-step-module/resources/cf7msm.min.js?ver=4.1.5' id='cf7msm-js'></script>
+<script type='text/javascript' src='https://acestars.co.uk/wp-includes/js/jquery/ui/core.min.js?ver=1.12.1' id='jquery-ui-core-js'></script>
+<script type='text/javascript' src='https://acestars.co.uk/wp-includes/js/jquery/ui/datepicker.min.js?ver=1.12.1' id='jquery-ui-datepicker-js'></script>
+<script type='text/javascript' id='jquery-ui-datepicker-js-after'>
+jQuery(document).ready(function(jQuery){jQuery.datepicker.setDefaults({"closeText":"Close","currentText":"Today","monthNames":["January","February","March","April","May","June","July","August","September","October","November","December"],"monthNamesShort":["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"],"nextText":"Next","prevText":"Previous","dayNames":["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"],"dayNamesShort":["Sun","Mon","Tue","Wed","Thu","Fri","Sat"],"dayNamesMin":["S","M","T","W","T","F","S"],"dateFormat":"MM d, yy","firstDay":1,"isRTL":false});});
+</script>
+<script type='text/javascript' src='https://acestars.co.uk/wp-content/plugins/contact-form-7-datepicker/js/jquery-ui-timepicker/jquery-ui-timepicker-addon.min.js?ver=5.7.11' id='jquery-ui-timepicker-js'></script>
+<script type='text/javascript' src='https://acestars.co.uk/wp-includes/js/jquery/ui/mouse.min.js?ver=1.12.1' id='jquery-ui-mouse-js'></script>
+<script type='text/javascript' src='https://acestars.co.uk/wp-includes/js/jquery/ui/slider.min.js?ver=1.12.1' id='jquery-ui-slider-js'></script>
+<script type='text/javascript' src='https://acestars.co.uk/wp-includes/js/jquery/ui/controlgroup.min.js?ver=1.12.1' id='jquery-ui-controlgroup-js'></script>
+<script type='text/javascript' src='https://acestars.co.uk/wp-includes/js/jquery/ui/checkboxradio.min.js?ver=1.12.1' id='jquery-ui-checkboxradio-js'></script>
+<script type='text/javascript' src='https://acestars.co.uk/wp-includes/js/jquery/ui/button.min.js?ver=1.12.1' id='jquery-ui-button-js'></script>
+<script type='text/javascript' src='https://acestars.co.uk/wp-content/plugins/contact-form-7-datepicker/js/jquery-ui-sliderAccess.js?ver=5.7.11' id='jquery-ui-slider-access-js'></script>
+<script type='text/javascript' src='https://acestars.co.uk/wp-content/plugins/go_pricing/assets/js/go_pricing_scripts.js?ver=3.3.18' id='go-pricing-scripts-js'></script>
+<script type='text/javascript' src='https://acestars.co.uk/wp-content/themes/dt-the7/lib/jquery-mousewheel/jquery-mousewheel.min.js?ver=9.10.1' id='jquery-mousewheel-js'></script>
+<script type='text/javascript' src='https://acestars.co.uk/wp-content/themes/dt-the7/lib/custom-scrollbar/custom-scrollbar.min.js?ver=9.10.1' id='the7-custom-scrollbar-js'></script>
+<script type='text/javascript' src='https://acestars.co.uk/wp-content/plugins/dt-the7-core/assets/js/post-type.min.js?ver=2.5.6.2' id='the7-core-js'></script>
+<script type='text/javascript' id='wpcf7cf-scripts-js-extra'>
+/* <![CDATA[ */
+var wpcf7cf_global_settings = {"ajaxurl":"https:\/\/acestars.co.uk\/wp-admin\/admin-ajax.php"};
+/* ]]> */
+</script>
+<script type='text/javascript' src='https://acestars.co.uk/wp-content/plugins/cf7-conditional-fields/js/scripts.js?ver=2.0.3' id='wpcf7cf-scripts-js'></script>
+<script type='text/javascript' src='https://www.google.com/recaptcha/api.js?render=6Lcvr6YUAAAAAGxpkoMJGuCAAsH2K9mqFs23gOf3&#038;ver=3.0' id='google-recaptcha-js'></script>
+<script type='text/javascript' id='wpcf7-recaptcha-js-extra'>
+/* <![CDATA[ */
+var wpcf7_recaptcha = {"sitekey":"6Lcvr6YUAAAAAGxpkoMJGuCAAsH2K9mqFs23gOf3","actions":{"homepage":"homepage","contactform":"contactform"}};
+/* ]]> */
+</script>
+<script type='text/javascript' src='https://acestars.co.uk/wp-content/plugins/contact-form-7/modules/recaptcha/index.js?ver=5.4.1' id='wpcf7-recaptcha-js'></script>
+<script type='text/javascript' src='https://acestars.co.uk/wp-includes/js/wp-embed.min.js?ver=5.7.11' id='wp-embed-js'></script>
+<script type='text/javascript' src='https://acestars.co.uk/wp-content/plugins/js_composer/assets/js/dist/js_composer_front.min.js?ver=6.6.0.1' id='wpb_composer_front_js-js'></script>
+<script type='text/javascript' src='https://acestars.co.uk/wp-content/plugins/Ultimate_VC_Addons/assets/min-js/jquery-appear.min.js?ver=3.19.9' id='ultimate-appear-js'></script>
+<script type='text/javascript' src='https://acestars.co.uk/wp-content/plugins/Ultimate_VC_Addons/assets/min-js/ultimate_bg.min.js?ver=3.19.9' id='ultimate-row-bg-js'></script>
+<script type='text/javascript' src='https://acestars.co.uk/wp-content/plugins/Ultimate_VC_Addons/assets/min-js/custom.min.js?ver=3.19.9' id='ultimate-custom-js'></script>
+
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="pswp__bg"></div>
+    <div class="pswp__scroll-wrap">
+ 
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+ 
+        <div class="pswp__ui pswp__ui--hidden">
+            <div class="pswp__top-bar">
+                <div class="pswp__counter"></div>
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                      <div class="pswp__preloader__cut">
+                        <div class="pswp__preloader__donut"></div>
+                      </div>
+                    </div>
+                </div>
+            </div>
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div> 
+            </div>
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>
