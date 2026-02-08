@@ -15,7 +15,7 @@ import {
 type DBBooking = {
   id: string
   created_at: string
-  venue: 'Ludgrove' | 'Edgbarrow' | 'AceStars' | 'Yateley Manor'
+  venue: 'Ludgrove' | 'Edgbarrow' | 'AceStars'
   programme_id: string
   programme_name: string
   programme_category: string
@@ -47,7 +47,7 @@ type Booking = {
   childName: string
   childAge: string
   programme: string
-  venue: 'Ludgrove' | 'Edgbarrow' | 'AceStars' | 'Yateley Manor'
+  venue: 'Ludgrove' | 'Edgbarrow' | 'AceStars'
   stream: string
   status: 'pending' | 'confirmed' | 'cancelled'
   date: string
@@ -112,20 +112,21 @@ type ScheduleStats = {
 // Sample data
 const sampleBookings: Booking[] = [
   // Ludgrove
-  { id: 'L001', parentName: 'John Smith', parentEmail: 'john@email.com', parentPhone: '07700 900001', childName: 'James Smith', childAge: '10', programme: 'Standard 1-2-1', venue: 'Ludgrove', stream: 'Private Coaching', status: 'confirmed', date: '2026-04-22', price: '£324' },
-  { id: 'L002', parentName: 'Sarah Johnson', parentEmail: 'sarah@email.com', parentPhone: '07700 900002', childName: 'Oliver Johnson', childAge: '11', programme: 'Standard 1-2-1', venue: 'Ludgrove', stream: 'Private Coaching', status: 'confirmed', date: '2026-04-22', price: '£324' },
+  { id: 'L001', parentName: 'John Smith', parentEmail: 'john@email.com', parentPhone: '07700 900001', childName: 'James Smith', childAge: '10', programme: 'Standard 1-2-1', venue: 'Ludgrove', stream: 'Private Coaching', status: 'confirmed', date: '2026-04-22', price: '£324', paymentStatus: 'paid' },
+  { id: 'L002', parentName: 'Sarah Johnson', parentEmail: 'sarah@email.com', parentPhone: '07700 900002', childName: 'Oliver Johnson', childAge: '11', programme: 'Standard 1-2-1', venue: 'Ludgrove', stream: 'Private Coaching', status: 'confirmed', date: '2026-04-22', price: '£324', paymentStatus: 'paid' },
   { id: 'L003', parentName: 'Michael Brown', parentEmail: 'michael@email.com', parentPhone: '07700 900003', childName: 'William Brown', childAge: '9', programme: 'Sunday Clinic', venue: 'Ludgrove', stream: 'Clinics', status: 'pending', date: '2026-04-26', price: '£90' },
   // Edgbarrow
-  { id: 'E001', parentName: 'Emma Wilson', parentEmail: 'emma@email.com', parentPhone: '07700 900004', childName: 'Sophie Wilson', childAge: '12', programme: 'Performance Girls', venue: 'Edgbarrow', stream: 'Performance', status: 'confirmed', date: '2026-04-14', price: '£216' },
-  { id: 'E002', parentName: 'David Taylor', parentEmail: 'david@email.com', parentPhone: '07700 900005', childName: 'Harry Taylor', childAge: '13', programme: 'Development Y7/8', venue: 'Edgbarrow', stream: 'Development', status: 'confirmed', date: '2026-04-14', price: '£144' },
+  { id: 'E001', parentName: 'Emma Wilson', parentEmail: 'emma@email.com', parentPhone: '07700 900004', childName: 'Sophie Wilson', childAge: '12', programme: 'Performance Girls', venue: 'Edgbarrow', stream: 'Performance', status: 'confirmed', date: '2026-04-14', price: '£216', paymentStatus: 'paid' },
+  { id: 'E002', parentName: 'David Taylor', parentEmail: 'david@email.com', parentPhone: '07700 900005', childName: 'Harry Taylor', childAge: '13', programme: 'Development Y7/8', venue: 'Edgbarrow', stream: 'Development', status: 'confirmed', date: '2026-04-14', price: '£144', paymentStatus: 'paid' },
   { id: 'E003', parentName: 'Lisa Anderson', parentEmail: 'lisa@email.com', parentPhone: '07700 900006', childName: 'Emily Anderson', childAge: '12', programme: 'Y7 AfterSchool Club', venue: 'Edgbarrow', stream: 'AfterSchool Club', status: 'pending', date: '2026-04-13', price: '£78' },
   // AceStars
-  { id: 'A001', parentName: 'Robert Davis', parentEmail: 'robert@email.com', parentPhone: '07700 900007', childName: 'Charlie Davis', childAge: '8', programme: 'Orange/Green Ball', venue: 'AceStars', stream: 'Term Time', status: 'confirmed', date: '2026-04-21', price: '£107.88' },
-  { id: 'A002', parentName: 'Jennifer White', parentEmail: 'jennifer@email.com', parentPhone: '07700 900008', childName: 'Lucy White', childAge: '7', programme: 'Mini Red', venue: 'AceStars', stream: 'Term Time', status: 'confirmed', date: '2026-04-26', price: '£107.88' },
-  { id: 'A003', parentName: 'Thomas Martin', parentEmail: 'thomas@email.com', parentPhone: '07700 900009', childName: 'Jack Martin', childAge: '9', programme: 'Easter Camp Week 1', venue: 'AceStars', stream: 'Holiday Camps', status: 'pending', date: '2026-04-07', price: '£120' },
-  // Yateley Manor
-  { id: 'Y001', parentName: 'Andrew Clarke', parentEmail: 'andrew@email.com', parentPhone: '07700 900010', childName: 'George Clarke', childAge: '10', programme: 'Standard 1-2-1', venue: 'Yateley Manor', stream: 'Private Coaching', status: 'confirmed', date: '2026-04-22', price: '£280' },
-  { id: 'Y002', parentName: 'Rachel Green', parentEmail: 'rachel@email.com', parentPhone: '07700 900011', childName: 'Freddie Green', childAge: '11', programme: 'Group Session', venue: 'Yateley Manor', stream: 'Group Coaching', status: 'pending', date: '2026-04-23', price: '£150' },
+  { id: 'A001', parentName: 'Robert Davis', parentEmail: 'robert@email.com', parentPhone: '07700 900007', childName: 'Charlie Davis', childAge: '8', programme: 'Orange/Green Ball', venue: 'AceStars', stream: 'Term Time Programme', status: 'confirmed', date: '2026-04-21', price: '£107.88', paymentStatus: 'paid' },
+  { id: 'A002', parentName: 'Jennifer White', parentEmail: 'jennifer@email.com', parentPhone: '07700 900008', childName: 'Lucy White', childAge: '7', programme: 'Mini Red', venue: 'AceStars', stream: 'Term Time Programme', status: 'confirmed', date: '2026-04-26', price: '£107.88', paymentStatus: 'paid' },
+  { id: 'A003', parentName: 'Thomas Martin', parentEmail: 'thomas@email.com', parentPhone: '07700 900009', childName: 'Jack Martin', childAge: '9', programme: 'Easter Camp Week 1', venue: 'AceStars', stream: 'Holiday Camp', status: 'pending', date: '2026-04-07', price: '£120' },
+  // AceStars - more samples
+  { id: 'A004', parentName: 'Claire Hughes', parentEmail: 'claire@email.com', parentPhone: '07700 900010', childName: 'Mia Hughes', childAge: '6', programme: 'Mini Red Saturday', venue: 'AceStars', stream: 'Term Time Programme', status: 'confirmed', date: '2026-04-26', price: '£107.88', paymentStatus: 'paid' },
+  { id: 'A005', parentName: 'Daniel Evans', parentEmail: 'daniel@email.com', parentPhone: '07700 900011', childName: 'Noah Evans', childAge: '10', programme: 'Easter Camp Week 2', venue: 'AceStars', stream: 'Holiday Camp', status: 'pending', date: '2026-04-14', price: '£120' },
+  { id: 'A006', parentName: 'Sophie Turner', parentEmail: 'sophie@email.com', parentPhone: '07700 900012', childName: 'Ella Turner', childAge: '11', programme: 'Half Term Camp', venue: 'AceStars', stream: 'Holiday Camp', status: 'confirmed', date: '2026-05-26', price: '£135', paymentStatus: 'paid' },
 ]
 
 // Coaches data with colors for visual distinction
@@ -188,9 +189,9 @@ export default function AdminPage() {
   }
 
   const [activeTab, setActiveTab] = useState<'bookings' | 'scheduler'>('bookings')
-  const [selectedVenue, setSelectedVenue] = useState<'all' | 'Ludgrove' | 'Edgbarrow' | 'AceStars' | 'Yateley Manor'>('all')
+  const [selectedVenue, setSelectedVenue] = useState<'all' | 'Ludgrove' | 'Edgbarrow' | 'AceStars'>('all')
   const [searchTerm, setSearchTerm] = useState('')
-  const [expandedVenues, setExpandedVenues] = useState<string[]>(['Ludgrove', 'Edgbarrow', 'AceStars', 'Yateley Manor'])
+  const [expandedVenues, setExpandedVenues] = useState<string[]>(['Ludgrove', 'Edgbarrow', 'AceStars'])
   
   // Scheduler state
   const [coaches, setCoaches] = useState<Coach[]>(initialCoaches)
@@ -874,7 +875,7 @@ export default function AdminPage() {
                   />
                 </div>
                 <div className="flex gap-2">
-                  {(['all', 'Ludgrove', 'Edgbarrow', 'AceStars', 'Yateley Manor'] as const).map(venue => (
+                  {(['all', 'Ludgrove', 'Edgbarrow', 'AceStars'] as const).map(venue => (
                     <button
                       key={venue}
                       onClick={() => setSelectedVenue(venue)}
@@ -910,7 +911,6 @@ export default function AdminPage() {
                       {venue === 'Ludgrove' && <GraduationCap size={24} style={{ color: '#F87D4D' }} />}
                       {venue === 'Edgbarrow' && <Building2 size={24} style={{ color: '#65B863' }} />}
                       {venue === 'AceStars' && <CircleDot size={24} style={{ color: '#dfd300' }} />}
-                      {venue === 'Yateley Manor' && <MapPin size={24} style={{ color: '#8B5CF6' }} />}
                       <h3 className="text-xl font-bold" style={{ color: '#1E2333' }}>{venue}</h3>
                       <span className="px-2 py-1 rounded-full text-xs font-medium" style={{ backgroundColor: '#F7F9FA', color: '#676D82' }}>
                         {Object.values(streams).flat().length} bookings
@@ -929,6 +929,11 @@ export default function AdminPage() {
                         <div key={stream} className="border-b last:border-b-0" style={{ borderColor: '#EAEDE6' }}>
                           <div className="px-6 py-3 flex items-center justify-between" style={{ backgroundColor: '#F7F9FA' }}>
                             <div className="flex items-center gap-2">
+                              {stream.toLowerCase().includes('holiday') || stream.toLowerCase().includes('camp') ? (
+                                <span className="text-[10px] px-2 py-1 rounded-md font-bold" style={{ backgroundColor: '#FFF7ED', color: '#EA580C', border: '1px solid #FDBA74' }}>CAMP</span>
+                              ) : stream.toLowerCase().includes('term') ? (
+                                <span className="text-[10px] px-2 py-1 rounded-md font-bold" style={{ backgroundColor: '#EFF6FF', color: '#2563EB', border: '1px solid #93C5FD' }}>TERM</span>
+                              ) : null}
                               <h4 className="font-bold text-sm" style={{ color: '#1E2333' }}>{stream}</h4>
                               <span className="text-[10px] px-2 py-0.5 rounded-full font-bold" style={{ backgroundColor: '#EAEDE6', color: '#676D82' }}>{bookings.length}</span>
                             </div>
@@ -938,29 +943,25 @@ export default function AdminPage() {
                           </div>
                           <div className="divide-y" style={{ borderColor: '#EAEDE6' }}>
                             {bookings.map(booking => (
-                              <div key={booking.id} className="px-6 py-4 hover:bg-gray-50/50 transition-colors">
-                                <div className="flex items-start gap-4">
-                                  <div 
-                                    className="w-10 h-10 rounded-xl flex items-center justify-center text-white font-bold text-sm flex-shrink-0"
-                                    style={{ backgroundColor: booking.status === 'confirmed' ? '#65B863' : booking.status === 'cancelled' ? '#EF4444' : '#F87D4D' }}
-                                  >
-                                    {booking.childName.charAt(0)}
-                                  </div>
-                                  <div className="flex-1 min-w-0">
-                                    <div className="flex items-center gap-2 mb-0.5">
-                                      <p className="font-bold text-sm" style={{ color: '#1E2333' }}>{booking.childName}</p>
-                                      {booking.childAge && <span className="text-[10px] px-1.5 py-0.5 rounded" style={{ backgroundColor: '#F7F9FA', color: '#AFB0B3' }}>Age {booking.childAge}</span>}
+                              <div key={booking.id} className="px-6 py-5 hover:bg-gray-50/50 transition-colors">
+                                {/* Row 1: Child + Programme + Status + Price */}
+                                <div className="flex items-center justify-between mb-3">
+                                  <div className="flex items-center gap-3">
+                                    <div 
+                                      className="w-9 h-9 rounded-lg flex items-center justify-center text-white font-bold text-xs flex-shrink-0"
+                                      style={{ backgroundColor: booking.status === 'confirmed' ? '#65B863' : booking.status === 'cancelled' ? '#EF4444' : '#F87D4D' }}
+                                    >
+                                      {booking.childName.charAt(0)}
                                     </div>
-                                    <p className="text-xs font-medium mb-1.5" style={{ color: '#F87D4D' }}>{booking.programme}</p>
-                                    <div className="flex flex-wrap items-center gap-x-4 gap-y-1 text-[11px]" style={{ color: '#676D82' }}>
-                                      <span className="flex items-center gap-1"><Users size={10} /> {booking.parentName}</span>
-                                      <span className="flex items-center gap-1"><CreditCard size={10} /> {booking.parentEmail}</span>
-                                      {booking.parentPhone && <span className="flex items-center gap-1"><Clock size={10} /> {booking.parentPhone}</span>}
-                                      {booking.date && <span className="flex items-center gap-1"><Calendar size={10} /> {booking.date}</span>}
+                                    <div>
+                                      <div className="flex items-center gap-2">
+                                        <p className="font-bold text-sm" style={{ color: '#1E2333' }}>{booking.childName}</p>
+                                        {booking.childAge && <span className="text-[10px] px-1.5 py-0.5 rounded font-medium" style={{ backgroundColor: '#F0F4FF', color: '#3B82F6' }}>Age {booking.childAge}</span>}
+                                      </div>
+                                      <p className="text-xs font-semibold mt-0.5" style={{ color: '#F87D4D' }}>{booking.programme}</p>
                                     </div>
                                   </div>
-                                  <div className="flex flex-col items-end gap-1.5 flex-shrink-0">
-                                    <p className="font-bold text-sm" style={{ color: '#1E2333' }}>{booking.price}</p>
+                                  <div className="flex items-center gap-3">
                                     <span className={`text-[10px] px-2.5 py-1 rounded-full font-bold uppercase tracking-wide ${
                                       booking.status === 'confirmed' ? 'bg-green-50 text-green-600 ring-1 ring-green-200' :
                                       booking.status === 'cancelled' ? 'bg-red-50 text-red-600 ring-1 ring-red-200' :
@@ -969,14 +970,34 @@ export default function AdminPage() {
                                       {booking.status}
                                     </span>
                                     {booking.paymentStatus && (
-                                      <span className={`text-[10px] px-2 py-0.5 rounded-full font-medium ${
-                                        booking.paymentStatus === 'paid' ? 'bg-green-50 text-green-600' :
-                                        booking.paymentStatus === 'refunded' ? 'bg-purple-50 text-purple-600' :
-                                        'bg-gray-50 text-gray-500'
+                                      <span className={`text-[10px] px-2 py-1 rounded-full font-bold uppercase tracking-wide ${
+                                        booking.paymentStatus === 'paid' ? 'bg-emerald-50 text-emerald-600 ring-1 ring-emerald-200' :
+                                        booking.paymentStatus === 'refunded' ? 'bg-purple-50 text-purple-600 ring-1 ring-purple-200' :
+                                        'bg-gray-50 text-gray-500 ring-1 ring-gray-200'
                                       }`}>
                                         {booking.paymentStatus}
                                       </span>
                                     )}
+                                    <p className="font-bold text-base min-w-[70px] text-right" style={{ color: '#1E2333' }}>{booking.price}</p>
+                                  </div>
+                                </div>
+                                {/* Row 2: All parent/booking details in labeled grid */}
+                                <div className="grid grid-cols-2 md:grid-cols-4 gap-x-6 gap-y-2 pl-12">
+                                  <div>
+                                    <p className="text-[10px] font-bold uppercase tracking-wider mb-0.5" style={{ color: '#AFB0B3' }}>Parent</p>
+                                    <p className="text-xs font-medium" style={{ color: '#1E2333' }}>{booking.parentName}</p>
+                                  </div>
+                                  <div>
+                                    <p className="text-[10px] font-bold uppercase tracking-wider mb-0.5" style={{ color: '#AFB0B3' }}>Email</p>
+                                    <p className="text-xs" style={{ color: '#676D82' }}>{booking.parentEmail}</p>
+                                  </div>
+                                  <div>
+                                    <p className="text-[10px] font-bold uppercase tracking-wider mb-0.5" style={{ color: '#AFB0B3' }}>Phone</p>
+                                    <p className="text-xs" style={{ color: '#676D82' }}>{booking.parentPhone || '—'}</p>
+                                  </div>
+                                  <div>
+                                    <p className="text-[10px] font-bold uppercase tracking-wider mb-0.5" style={{ color: '#AFB0B3' }}>Date</p>
+                                    <p className="text-xs" style={{ color: '#676D82' }}>{booking.date ? new Date(booking.date).toLocaleDateString('en-GB', { day: 'numeric', month: 'short', year: 'numeric' }) : '—'}</p>
                                   </div>
                                 </div>
                               </div>
@@ -992,8 +1013,9 @@ export default function AdminPage() {
           </>
         )}
 
-        {/* LUDGROVE TIMETABLE SCHEDULER - Always visible at bottom */}
-        <div className="mt-12 mb-8">
+        {/* LUDGROVE TIMETABLE SCHEDULER - Only visible when Ludgrove selected */}
+        {selectedVenue === 'Ludgrove' && (
+        <div className="mt-8 mb-8 space-y-6">
           <div className="bg-gradient-to-r from-green-600 to-green-700 rounded-xl p-6 mb-6">
             <div className="flex items-center justify-between">
               <div>
@@ -1108,7 +1130,6 @@ export default function AdminPage() {
               </div>
             )}
           </div>
-        </div>
 
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
             {/* Left Panel - Coach Assignment */}
@@ -1457,6 +1478,8 @@ export default function AdminPage() {
               </div>
             </div>
           </div>
+        </div>
+        )}
       </div>
     </div>
   )
