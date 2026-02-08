@@ -855,10 +855,7 @@ export default function AdminPage() {
           </div>
         </div>
 
-        {/* BOOKINGS SECTION - Always visible */}
-        {(
-          <>
-            {/* Venue Selector + Search */}
+        {/* Venue Selector + Search */}
             <div className="bg-white rounded-xl shadow-sm mb-6 overflow-hidden">
               <div className="p-4 flex flex-wrap gap-4 items-center">
                 <div className="relative">
@@ -1030,8 +1027,6 @@ export default function AdminPage() {
                 </div>
               ))}
             </div>
-            )}
-          </>
         )}
 
         {/* LUDGROVE TIMETABLE SCHEDULER - Only visible when Ludgrove timetable tab active */}
