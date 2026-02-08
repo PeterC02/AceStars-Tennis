@@ -186,7 +186,7 @@ export default function AdminPage() {
       const res = await fetch('/api/admin/auth', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ action: 'login', pin: adminPin }),
+        body: JSON.stringify({ action: 'login', pin: adminPin, role: 'admin' }),
       })
       const data = await res.json()
       if (!res.ok) throw new Error(data.error)
@@ -750,11 +750,11 @@ export default function AdminPage() {
                 <label className="block text-[11px] font-bold uppercase tracking-wider mb-2" style={{ color: '#676D82' }}>Admin PIN</label>
                 <input
                   type="password" required value={adminPin}
-                  onChange={e => setAdminPin(e.target.value.replace(/\D/g, '').slice(0, 6))}
-                  className="w-full px-4 py-4 rounded-xl border-2 outline-none transition-all text-center text-2xl tracking-[0.3em] font-bold focus:border-[#dfd300] focus:ring-4 focus:ring-[#dfd300]/10"
+                  onChange={e => setAdminPin(e.target.value)}
+                  className="w-full px-4 py-4 rounded-xl border-2 outline-none transition-all text-center text-lg tracking-wider font-bold focus:border-[#dfd300] focus:ring-4 focus:ring-[#dfd300]/10"
                   style={{ borderColor: '#EAEDE6', color: '#1E2333' }}
-                  placeholder="• • • •"
-                  inputMode="numeric" maxLength={6} autoFocus
+                  placeholder="Enter access PIN"
+                  autoFocus
                 />
               </div>
               {adminError && (

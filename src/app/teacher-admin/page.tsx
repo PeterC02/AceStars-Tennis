@@ -209,7 +209,7 @@ export default function TeacherAdminPage() {
         const res = await fetch('/api/admin/auth', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ action: 'login', pin: authForm.pin }),
+          body: JSON.stringify({ action: 'login', pin: authForm.pin, role: 'coach' }),
         })
         const data = await res.json()
         if (!res.ok) throw new Error(data.error)
@@ -666,12 +666,10 @@ export default function TeacherAdminPage() {
                         <label className="block text-xs font-bold mb-1.5" style={{ color: '#1E2333' }}>Coach PIN</label>
                         <input
                           type="password" required value={authForm.pin}
-                          onChange={e => setAuthForm({ ...authForm, pin: e.target.value.replace(/\D/g, '').slice(0, 6) })}
-                          className="w-full px-4 py-3 rounded-xl text-sm border-2 outline-none transition-all focus:border-[#65B863] text-center text-2xl tracking-widest"
+                          onChange={e => setAuthForm({ ...authForm, pin: e.target.value })}
+                          className="w-full px-4 py-3 rounded-xl text-sm border-2 outline-none transition-all focus:border-[#65B863] text-center text-lg tracking-wider"
                           style={{ borderColor: '#EAEDE6', color: '#1E2333' }}
-                          placeholder="••••"
-                          maxLength={6}
-                          inputMode="numeric"
+                          placeholder="Enter access PIN"
                         />
                       </div>
                     </>

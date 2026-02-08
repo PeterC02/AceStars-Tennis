@@ -2,8 +2,8 @@ import { NextRequest, NextResponse } from 'next/server'
 import crypto from 'crypto'
 
 // Server-side PIN validation — PINs stored as env vars, never exposed to client
-const ADMIN_PIN_HASH = crypto.createHash('sha256').update(process.env.ADMIN_PIN || '2002').digest('hex')
-const COACH_PIN_HASH = crypto.createHash('sha256').update(process.env.COACH_PIN || '2026').digest('hex')
+const ADMIN_PIN_HASH = crypto.createHash('sha256').update(process.env.ADMIN_PIN || 'Ludgrove2026').digest('hex')
+const COACH_PIN_HASH = crypto.createHash('sha256').update(process.env.COACH_PIN || 'Ludgrove2026').digest('hex')
 
 // Rate limiting: track attempts per IP
 const attempts = new Map<string, { count: number; resetAt: number }>()
@@ -46,7 +46,7 @@ export async function POST(request: NextRequest) {
       )
     }
 
-    const { action, pin, token } = await request.json()
+    const { action, pin, token, role } = await request.json()
 
     // Validate existing session
     if (action === 'validate') {
@@ -61,24 +61,20 @@ export async function POST(request: NextRequest) {
       return NextResponse.json({ valid: true, role: session.role })
     }
 
-    // Login
+    // Login — caller specifies role ('admin' or 'coach'), PIN validated against that role's hash
     if (action === 'login') {
       if (!pin) {
         return NextResponse.json({ error: 'PIN is required' }, { status: 400 })
       }
 
+      const requestedRole = role === 'coach' ? 'coach' : 'admin'
+      const expectedHash = requestedRole === 'coach' ? COACH_PIN_HASH : ADMIN_PIN_HASH
       const pinHash = crypto.createHash('sha256').update(pin).digest('hex')
 
-      if (pinHash === ADMIN_PIN_HASH) {
+      if (pinHash === expectedHash) {
         const token = generateToken()
-        sessions.set(token, { role: 'admin', expiresAt: Date.now() + 24 * 60 * 60 * 1000 }) // 24h
-        return NextResponse.json({ success: true, role: 'admin', token })
-      }
-
-      if (pinHash === COACH_PIN_HASH) {
-        const token = generateToken()
-        sessions.set(token, { role: 'coach', expiresAt: Date.now() + 24 * 60 * 60 * 1000 })
-        return NextResponse.json({ success: true, role: 'coach', token })
+        sessions.set(token, { role: requestedRole, expiresAt: Date.now() + 24 * 60 * 60 * 1000 }) // 24h
+        return NextResponse.json({ success: true, role: requestedRole, token })
       }
 
       return NextResponse.json({ error: 'Incorrect PIN' }, { status: 401 })
