@@ -428,24 +428,27 @@ export default function TeacherAdminPage() {
   // ─── LOGIN SCREEN ───
   if (!teacher) {
     return (
-      <div className="min-h-screen flex items-center justify-center" style={{ background: 'linear-gradient(135deg, #1E2333 0%, #2a3050 50%, #1E2333 100%)' }}>
-        <div className="absolute inset-0 opacity-10" style={{
-          backgroundImage: 'url(/images/uploads/2020/03/wave3-homepage.svg)',
-          backgroundRepeat: 'repeat-x',
-          backgroundPosition: 'left bottom',
-          backgroundSize: 'contain',
-        }}></div>
+      <div className="min-h-screen flex items-center justify-center relative overflow-hidden" style={{ background: 'linear-gradient(135deg, #1E2333 0%, #2a3050 50%, #1E2333 100%)' }}>
+        <div className="absolute inset-0 opacity-[0.03]" style={{ backgroundImage: 'radial-gradient(circle at 1px 1px, white 1px, transparent 0)', backgroundSize: '40px 40px' }} />
 
         <div className="relative z-10 w-full max-w-md mx-4">
           {/* Logo */}
           <div className="text-center mb-8">
-            <Image src="/images/logo-white.png" alt="Acestars" width={160} height={85} className="mx-auto mb-4" />
-            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full mb-3" style={{ backgroundColor: 'rgba(248, 125, 77, 0.2)' }}>
-              <GraduationCap size={14} style={{ color: '#F87D4D' }} />
-              <span className="text-sm font-bold" style={{ color: '#F87D4D' }}>Ludgrove Div Master Portal</span>
+            <div className="w-16 h-16 rounded-2xl mx-auto mb-5 flex items-center justify-center" style={{
+              backgroundColor: authMode === 'coach' ? 'rgba(101,184,99,0.15)' : 'rgba(248,125,77,0.15)',
+              border: `1px solid ${authMode === 'coach' ? 'rgba(101,184,99,0.2)' : 'rgba(248,125,77,0.2)'}`,
+            }}>
+              {authMode === 'coach'
+                ? <Star size={28} style={{ color: '#65B863' }} />
+                : <GraduationCap size={28} style={{ color: '#F87D4D' }} />
+              }
             </div>
-            <h1 className="text-2xl font-bold text-white font-heading">Teacher Administration</h1>
-            <p className="text-sm mt-2" style={{ color: '#AFB0B3' }}>Upload timetables and manage tennis scheduling</p>
+            <h1 className="text-2xl font-bold text-white font-heading">
+              {authMode === 'coach' ? 'Coach Portal' : 'Div Master Portal'}
+            </h1>
+            <p className="text-sm mt-2" style={{ color: '#AFB0B3' }}>
+              {authMode === 'coach' ? 'View the published tennis timetable' : 'Upload timetables and manage tennis scheduling'}
+            </p>
           </div>
 
           {/* Auth Card */}
@@ -568,9 +571,16 @@ export default function TeacherAdminPage() {
               </button>
             </form>
 
-            <div className="mt-6 flex items-center gap-2 p-3 rounded-xl" style={{ backgroundColor: '#F0F9FF' }}>
-              <Shield size={14} style={{ color: '#3B82F6' }} />
-              <span className="text-xs" style={{ color: '#3B82F6' }}>Secure portal for Ludgrove teaching staff only</span>
+            <div className="mt-5 pt-5 border-t" style={{ borderColor: '#EAEDE6' }}>
+              <div className="flex items-center justify-center gap-4">
+                <Link href="/admin" className="text-xs font-medium hover:underline flex items-center gap-1" style={{ color: '#dfd300' }}>
+                  <Shield size={12} /> Admin Dashboard
+                </Link>
+                <span className="text-xs" style={{ color: '#EAEDE6' }}>|</span>
+                <Link href="/" className="text-xs font-medium hover:underline" style={{ color: '#676D82' }}>
+                  Back to Site
+                </Link>
+              </div>
             </div>
           </div>
         </div>
@@ -588,9 +598,9 @@ export default function TeacherAdminPage() {
             <Link href="/">
               <Image src="/images/logo-white.png" alt="Acestars" width={100} height={53} />
             </Link>
-            <div className="hidden sm:flex items-center gap-2 px-3 py-1.5 rounded-full" style={{ backgroundColor: 'rgba(248, 125, 77, 0.2)' }}>
-              <GraduationCap size={12} style={{ color: '#F87D4D' }} />
-              <span className="text-xs font-bold" style={{ color: '#F87D4D' }}>Div Master Portal</span>
+            <div className="hidden sm:flex items-center gap-2 px-3 py-1.5 rounded-full" style={{ backgroundColor: isCoach ? 'rgba(101,184,99,0.2)' : 'rgba(248,125,77,0.2)' }}>
+              {isCoach ? <Star size={12} style={{ color: '#65B863' }} /> : <GraduationCap size={12} style={{ color: '#F87D4D' }} />}
+              <span className="text-xs font-bold" style={{ color: isCoach ? '#65B863' : '#F87D4D' }}>{isCoach ? 'Coach Portal' : 'Div Master Portal'}</span>
             </div>
           </div>
 

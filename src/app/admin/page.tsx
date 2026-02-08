@@ -7,14 +7,15 @@ import {
   Search, Filter, Download, Plus, X, Settings, BarChart3,
   GraduationCap, Building2, CircleDot, RefreshCw, AlertCircle,
   CheckCircle, Upload, FileText, Image as ImageIcon, Edit3,
-  Trash2, Copy, Zap, Target, TrendingUp, Info, CreditCard, FileCheck
+  Trash2, Copy, Zap, Target, TrendingUp, Info, CreditCard, FileCheck,
+  Shield, Dumbbell
 } from 'lucide-react'
 
 // Types for database bookings
 type DBBooking = {
   id: string
   created_at: string
-  venue: 'Ludgrove' | 'Edgbarrow' | 'AceStars'
+  venue: 'Ludgrove' | 'Edgbarrow' | 'AceStars' | 'Yateley Manor'
   programme_id: string
   programme_name: string
   programme_category: string
@@ -703,39 +704,47 @@ export default function AdminPage() {
   // Admin login gate
   if (!isAdminLoggedIn) {
     return (
-      <div className="min-h-screen flex items-center justify-center" style={{ background: 'linear-gradient(135deg, #1E2333 0%, #2a3050 50%, #1E2333 100%)' }}>
-        <div className="w-full max-w-sm mx-4">
+      <div className="min-h-screen flex items-center justify-center relative overflow-hidden" style={{ background: 'linear-gradient(135deg, #1E2333 0%, #2a3050 50%, #1E2333 100%)' }}>
+        <div className="absolute inset-0 opacity-[0.03]" style={{ backgroundImage: 'radial-gradient(circle at 1px 1px, white 1px, transparent 0)', backgroundSize: '40px 40px' }} />
+        <div className="w-full max-w-sm mx-4 relative z-10">
           <div className="text-center mb-8">
+            <div className="w-16 h-16 rounded-2xl mx-auto mb-5 flex items-center justify-center" style={{ backgroundColor: 'rgba(223,211,0,0.15)', border: '1px solid rgba(223,211,0,0.2)' }}>
+              <Shield size={28} style={{ color: '#dfd300' }} />
+            </div>
             <Link href="/">
-              <p className="text-3xl font-bold text-white mb-1">AceStars <span style={{ color: '#dfd300' }}>Admin</span></p>
+              <p className="text-2xl font-bold text-white mb-1">AceStars <span style={{ color: '#dfd300' }}>Admin</span></p>
             </Link>
-            <p className="text-sm" style={{ color: '#AFB0B3' }}>Enter your admin PIN to continue</p>
+            <p className="text-sm mt-2" style={{ color: '#AFB0B3' }}>Secure admin dashboard</p>
           </div>
           <div className="rounded-2xl p-8 shadow-2xl" style={{ backgroundColor: '#FFF' }}>
-            <form onSubmit={handleAdminLogin} className="space-y-4">
+            <form onSubmit={handleAdminLogin} className="space-y-5">
               <div>
-                <label className="block text-xs font-bold mb-1.5" style={{ color: '#1E2333' }}>Admin PIN</label>
+                <label className="block text-[11px] font-bold uppercase tracking-wider mb-2" style={{ color: '#676D82' }}>Admin PIN</label>
                 <input
                   type="password" required value={adminPin}
                   onChange={e => setAdminPin(e.target.value.replace(/\D/g, '').slice(0, 6))}
-                  className="w-full px-4 py-3 rounded-xl text-sm border-2 outline-none transition-all text-center text-2xl tracking-widest"
+                  className="w-full px-4 py-4 rounded-xl border-2 outline-none transition-all text-center text-2xl tracking-[0.3em] font-bold focus:border-[#dfd300] focus:ring-4 focus:ring-[#dfd300]/10"
                   style={{ borderColor: '#EAEDE6', color: '#1E2333' }}
-                  placeholder="••••"
+                  placeholder="• • • •"
                   inputMode="numeric" maxLength={6} autoFocus
                 />
               </div>
               {adminError && (
-                <div className="flex items-center gap-2 p-3 rounded-xl text-sm" style={{ backgroundColor: '#FEF2F2', color: '#DC2626' }}>
+                <div className="flex items-center gap-2 p-3 rounded-xl text-sm font-medium" style={{ backgroundColor: '#FEF2F2', color: '#DC2626' }}>
                   <AlertCircle size={16} /> {adminError}
                 </div>
               )}
-              <button type="submit" className="w-full py-3.5 rounded-xl font-bold text-white text-sm transition-all hover:scale-[1.02]" style={{ backgroundColor: '#dfd300', color: '#1E2333' }}>
-                Sign In
+              <button type="submit" className="w-full py-3.5 rounded-xl font-bold text-sm transition-all hover:scale-[1.02] hover:shadow-lg" style={{ backgroundColor: '#dfd300', color: '#1E2333' }}>
+                Sign In to Dashboard
               </button>
             </form>
-            <div className="mt-4 text-center">
-              <Link href="/teacher-admin" className="text-xs hover:underline" style={{ color: '#F87D4D' }}>
-                Div Master / Coach? Login here →
+            <div className="mt-5 pt-5 border-t flex items-center justify-center gap-4" style={{ borderColor: '#EAEDE6' }}>
+              <Link href="/teacher-admin" className="text-xs font-medium hover:underline flex items-center gap-1" style={{ color: '#F87D4D' }}>
+                <GraduationCap size={12} /> Div Master Portal
+              </Link>
+              <span className="text-xs" style={{ color: '#EAEDE6' }}>|</span>
+              <Link href="/teacher-admin" className="text-xs font-medium hover:underline flex items-center gap-1" style={{ color: '#65B863' }}>
+                <Dumbbell size={12} /> Coach Portal
               </Link>
             </div>
           </div>
@@ -918,38 +927,56 @@ export default function AdminPage() {
                     <div className="border-t" style={{ borderColor: '#EAEDE6' }}>
                       {Object.entries(streams).map(([stream, bookings]) => (
                         <div key={stream} className="border-b last:border-b-0" style={{ borderColor: '#EAEDE6' }}>
-                          <div className="px-6 py-3 bg-gray-50">
-                            <h4 className="font-medium" style={{ color: '#1E2333' }}>{stream}</h4>
+                          <div className="px-6 py-3 flex items-center justify-between" style={{ backgroundColor: '#F7F9FA' }}>
+                            <div className="flex items-center gap-2">
+                              <h4 className="font-bold text-sm" style={{ color: '#1E2333' }}>{stream}</h4>
+                              <span className="text-[10px] px-2 py-0.5 rounded-full font-bold" style={{ backgroundColor: '#EAEDE6', color: '#676D82' }}>{bookings.length}</span>
+                            </div>
+                            <span className="text-xs font-bold" style={{ color: '#676D82' }}>
+                              {bookings.reduce((sum, b) => sum + parseFloat(b.price.replace('£', '').replace(',', '') || '0'), 0).toLocaleString('en-GB', { style: 'currency', currency: 'GBP' })}
+                            </span>
                           </div>
                           <div className="divide-y" style={{ borderColor: '#EAEDE6' }}>
                             {bookings.map(booking => (
-                              <div key={booking.id} className="px-6 py-4 flex items-center justify-between hover:bg-gray-50">
-                                <div className="flex items-center gap-4">
+                              <div key={booking.id} className="px-6 py-4 hover:bg-gray-50/50 transition-colors">
+                                <div className="flex items-start gap-4">
                                   <div 
-                                    className="w-10 h-10 rounded-full flex items-center justify-center text-white font-bold"
-                                    style={{ backgroundColor: booking.status === 'confirmed' ? '#65B863' : '#F87D4D' }}
+                                    className="w-10 h-10 rounded-xl flex items-center justify-center text-white font-bold text-sm flex-shrink-0"
+                                    style={{ backgroundColor: booking.status === 'confirmed' ? '#65B863' : booking.status === 'cancelled' ? '#EF4444' : '#F87D4D' }}
                                   >
                                     {booking.childName.charAt(0)}
                                   </div>
-                                  <div>
-                                    <p className="font-medium" style={{ color: '#1E2333' }}>{booking.childName}</p>
-                                    <p className="text-sm" style={{ color: '#676D82' }}>{booking.programme}</p>
+                                  <div className="flex-1 min-w-0">
+                                    <div className="flex items-center gap-2 mb-0.5">
+                                      <p className="font-bold text-sm" style={{ color: '#1E2333' }}>{booking.childName}</p>
+                                      {booking.childAge && <span className="text-[10px] px-1.5 py-0.5 rounded" style={{ backgroundColor: '#F7F9FA', color: '#AFB0B3' }}>Age {booking.childAge}</span>}
+                                    </div>
+                                    <p className="text-xs font-medium mb-1.5" style={{ color: '#F87D4D' }}>{booking.programme}</p>
+                                    <div className="flex flex-wrap items-center gap-x-4 gap-y-1 text-[11px]" style={{ color: '#676D82' }}>
+                                      <span className="flex items-center gap-1"><Users size={10} /> {booking.parentName}</span>
+                                      <span className="flex items-center gap-1"><CreditCard size={10} /> {booking.parentEmail}</span>
+                                      {booking.parentPhone && <span className="flex items-center gap-1"><Clock size={10} /> {booking.parentPhone}</span>}
+                                      {booking.date && <span className="flex items-center gap-1"><Calendar size={10} /> {booking.date}</span>}
+                                    </div>
                                   </div>
-                                </div>
-                                <div className="flex items-center gap-6">
-                                  <div className="text-right">
-                                    <p className="text-sm" style={{ color: '#676D82' }}>{booking.parentName}</p>
-                                    <p className="text-xs" style={{ color: '#AFB0B3' }}>{booking.parentEmail}</p>
-                                  </div>
-                                  <div className="text-right">
-                                    <p className="font-bold" style={{ color: '#1E2333' }}>{booking.price}</p>
-                                    <span 
-                                      className={`text-xs px-2 py-1 rounded-full ${
-                                        booking.status === 'confirmed' ? 'bg-green-100 text-green-700' : 'bg-orange-100 text-orange-700'
-                                      }`}
-                                    >
+                                  <div className="flex flex-col items-end gap-1.5 flex-shrink-0">
+                                    <p className="font-bold text-sm" style={{ color: '#1E2333' }}>{booking.price}</p>
+                                    <span className={`text-[10px] px-2.5 py-1 rounded-full font-bold uppercase tracking-wide ${
+                                      booking.status === 'confirmed' ? 'bg-green-50 text-green-600 ring-1 ring-green-200' :
+                                      booking.status === 'cancelled' ? 'bg-red-50 text-red-600 ring-1 ring-red-200' :
+                                      'bg-amber-50 text-amber-600 ring-1 ring-amber-200'
+                                    }`}>
                                       {booking.status}
                                     </span>
+                                    {booking.paymentStatus && (
+                                      <span className={`text-[10px] px-2 py-0.5 rounded-full font-medium ${
+                                        booking.paymentStatus === 'paid' ? 'bg-green-50 text-green-600' :
+                                        booking.paymentStatus === 'refunded' ? 'bg-purple-50 text-purple-600' :
+                                        'bg-gray-50 text-gray-500'
+                                      }`}>
+                                        {booking.paymentStatus}
+                                      </span>
+                                    )}
                                   </div>
                                 </div>
                               </div>
