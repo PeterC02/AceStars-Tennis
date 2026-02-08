@@ -1,6 +1,6 @@
 'use client'
 
-import { useState, useEffect } from 'react'
+import { useState, useEffect, Suspense } from 'react'
 import Link from 'next/link'
 import { useSearchParams } from 'next/navigation'
 import { Clock, MapPin, ChevronRight, Calendar, Users, Star, X, CheckCircle, AlertCircle } from 'lucide-react'
@@ -56,7 +56,7 @@ type TermClass = {
   color: string;
 }
 
-export default function AceStarsProgrammePage() {
+function AceStarsProgrammeContent() {
   const searchParams = useSearchParams()
   const [activeTab, setActiveTab] = useState<'private' | 'term' | 'camps'>('private')
   
@@ -1232,5 +1232,13 @@ export default function AceStarsProgrammePage() {
         </div>
       )}
     </div>
+  )
+}
+
+export default function AceStarsProgrammePage() {
+  return (
+    <Suspense fallback={<div className="pt-20 min-h-screen flex items-center justify-center"><div className="animate-spin w-8 h-8 border-4 border-[#dfd300] border-t-transparent rounded-full" /></div>}>
+      <AceStarsProgrammeContent />
+    </Suspense>
   )
 }

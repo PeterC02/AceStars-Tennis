@@ -54,7 +54,7 @@ export default function SafeguardingPage() {
             <ul className="list-disc pl-6 text-gray-600 space-y-2 mb-6">
               <li>All coaches hold valid DBS (Disclosure and Barring Service) certificates</li>
               <li>All coaches are trained in safeguarding and child protection</li>
-              <li>We follow the LTA's safeguarding policies and procedures</li>
+              <li>We follow the LTA&apos;s safeguarding policies and procedures</li>
               <li>We have clear reporting procedures for any concerns</li>
               <li>We maintain appropriate adult-to-child ratios during sessions</li>
               <li>We have a designated safeguarding lead</li>

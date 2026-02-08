@@ -14,21 +14,25 @@ export default function ContactPage() {
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [submitted, setSubmitted] = useState(false)
 
+  const [submitError, setSubmitError] = useState('')
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
     setIsSubmitting(true)
-    
-    // Create mailto link with form data
-    const subject = encodeURIComponent(formData.subject || 'Contact Enquiry from Website')
-    const body = encodeURIComponent(
-      `Name: ${formData.name}\n` +
-      `Email: ${formData.email}\n\n` +
-      `Message:\n${formData.message}`
-    )
-    window.location.href = `mailto:acestarsbookings@gmail.com?subject=${subject}&body=${body}`
-    
-    await new Promise(resolve => setTimeout(resolve, 500))
-    setSubmitted(true)
+    setSubmitError('')
+
+    try {
+      const res = await fetch('/api/contact', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(formData),
+      })
+      const data = await res.json()
+      if (!res.ok) throw new Error(data.error)
+      setSubmitted(true)
+    } catch (err: any) {
+      setSubmitError(err.message || 'Failed to send message. Please try again.')
+    }
     setIsSubmitting(false)
   }
 

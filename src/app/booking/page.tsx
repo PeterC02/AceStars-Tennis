@@ -1,6 +1,6 @@
 'use client'
 
-import { useState, useEffect } from 'react'
+import { useState, useEffect, Suspense } from 'react'
 import Link from 'next/link'
 import { useSearchParams } from 'next/navigation'
 import { Calendar, User, Mail, Phone, MapPin, Clock, ChevronRight, CheckCircle, GraduationCap, Building2, CircleDot, Star, Plus, Minus, X, Info, ShoppingCart } from 'lucide-react'
@@ -131,7 +131,7 @@ const calculateItemPrice = (item: BasketItem): number => {
   return (prog as any).priceNum
 }
 
-export default function BookingPage() {
+function BookingPageContent() {
   const searchParams = useSearchParams()
   const [basket, setBasket] = useState<BasketItem[]>([])
   const [browseVenue, setBrowseVenue] = useState<VenueKey | null>(null)
@@ -954,5 +954,13 @@ export default function BookingPage() {
         </div>
       )}
     </div>
+  )
+}
+
+export default function BookingPage() {
+  return (
+    <Suspense fallback={<div className="pt-20 min-h-screen flex items-center justify-center"><div className="animate-spin w-8 h-8 border-4 border-[#F87D4D] border-t-transparent rounded-full" /></div>}>
+      <BookingPageContent />
+    </Suspense>
   )
 }

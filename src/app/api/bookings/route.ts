@@ -116,6 +116,53 @@ export async function POST(request: NextRequest) {
       console.error('QuickBooks error (booking still saved):', qbError.message)
     }
 
+    // Send confirmation email to parent
+    try {
+      const resendKey = process.env.RESEND_API_KEY
+      if (resendKey && body.parentEmail) {
+        const childNames = (body.children || []).map((c: any) => c.name).filter(Boolean).join(', ')
+        await fetch('https://api.resend.com/emails', {
+          method: 'POST',
+          headers: { 'Authorization': `Bearer ${resendKey}`, 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            from: 'AceStars Tennis <noreply@acestars.co.uk>',
+            to: [body.parentEmail],
+            subject: `Booking Confirmation - ${body.programmeName || 'Tennis Coaching'}`,
+            html: `
+              <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
+                <div style="background: #1E2333; padding: 32px; text-align: center; border-radius: 12px 12px 0 0;">
+                  <h1 style="color: #dfd300; margin: 0; font-size: 24px;">AceStars Tennis</h1>
+                  <p style="color: rgba(255,255,255,0.6); margin: 8px 0 0;">Booking Confirmation</p>
+                </div>
+                <div style="padding: 32px; background: #ffffff; border: 1px solid #EAEDE6;">
+                  <p style="color: #1E2333; font-size: 16px;">Hi ${body.parentName},</p>
+                  <p style="color: #676D82;">Thank you for booking with Acestars Tennis Coaching. Here are your booking details:</p>
+                  <div style="background: #F7F9FA; border-radius: 8px; padding: 20px; margin: 20px 0;">
+                    <table style="width: 100%; border-collapse: collapse;">
+                      <tr><td style="padding: 6px 0; color: #676D82;">Programme:</td><td style="padding: 6px 0; font-weight: bold; color: #1E2333;">${body.programmeName || 'N/A'}</td></tr>
+                      <tr><td style="padding: 6px 0; color: #676D82;">Venue:</td><td style="padding: 6px 0; font-weight: bold; color: #1E2333;">${body.venue || 'N/A'}</td></tr>
+                      ${childNames ? `<tr><td style="padding: 6px 0; color: #676D82;">Child(ren):</td><td style="padding: 6px 0; font-weight: bold; color: #1E2333;">${childNames}</td></tr>` : ''}
+                      <tr><td style="padding: 6px 0; color: #676D82;">Total:</td><td style="padding: 6px 0; font-weight: bold; color: #1E2333;">&pound;${(body.totalPrice || 0).toFixed(2)}</td></tr>
+                      <tr><td style="padding: 6px 0; color: #676D82;">Booking Ref:</td><td style="padding: 6px 0; font-weight: bold; color: #1E2333;">${booking.id?.slice(0, 8).toUpperCase() || 'N/A'}</td></tr>
+                    </table>
+                  </div>
+                  <p style="color: #676D82;">An invoice will be sent separately. If you have any questions, please contact us at <a href="mailto:acestarsbookings@gmail.com" style="color: #F87D4D;">acestarsbookings@gmail.com</a>.</p>
+                  <p style="color: #1E2333; font-weight: bold;">See you on the court!</p>
+                  <p style="color: #676D82;">The Acestars Team</p>
+                </div>
+                <div style="padding: 16px; text-align: center; background: #F7F9FA; border-radius: 0 0 12px 12px; border: 1px solid #EAEDE6; border-top: 0;">
+                  <p style="color: #AFB0B3; font-size: 11px; margin: 0;">Acestars Limited &bull; 15 Camperdown House, Windsor, Berkshire SL4 3HQ</p>
+                </div>
+              </div>
+            `,
+          }),
+        })
+        console.log('[BOOKING] Confirmation email sent to', body.parentEmail)
+      }
+    } catch (emailErr: any) {
+      console.error('[BOOKING] Confirmation email failed:', emailErr.message)
+    }
+
     return NextResponse.json({ booking })
   } catch (error: any) {
     return NextResponse.json({ error: error.message }, { status: 500 })

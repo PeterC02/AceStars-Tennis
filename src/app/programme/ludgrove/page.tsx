@@ -172,7 +172,7 @@ export default function LudgroveProgrammePage() {
 
             {/* Edgbarrow School */}
             <Link 
-              href="/programme"
+              href="/programme/edgbarrow"
               className="relative rounded-2xl overflow-hidden cursor-pointer group transition-all hover:shadow-2xl hover:-translate-y-1"
               style={{ border: '2px solid #EAEDE6' }}
             >

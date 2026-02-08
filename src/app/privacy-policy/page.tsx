@@ -19,14 +19,14 @@ export default function PrivacyPolicyPage() {
           <div className="prose prose-lg max-w-none">
             <h2 className="text-2xl font-bold text-primary mb-4">Introduction</h2>
             <p className="text-gray-600 mb-6">
-              Acestars Limited ("we", "our", or "us") is committed to protecting your privacy. This Privacy Policy explains how we collect, use, disclose, and safeguard your information when you visit our website or use our tennis coaching services.
+              Acestars Limited (&quot;we&quot;, &quot;our&quot;, or &quot;us&quot;) is committed to protecting your privacy. This Privacy Policy explains how we collect, use, disclose, and safeguard your information when you visit our website or use our tennis coaching services.
             </p>
 
             <h2 className="text-2xl font-bold text-primary mb-4 mt-8">Information We Collect</h2>
             <p className="text-gray-600 mb-4">We may collect information about you in a variety of ways, including:</p>
             <ul className="list-disc pl-6 text-gray-600 space-y-2 mb-6">
               <li><strong>Personal Data:</strong> Name, email address, phone number, and postal address when you book a course or contact us.</li>
-              <li><strong>Child Information:</strong> For junior coaching, we collect the child's name, age, and any relevant medical information with parental consent.</li>
+              <li><strong>Child Information:</strong> For junior coaching, we collect the child&apos;s name, age, and any relevant medical information with parental consent.</li>
               <li><strong>Payment Information:</strong> Payment details are processed securely through our payment providers.</li>
               <li><strong>Usage Data:</strong> Information about how you use our website.</li>
             </ul>

@@ -84,6 +84,7 @@ const Navbar = () => {
     { name: 'Venues', href: '/venues' },
     { name: 'Team', href: '/team' },
     { name: 'Programme', href: '/programme' },
+    { name: 'FAQ', href: '/faq' },
     { name: 'Contact', href: '/contact' },
   ]
 

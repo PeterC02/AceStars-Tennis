@@ -371,6 +371,41 @@ export default function Home() {
         </div>
       </section>
 
+      {/* Testimonials Section */}
+      <section className="py-24" style={{ backgroundColor: '#1E2333' }}>
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-16">
+            <div className="flex items-center justify-center gap-4 mb-6">
+              <span className="section-number" style={{ color: '#dfd300' }}>05</span>
+              <span className="section-line" style={{ backgroundColor: '#dfd300' }}></span>
+              <span className="font-semibold uppercase tracking-wider text-sm" style={{ color: '#dfd300' }}>Testimonials</span>
+            </div>
+            <h2 className="text-4xl md:text-5xl font-bold text-white mb-4 font-heading">What Parents Say</h2>
+          </div>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            {[
+              { name: 'Sarah M.', role: 'Parent, Ludgrove School', text: 'My son has been coached by Acestars for two years now and the improvement in his game has been remarkable. The coaches are professional, patient, and genuinely care about each child\'s development.' },
+              { name: 'James T.', role: 'Parent, Edgbarrow School', text: 'The after-school tennis club has been brilliant for our daughter. She looks forward to it every week and has made great friends. The coaches make it fun while still teaching proper technique.' },
+              { name: 'Rebecca L.', role: 'Parent, Holiday Camp', text: 'We\'ve sent both our children to the AceStars holiday camps for the past three summers. They absolutely love it. Great value, well organised, and the kids come home exhausted and happy!' },
+            ].map((testimonial, i) => (
+              <div key={i} className="rounded-2xl p-8 relative" style={{ backgroundColor: 'rgba(255,255,255,0.05)', border: '1px solid rgba(255,255,255,0.08)' }}>
+                <div className="text-4xl font-bold mb-4" style={{ color: '#dfd300' }}>&ldquo;</div>
+                <p className="text-sm leading-relaxed mb-6" style={{ color: 'rgba(255,255,255,0.7)' }}>{testimonial.text}</p>
+                <div className="flex items-center gap-3">
+                  <div className="w-10 h-10 rounded-full flex items-center justify-center font-bold text-sm" style={{ backgroundColor: '#dfd300', color: '#1E2333' }}>
+                    {testimonial.name.charAt(0)}
+                  </div>
+                  <div>
+                    <p className="font-bold text-sm text-white">{testimonial.name}</p>
+                    <p className="text-xs" style={{ color: 'rgba(255,255,255,0.4)' }}>{testimonial.role}</p>
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
       {/* CTA Section with Photo */}
       <section 
         className="relative py-32 text-white"
