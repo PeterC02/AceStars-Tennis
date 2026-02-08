@@ -8,7 +8,7 @@ import {
   Plus, X, Trash2, Edit3, Download, RefreshCw, ChevronDown,
   ChevronRight, CheckCircle, AlertCircle, FileText, Search,
   GraduationCap, BookOpen, Star, Eye, EyeOff, UserPlus,
-  Settings, BarChart3, Zap, Info, Shield, Camera, ArrowRight, ImageIcon
+  Settings, BarChart3, Zap, Info, Shield, Camera, ArrowRight, ImageIcon, Mail
 } from 'lucide-react'
 
 // Types
@@ -80,6 +80,10 @@ export default function TeacherAdminPage() {
   const [authForm, setAuthForm] = useState({ name: '', email: '', pin: '', division: '' })
   const [authError, setAuthError] = useState('')
   const [authLoading, setAuthLoading] = useState(false)
+  const [verificationStep, setVerificationStep] = useState(false)
+  const [verificationCode, setVerificationCode] = useState('')
+  const [verificationEmail, setVerificationEmail] = useState('')
+  const [resendCooldown, setResendCooldown] = useState(0)
 
   // App state
   const [activeTab, setActiveTab] = useState<'boys' | 'upload' | 'schedule'>('boys')
@@ -185,6 +189,14 @@ export default function TeacherAdminPage() {
     if (teacher && activeTab === 'schedule') fetchSchedule()
   }, [teacher, activeTab, term, fetchSchedule])
 
+  // Resend cooldown timer
+  useEffect(() => {
+    if (resendCooldown > 0) {
+      const t = setTimeout(() => setResendCooldown(resendCooldown - 1), 1000)
+      return () => clearTimeout(t)
+    }
+  }, [resendCooldown])
+
   // Auth handlers
   const handleAuth = async (e: React.FormEvent) => {
     e.preventDefault()
@@ -205,7 +217,7 @@ export default function TeacherAdminPage() {
       return
     }
 
-    // Div master login / register
+    // Div master login / register — Step 1: validate credentials, send verification code
     try {
       const res = await fetch('/api/teacher/auth', {
         method: 'POST',
@@ -220,13 +232,63 @@ export default function TeacherAdminPage() {
       })
       const data = await res.json()
       if (!res.ok) throw new Error(data.error)
-      setTeacher(data.teacher)
-      setIsCoach(false)
-      setAuthForm({ name: '', email: '', pin: '', division: '' })
+
+      if (data.requiresVerification) {
+        setVerificationStep(true)
+        setVerificationEmail(authForm.email)
+        setVerificationCode('')
+        setResendCooldown(60)
+      } else if (data.teacher) {
+        setTeacher(data.teacher)
+        setIsCoach(false)
+        setAuthForm({ name: '', email: '', pin: '', division: '' })
+      }
     } catch (err: any) {
       setAuthError(err.message)
     }
     setAuthLoading(false)
+  }
+
+  // Step 2: Verify email code
+  const handleVerifyCode = async (e: React.FormEvent) => {
+    e.preventDefault()
+    setAuthError('')
+    setAuthLoading(true)
+    try {
+      const res = await fetch('/api/teacher/auth', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ action: 'verify_code', email: verificationEmail, code: verificationCode }),
+      })
+      const data = await res.json()
+      if (!res.ok) throw new Error(data.error)
+      setTeacher(data.teacher)
+      setIsCoach(false)
+      setAuthForm({ name: '', email: '', pin: '', division: '' })
+      setVerificationStep(false)
+      setVerificationCode('')
+    } catch (err: any) {
+      setAuthError(err.message)
+    }
+    setAuthLoading(false)
+  }
+
+  // Resend verification code
+  const handleResendCode = async () => {
+    if (resendCooldown > 0) return
+    setAuthError('')
+    try {
+      const res = await fetch('/api/teacher/auth', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ action: 'resend_code', email: verificationEmail }),
+      })
+      const data = await res.json()
+      if (!res.ok) throw new Error(data.error)
+      setResendCooldown(60)
+    } catch (err: any) {
+      setAuthError(err.message)
+    }
   }
 
   const handleLogout = () => {
@@ -456,135 +518,204 @@ export default function TeacherAdminPage() {
 
           {/* Auth Card */}
           <div className="rounded-2xl p-8 shadow-2xl" style={{ backgroundColor: '#FFFFFF' }}>
-            {/* Tabs */}
-            <div className="flex rounded-xl overflow-hidden mb-6" style={{ backgroundColor: '#F7F9FA' }}>
-              <button
-                onClick={() => { setAuthMode('login'); setAuthError('') }}
-                className="flex-1 py-3 text-xs font-bold transition-all"
-                style={{
-                  backgroundColor: authMode === 'login' ? '#F87D4D' : 'transparent',
-                  color: authMode === 'login' ? '#FFF' : '#676D82',
-                }}
-              >
-                Div Master
-              </button>
-              <button
-                onClick={() => { setAuthMode('register'); setAuthError('') }}
-                className="flex-1 py-3 text-xs font-bold transition-all"
-                style={{
-                  backgroundColor: authMode === 'register' ? '#F87D4D' : 'transparent',
-                  color: authMode === 'register' ? '#FFF' : '#676D82',
-                }}
-              >
-                Register
-              </button>
-              <button
-                onClick={() => { setAuthMode('coach'); setAuthError('') }}
-                className="flex-1 py-3 text-xs font-bold transition-all"
-                style={{
-                  backgroundColor: authMode === 'coach' ? '#65B863' : 'transparent',
-                  color: authMode === 'coach' ? '#FFF' : '#676D82',
-                }}
-              >
-                Coach
-              </button>
-            </div>
+            {verificationStep ? (
+              <>
+                {/* Email Verification Step */}
+                <div className="text-center mb-6">
+                  <div className="w-14 h-14 rounded-2xl mx-auto mb-4 flex items-center justify-center" style={{ backgroundColor: 'rgba(101,184,99,0.1)' }}>
+                    <Mail size={28} style={{ color: '#65B863' }} />
+                  </div>
+                  <h3 className="text-lg font-bold" style={{ color: '#1E2333' }}>Check your email</h3>
+                  <p className="text-sm mt-2" style={{ color: '#676D82' }}>
+                    We sent a 6-digit verification code to
+                  </p>
+                  <p className="text-sm font-bold mt-1" style={{ color: '#F87D4D' }}>{verificationEmail}</p>
+                </div>
 
-            <form onSubmit={handleAuth} className="space-y-4">
-              {authMode === 'coach' ? (
-                <>
-                  <p className="text-sm text-center" style={{ color: '#676D82' }}>Enter the coach PIN to view the published timetable</p>
+                <form onSubmit={handleVerifyCode} className="space-y-4">
                   <div>
-                    <label className="block text-xs font-bold mb-1.5" style={{ color: '#1E2333' }}>Coach PIN</label>
+                    <label className="block text-xs font-bold mb-1.5" style={{ color: '#1E2333' }}>Verification Code</label>
                     <input
-                      type="password" required value={authForm.pin}
-                      onChange={e => setAuthForm({ ...authForm, pin: e.target.value.replace(/\D/g, '').slice(0, 6) })}
-                      className="w-full px-4 py-3 rounded-xl text-sm border-2 outline-none transition-all focus:border-[#65B863] text-center text-2xl tracking-widest"
+                      type="text" required value={verificationCode}
+                      onChange={e => setVerificationCode(e.target.value.replace(/\D/g, '').slice(0, 6))}
+                      className="w-full px-4 py-3 rounded-xl text-sm border-2 outline-none transition-all focus:border-[#65B863] text-center text-2xl tracking-[0.5em] font-bold"
                       style={{ borderColor: '#EAEDE6', color: '#1E2333' }}
-                      placeholder="••••"
+                      placeholder="000000"
                       maxLength={6}
                       inputMode="numeric"
+                      autoFocus
                     />
                   </div>
-                </>
-              ) : (
-                <>
-                  {authMode === 'register' && (
+
+                  {authError && (
+                    <div className="flex items-center gap-2 p-3 rounded-xl text-sm" style={{ backgroundColor: '#FEF2F2', color: '#DC2626' }}>
+                      <AlertCircle size={16} />
+                      {authError}
+                    </div>
+                  )}
+
+                  <button
+                    type="submit" disabled={authLoading || verificationCode.length < 6}
+                    className="w-full py-3.5 rounded-xl font-bold text-white text-sm transition-all hover:scale-[1.02] hover:shadow-lg disabled:opacity-50"
+                    style={{ backgroundColor: '#65B863' }}
+                  >
+                    {authLoading ? 'Verifying...' : 'Verify & Sign In'}
+                  </button>
+                </form>
+
+                <div className="mt-4 flex items-center justify-between">
+                  <button
+                    onClick={() => { setVerificationStep(false); setAuthError(''); setVerificationCode('') }}
+                    className="text-xs font-medium hover:underline" style={{ color: '#676D82' }}
+                  >
+                    ← Back to login
+                  </button>
+                  <button
+                    onClick={handleResendCode}
+                    disabled={resendCooldown > 0}
+                    className="text-xs font-medium hover:underline disabled:opacity-50" style={{ color: '#F87D4D' }}
+                  >
+                    {resendCooldown > 0 ? `Resend in ${resendCooldown}s` : 'Resend code'}
+                  </button>
+                </div>
+              </>
+            ) : (
+              <>
+                {/* Tabs */}
+                <div className="flex rounded-xl overflow-hidden mb-6" style={{ backgroundColor: '#F7F9FA' }}>
+                  <button
+                    onClick={() => { setAuthMode('login'); setAuthError('') }}
+                    className="flex-1 py-3 text-xs font-bold transition-all"
+                    style={{
+                      backgroundColor: authMode === 'login' ? '#F87D4D' : 'transparent',
+                      color: authMode === 'login' ? '#FFF' : '#676D82',
+                    }}
+                  >
+                    Div Master
+                  </button>
+                  <button
+                    onClick={() => { setAuthMode('register'); setAuthError('') }}
+                    className="flex-1 py-3 text-xs font-bold transition-all"
+                    style={{
+                      backgroundColor: authMode === 'register' ? '#F87D4D' : 'transparent',
+                      color: authMode === 'register' ? '#FFF' : '#676D82',
+                    }}
+                  >
+                    Register
+                  </button>
+                  <button
+                    onClick={() => { setAuthMode('coach'); setAuthError('') }}
+                    className="flex-1 py-3 text-xs font-bold transition-all"
+                    style={{
+                      backgroundColor: authMode === 'coach' ? '#65B863' : 'transparent',
+                      color: authMode === 'coach' ? '#FFF' : '#676D82',
+                    }}
+                  >
+                    Coach
+                  </button>
+                </div>
+
+                <form onSubmit={handleAuth} className="space-y-4">
+                  {authMode === 'coach' ? (
                     <>
+                      <p className="text-sm text-center" style={{ color: '#676D82' }}>Enter the coach PIN to view the published timetable</p>
                       <div>
-                        <label className="block text-xs font-bold mb-1.5" style={{ color: '#1E2333' }}>Full Name</label>
+                        <label className="block text-xs font-bold mb-1.5" style={{ color: '#1E2333' }}>Coach PIN</label>
                         <input
-                          type="text" required value={authForm.name}
-                          onChange={e => setAuthForm({ ...authForm, name: e.target.value })}
-                          className="w-full px-4 py-3 rounded-xl text-sm border-2 outline-none transition-all focus:border-[#F87D4D]"
+                          type="password" required value={authForm.pin}
+                          onChange={e => setAuthForm({ ...authForm, pin: e.target.value.replace(/\D/g, '').slice(0, 6) })}
+                          className="w-full px-4 py-3 rounded-xl text-sm border-2 outline-none transition-all focus:border-[#65B863] text-center text-2xl tracking-widest"
                           style={{ borderColor: '#EAEDE6', color: '#1E2333' }}
-                          placeholder="Mr. Smith"
-                        />
-                      </div>
-                      <div>
-                        <label className="block text-xs font-bold mb-1.5" style={{ color: '#1E2333' }}>Division / Form</label>
-                        <input
-                          type="text" value={authForm.division}
-                          onChange={e => setAuthForm({ ...authForm, division: e.target.value })}
-                          className="w-full px-4 py-3 rounded-xl text-sm border-2 outline-none transition-all focus:border-[#F87D4D]"
-                          style={{ borderColor: '#EAEDE6', color: '#1E2333' }}
-                          placeholder="e.g. Year 5 Division A"
+                          placeholder="••••"
+                          maxLength={6}
+                          inputMode="numeric"
                         />
                       </div>
                     </>
+                  ) : (
+                    <>
+                      {authMode === 'register' && (
+                        <>
+                          <div>
+                            <label className="block text-xs font-bold mb-1.5" style={{ color: '#1E2333' }}>Full Name</label>
+                            <input
+                              type="text" required value={authForm.name}
+                              onChange={e => setAuthForm({ ...authForm, name: e.target.value })}
+                              className="w-full px-4 py-3 rounded-xl text-sm border-2 outline-none transition-all focus:border-[#F87D4D]"
+                              style={{ borderColor: '#EAEDE6', color: '#1E2333' }}
+                              placeholder="Mr. Smith"
+                            />
+                          </div>
+                          <div>
+                            <label className="block text-xs font-bold mb-1.5" style={{ color: '#1E2333' }}>Division / Form</label>
+                            <input
+                              type="text" value={authForm.division}
+                              onChange={e => setAuthForm({ ...authForm, division: e.target.value })}
+                              className="w-full px-4 py-3 rounded-xl text-sm border-2 outline-none transition-all focus:border-[#F87D4D]"
+                              style={{ borderColor: '#EAEDE6', color: '#1E2333' }}
+                              placeholder="e.g. Year 5 Division A"
+                            />
+                          </div>
+                        </>
+                      )}
+                      <div>
+                        <label className="block text-xs font-bold mb-1.5" style={{ color: '#1E2333' }}>Email Address</label>
+                        <input
+                          type="email" required value={authForm.email}
+                          onChange={e => setAuthForm({ ...authForm, email: e.target.value })}
+                          className="w-full px-4 py-3 rounded-xl text-sm border-2 outline-none transition-all focus:border-[#F87D4D]"
+                          style={{ borderColor: '#EAEDE6', color: '#1E2333' }}
+                          placeholder="teacher@ludgrove.co.uk"
+                        />
+                      </div>
+                      <div>
+                        <label className="block text-xs font-bold mb-1.5" style={{ color: '#1E2333' }}>PIN (4-6 digits)</label>
+                        <input
+                          type="password" required value={authForm.pin}
+                          onChange={e => setAuthForm({ ...authForm, pin: e.target.value.replace(/\D/g, '').slice(0, 6) })}
+                          className="w-full px-4 py-3 rounded-xl text-sm border-2 outline-none transition-all focus:border-[#F87D4D]"
+                          style={{ borderColor: '#EAEDE6', color: '#1E2333' }}
+                          placeholder="••••"
+                          maxLength={6}
+                          inputMode="numeric"
+                        />
+                      </div>
+                      <div className="flex items-center gap-2 p-3 rounded-xl" style={{ backgroundColor: 'rgba(248,125,77,0.06)' }}>
+                        <Mail size={14} style={{ color: '#F87D4D' }} />
+                        <span className="text-[11px]" style={{ color: '#676D82' }}>A verification code will be sent to your email</span>
+                      </div>
+                    </>
                   )}
-                  <div>
-                    <label className="block text-xs font-bold mb-1.5" style={{ color: '#1E2333' }}>Email Address</label>
-                    <input
-                      type="email" required value={authForm.email}
-                      onChange={e => setAuthForm({ ...authForm, email: e.target.value })}
-                      className="w-full px-4 py-3 rounded-xl text-sm border-2 outline-none transition-all focus:border-[#F87D4D]"
-                      style={{ borderColor: '#EAEDE6', color: '#1E2333' }}
-                      placeholder="teacher@ludgrove.co.uk"
-                    />
-                  </div>
-                  <div>
-                    <label className="block text-xs font-bold mb-1.5" style={{ color: '#1E2333' }}>PIN (4-6 digits)</label>
-                    <input
-                      type="password" required value={authForm.pin}
-                      onChange={e => setAuthForm({ ...authForm, pin: e.target.value.replace(/\D/g, '').slice(0, 6) })}
-                      className="w-full px-4 py-3 rounded-xl text-sm border-2 outline-none transition-all focus:border-[#F87D4D]"
-                      style={{ borderColor: '#EAEDE6', color: '#1E2333' }}
-                      placeholder="••••"
-                      maxLength={6}
-                      inputMode="numeric"
-                    />
-                  </div>
-                </>
-              )}
 
-              {authError && (
-                <div className="flex items-center gap-2 p-3 rounded-xl text-sm" style={{ backgroundColor: '#FEF2F2', color: '#DC2626' }}>
-                  <AlertCircle size={16} />
-                  {authError}
+                  {authError && (
+                    <div className="flex items-center gap-2 p-3 rounded-xl text-sm" style={{ backgroundColor: '#FEF2F2', color: '#DC2626' }}>
+                      <AlertCircle size={16} />
+                      {authError}
+                    </div>
+                  )}
+
+                  <button
+                    type="submit" disabled={authLoading}
+                    className="w-full py-3.5 rounded-xl font-bold text-white text-sm transition-all hover:scale-[1.02] hover:shadow-lg disabled:opacity-50"
+                    style={{ backgroundColor: authMode === 'coach' ? '#65B863' : '#F87D4D' }}
+                  >
+                    {authLoading ? 'Please wait...' : authMode === 'coach' ? 'View Schedule' : authMode === 'login' ? 'Sign In' : 'Create Account'}
+                  </button>
+                </form>
+
+                <div className="mt-5 pt-5 border-t" style={{ borderColor: '#EAEDE6' }}>
+                  <div className="flex items-center justify-center gap-4">
+                    <Link href="/admin" className="text-xs font-medium hover:underline flex items-center gap-1" style={{ color: '#dfd300' }}>
+                      <Shield size={12} /> Admin Dashboard
+                    </Link>
+                    <span className="text-xs" style={{ color: '#EAEDE6' }}>|</span>
+                    <Link href="/" className="text-xs font-medium hover:underline" style={{ color: '#676D82' }}>
+                      Back to Site
+                    </Link>
+                  </div>
                 </div>
-              )}
-
-              <button
-                type="submit" disabled={authLoading}
-                className="w-full py-3.5 rounded-xl font-bold text-white text-sm transition-all hover:scale-[1.02] hover:shadow-lg disabled:opacity-50"
-                style={{ backgroundColor: authMode === 'coach' ? '#65B863' : '#F87D4D' }}
-              >
-                {authLoading ? 'Please wait...' : authMode === 'coach' ? 'View Schedule' : authMode === 'login' ? 'Sign In' : 'Create Account'}
-              </button>
-            </form>
-
-            <div className="mt-5 pt-5 border-t" style={{ borderColor: '#EAEDE6' }}>
-              <div className="flex items-center justify-center gap-4">
-                <Link href="/admin" className="text-xs font-medium hover:underline flex items-center gap-1" style={{ color: '#dfd300' }}>
-                  <Shield size={12} /> Admin Dashboard
-                </Link>
-                <span className="text-xs" style={{ color: '#EAEDE6' }}>|</span>
-                <Link href="/" className="text-xs font-medium hover:underline" style={{ color: '#676D82' }}>
-                  Back to Site
-                </Link>
-              </div>
-            </div>
+              </>
+            )}
           </div>
         </div>
       </div>
@@ -710,83 +841,6 @@ export default function TeacherAdminPage() {
               </div>
             </div>
 
-            {/* Add/Edit Boy Modal */}
-            {showAddBoy && (
-              <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/40">
-                <div className="w-full max-w-lg mx-4 rounded-2xl shadow-2xl p-6" style={{ backgroundColor: '#FFF' }}>
-                  <div className="flex items-center justify-between mb-5">
-                    <h3 className="text-lg font-bold" style={{ color: '#1E2333' }}>
-                      {editingBoyId ? 'Edit Boy' : 'Add New Boy'}
-                    </h3>
-                    <button onClick={() => { setShowAddBoy(false); setEditingBoyId(null) }}><X size={20} style={{ color: '#676D82' }} /></button>
-                  </div>
-                  <form onSubmit={handleAddBoy} className="space-y-4">
-                    <div className="grid grid-cols-2 gap-4">
-                      <div className="col-span-2">
-                        <label className="block text-xs font-bold mb-1" style={{ color: '#1E2333' }}>Name *</label>
-                        <input type="text" required value={boyForm.name}
-                          onChange={e => setBoyForm({ ...boyForm, name: e.target.value })}
-                          className="w-full px-4 py-2.5 rounded-xl text-sm border-2 outline-none focus:border-[#F87D4D]"
-                          style={{ borderColor: '#EAEDE6' }} placeholder="e.g. James Smith" />
-                      </div>
-                      <div>
-                        <label className="block text-xs font-bold mb-1" style={{ color: '#1E2333' }}>Year Group</label>
-                        <input type="text" value={boyForm.yearGroup}
-                          onChange={e => setBoyForm({ ...boyForm, yearGroup: e.target.value })}
-                          className="w-full px-4 py-2.5 rounded-xl text-sm border-2 outline-none focus:border-[#F87D4D]"
-                          style={{ borderColor: '#EAEDE6' }} placeholder="e.g. Year 5" />
-                      </div>
-                      <div>
-                        <label className="block text-xs font-bold mb-1" style={{ color: '#1E2333' }}>Division</label>
-                        <input type="text" value={boyForm.division}
-                          onChange={e => setBoyForm({ ...boyForm, division: e.target.value })}
-                          className="w-full px-4 py-2.5 rounded-xl text-sm border-2 outline-none focus:border-[#F87D4D]"
-                          style={{ borderColor: '#EAEDE6' }} placeholder="e.g. Division A" />
-                      </div>
-                      <div>
-                        <label className="block text-xs font-bold mb-1" style={{ color: '#1E2333' }}>Coach Preference</label>
-                        <select value={boyForm.coachPreference}
-                          onChange={e => setBoyForm({ ...boyForm, coachPreference: e.target.value })}
-                          className="w-full px-4 py-2.5 rounded-xl text-sm border-2 outline-none focus:border-[#F87D4D]"
-                          style={{ borderColor: '#EAEDE6' }}>
-                          <option value="">No preference</option>
-                          {['peter', 'wojtek', 'ollie', 'tom', 'andy', 'jake', 'james'].map(c => (
-                            <option key={c} value={c}>{c.charAt(0).toUpperCase() + c.slice(1)}</option>
-                          ))}
-                        </select>
-                      </div>
-                      <div>
-                        <label className="block text-xs font-bold mb-1" style={{ color: '#1E2333' }}>Lessons/Week</label>
-                        <select value={boyForm.lessonsPerWeek}
-                          onChange={e => setBoyForm({ ...boyForm, lessonsPerWeek: parseInt(e.target.value) })}
-                          className="w-full px-4 py-2.5 rounded-xl text-sm border-2 outline-none focus:border-[#F87D4D]"
-                          style={{ borderColor: '#EAEDE6' }}>
-                          {[1, 2, 3, 4, 5].map(n => <option key={n} value={n}>{n}</option>)}
-                        </select>
-                      </div>
-                      <div className="col-span-2">
-                        <label className="block text-xs font-bold mb-1" style={{ color: '#1E2333' }}>Notes</label>
-                        <textarea value={boyForm.notes}
-                          onChange={e => setBoyForm({ ...boyForm, notes: e.target.value })}
-                          className="w-full px-4 py-2.5 rounded-xl text-sm border-2 outline-none focus:border-[#F87D4D] resize-none"
-                          style={{ borderColor: '#EAEDE6' }} rows={2} placeholder="Any additional notes..." />
-                      </div>
-                    </div>
-                    <div className="flex gap-3 pt-2">
-                      <button type="button" onClick={() => { setShowAddBoy(false); setEditingBoyId(null) }}
-                        className="flex-1 py-2.5 rounded-xl font-bold text-sm" style={{ backgroundColor: '#F7F9FA', color: '#676D82' }}>
-                        Cancel
-                      </button>
-                      <button type="submit"
-                        className="flex-1 py-2.5 rounded-xl font-bold text-sm text-white" style={{ backgroundColor: '#F87D4D' }}>
-                        {editingBoyId ? 'Save Changes' : 'Add Boy'}
-                      </button>
-                    </div>
-                  </form>
-                </div>
-              </div>
-            )}
-
             {/* Boys List with Blocked Slots Grid */}
             {loading ? (
               <div className="flex items-center justify-center py-20">
@@ -835,16 +889,8 @@ export default function TeacherAdminPage() {
                             {blockedForTerm.length} blocked
                           </span>
                           <button onClick={() => setEditingBlockedBoyId(isEditing ? null : boy.id)}
-                            className="p-2 rounded-lg transition-all hover:bg-gray-100" title="Edit blocked slots">
+                            className="p-2 rounded-lg transition-all hover:bg-gray-100" title="View blocked slots">
                             {isEditing ? <EyeOff size={16} style={{ color: '#676D82' }} /> : <Eye size={16} style={{ color: '#676D82' }} />}
-                          </button>
-                          <button onClick={() => startEditBoy(boy)}
-                            className="p-2 rounded-lg transition-all hover:bg-gray-100" title="Edit boy">
-                            <Edit3 size={16} style={{ color: '#676D82' }} />
-                          </button>
-                          <button onClick={() => handleDeleteBoy(boy.id)}
-                            className="p-2 rounded-lg transition-all hover:bg-red-50" title="Remove boy">
-                            <Trash2 size={16} style={{ color: '#EF4444' }} />
                           </button>
                         </div>
                       </div>
