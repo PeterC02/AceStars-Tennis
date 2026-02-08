@@ -310,27 +310,25 @@ export default function AdminPage() {
     } catch {}
   }
 
-  // Use allBookings (from DB or sample) for filtering
+  // Always show sample test data + any real DB bookings
   const bookingsToFilter = useMemo(() => {
-    if (dbBookings.length > 0) {
-      return dbBookings.map(db => ({
-        id: db.id,
-        parentName: db.parent_name,
-        parentEmail: db.parent_email,
-        parentPhone: db.parent_phone,
-        childName: db.children[0]?.name || 'N/A',
-        childAge: db.children[0]?.age || 'N/A',
-        programme: db.programme_name,
-        venue: db.venue,
-        stream: db.programme_category,
-        status: db.status,
-        date: new Date(db.created_at).toISOString().split('T')[0],
-        price: `£${db.total_price.toFixed(2)}`,
-        paymentStatus: db.payment_status,
-        paymentMethod: db.payment_method,
-      })) as Booking[]
-    }
-    return sampleBookings
+    const dbMapped = dbBookings.map(db => ({
+      id: db.id,
+      parentName: db.parent_name,
+      parentEmail: db.parent_email,
+      parentPhone: db.parent_phone,
+      childName: db.children[0]?.name || 'N/A',
+      childAge: db.children[0]?.age || 'N/A',
+      programme: db.programme_name,
+      venue: db.venue,
+      stream: db.programme_category,
+      status: db.status,
+      date: new Date(db.created_at).toISOString().split('T')[0],
+      price: `£${db.total_price.toFixed(2)}`,
+      paymentStatus: db.payment_status,
+      paymentMethod: db.payment_method,
+    })) as Booking[]
+    return [...sampleBookings, ...dbMapped]
   }, [dbBookings])
 
   // Filter bookings
