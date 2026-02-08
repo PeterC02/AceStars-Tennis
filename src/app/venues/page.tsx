@@ -1,3 +1,5 @@
+'use client'
+
 import Link from 'next/link'
 import { ChevronRight, ExternalLink } from 'lucide-react'
 
@@ -36,28 +38,59 @@ const clubs = [
 const schools = [
   { 
     name: 'Ludgrove School', 
+    location: 'Wokingham',
     address: 'Ludgrove, Wokingham, Berkshire, RG40 3AB',
-    image: 'https://www.ludgroveschool.co.uk/wp-content/uploads/2023/03/Ludgrove-School-March-2023-101-scaled.jpg',
+    image: '/images/schools/ludgrove.svg',
+    programme: '/programme/ludgrove',
   },
   { 
     name: 'Edgbarrow School', 
+    location: 'Crowthorne',
     address: 'Grant Road, Crowthorne, Berkshire, RG45 7HZ',
-    image: 'https://www.edgbarrowschool.co.uk/wp-content/uploads/2023/09/Edgbarrow-School-July-2023-45-1024x683.jpg',
+    image: '/images/schools/edgbarrow.svg',
+    programme: '/programme/edgbarrow',
   },
   { 
     name: 'Yateley Manor', 
-    address: 'Yateley, Hampshire',
-    image: '/images/uploads/2019/02/9.jpg',
+    location: 'Yateley',
+    address: '51 Reading Road, Yateley, GU46 7UQ',
+    image: '/images/schools/yateley-manor.svg',
+    programme: '',
   },
   { 
     name: 'Nine Mile Ride Junior School', 
-    address: '430 Finchampstead Rd, Finchampstead, Wokingham RG40 3RB',
-    image: '/images/uploads/2019/02/10.jpg',
+    location: 'Wokingham',
+    address: '430 Finchampstead Rd, Finchampstead, Wokingham, RG40 3RB',
+    image: '/images/schools/nine-mile-ride.svg',
+    programme: '',
   },
   { 
     name: 'Luckley House School', 
-    address: 'Wokingham, Berkshire',
-    image: '/images/uploads/2019/02/11.jpg',
+    location: 'Wokingham',
+    address: 'Luckley Road, Wokingham, Berkshire, RG40 3EU',
+    image: '/images/schools/luckley-house.svg',
+    programme: '',
+  },
+  { 
+    name: 'C of E Primary School', 
+    location: 'Crowthorne',
+    address: "Duke\u2019s Ride, Crowthorne RG45 6ND",
+    image: '/images/schools/cofe-primary.svg',
+    programme: '',
+  },
+  { 
+    name: 'Oaklands Junior School', 
+    location: 'Wokingham',
+    address: 'Butler Rd, Crowthorne RG45 6QZ',
+    image: '/images/schools/oaklands-junior.svg',
+    programme: '',
+  },
+  { 
+    name: "Our Lady\u2019s Preparatory School", 
+    location: 'Crowthorne',
+    address: '19 The Avenue, Crowthorne RG45 6PB',
+    image: '/images/schools/our-ladys-prep.svg',
+    programme: '',
   },
 ]
 
@@ -162,29 +195,38 @@ export default function VenuesPage() {
           </div>
           <h3 className="text-3xl font-bold mb-12" style={{ color: '#1E2333' }}>Our Schools</h3>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-            {schools.map((school, index) => (
-              <div 
-                key={index} 
-                className="relative min-h-[300px] rounded-lg overflow-hidden group"
-                style={{ 
-                  backgroundImage: `url(${school.image})`,
-                  backgroundSize: 'cover',
-                  backgroundPosition: 'center',
-                  border: '1px solid #EAEDE6',
-                }}
-              >
-                {/* Overlay */}
-                <div className="absolute inset-0 bg-gradient-to-t from-primary-dark/90 via-primary-dark/40 to-transparent"></div>
-                
-                {/* Content */}
-                <div className="absolute bottom-0 left-0 right-0 p-5 text-white">
-                  <p className="text-xs mb-1" style={{ color: '#AFB0B3' }}>School</p>
-                  <h3 className="text-lg font-bold mb-1" style={{ color: '#FFFFFF' }}>{school.name}</h3>
-                  <p className="text-xs" style={{ color: '#F9FAF7' }}>{school.address}</p>
-                </div>
-              </div>
-            ))}
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+            {schools.map((school, index) => {
+              const CardWrapper = school.programme ? Link : 'div'
+              const cardProps = school.programme ? { href: school.programme } : {}
+              return (
+                <CardWrapper
+                  key={index}
+                  {...cardProps as any}
+                  className="rounded-2xl overflow-hidden bg-white transition-all hover:shadow-xl hover:-translate-y-1 group"
+                  style={{ border: '1px solid #EAEDE6' }}
+                >
+                  <div className="relative h-48 overflow-hidden">
+                    <img
+                      src={school.image}
+                      alt={school.name}
+                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                      onError={(e) => { (e.target as HTMLImageElement).src = '/images/uploads/2019/02/9.jpg' }}
+                    />
+                  </div>
+                  <div className="p-5">
+                    <p className="text-sm mb-1" style={{ color: '#676D82' }}>{school.location}</p>
+                    <h3 className="text-lg font-bold mb-2 font-heading" style={{ color: '#1E2333' }}>{school.name}</h3>
+                    <p className="text-sm" style={{ color: '#676D82' }}>{school.address}</p>
+                    {school.programme && (
+                      <div className="flex items-center gap-1 mt-3 text-sm font-bold" style={{ color: '#F87D4D' }}>
+                        View Programme <ChevronRight size={16} />
+                      </div>
+                    )}
+                  </div>
+                </CardWrapper>
+              )
+            })}
           </div>
         </div>
       </section>

@@ -28,6 +28,11 @@ export const metadata: Metadata = {
     images: ['/images/uploads/2019/03/Depositphotos_115174380_xl-2015-wide-outlined.jpg'],
   },
   robots: { index: true, follow: true },
+  icons: {
+    icon: '/favicon.svg',
+    shortcut: '/favicon.svg',
+    apple: '/favicon.svg',
+  },
 }
 
 export default function RootLayout({

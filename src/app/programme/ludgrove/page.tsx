@@ -94,7 +94,7 @@ export default function LudgroveProgrammePage() {
       <section 
         className="relative min-h-[50vh] flex items-center justify-center overflow-hidden"
         style={{ 
-          backgroundImage: 'url(https://www.ludgroveschool.co.uk/wp-content/uploads/2023/03/Ludgrove-School-March-2023-101-scaled.jpg)',
+          backgroundImage: 'url(/images/schools/ludgrove.svg)',
           backgroundSize: 'cover',
           backgroundPosition: 'center',
         }}
@@ -150,7 +150,7 @@ export default function LudgroveProgrammePage() {
               <div 
                 className="h-64"
                 style={{ 
-                  backgroundImage: 'url(https://www.ludgroveschool.co.uk/wp-content/uploads/2023/03/Ludgrove-School-March-2023-101-scaled.jpg)',
+                  backgroundImage: 'url(/images/schools/ludgrove.svg)',
                   backgroundSize: 'cover',
                   backgroundPosition: 'center',
                 }}
@@ -179,7 +179,7 @@ export default function LudgroveProgrammePage() {
               <div 
                 className="h-64"
                 style={{ 
-                  backgroundImage: 'url(https://www.edgbarrowschool.co.uk/wp-content/uploads/2023/09/Edgbarrow-School-July-2023-45-1024x683.jpg)',
+                  backgroundImage: 'url(/images/schools/edgbarrow.svg)',
                   backgroundSize: 'cover',
                   backgroundPosition: 'center',
                 }}
