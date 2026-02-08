@@ -12,34 +12,35 @@ const SLOTS = ['breakfast', 'fruit', 'rest'] as const
 type Day = typeof DAYS[number]
 type Slot = typeof SLOTS[number]
 
-// Coaches (same as admin page)
-const COACHES = [
-  { id: 'peter', name: 'Peter', color: '#F87D4D' },
-  { id: 'wojtek', name: 'Wojtek', color: '#65B863' },
-  { id: 'ollie', name: 'Ollie', color: '#dfd300' },
-  { id: 'tom', name: 'Tom', color: '#3B82F6' },
-  { id: 'andy', name: 'Andy', color: '#8B5CF6' },
-  { id: 'jake', name: 'Jake', color: '#EC4899' },
-  { id: 'james', name: 'James', color: '#14B8A6' },
-]
-
-// Ludgrove-specific constraints
-const CONSTRAINTS = {
-  maxCoachesPerSlot: 6,
-  reducedSlots: [
-    { day: 'mon', slot: 'breakfast', reduction: 0.5 },   // Boys return late every other week
-    { day: 'wed', slot: 'rest', reduction: 0.75 },       // Sport day
-    { day: 'fri', slot: 'fruit', reduction: 0.75 },      // Boys leave early
-    { day: 'fri', slot: 'rest', reduction: 1.0 },        // No Friday rest
-  ] as { day: string; slot: string; reduction: number }[],
+// Load coaches and constraints from database
+async function loadCoachesFromDB() {
+  const { data } = await supabase.from('coach_preferences').select('*').order('coach_name')
+  return (data || []).map((c: any) => ({
+    id: c.coach_id,
+    name: c.coach_name,
+    color: c.color,
+    preferredSlots: c.preferred_slots || [],
+    avoidSlots: c.avoid_slots || [],
+    maxSessionsPerDay: c.max_sessions_per_day || 3,
+    preferredDays: c.preferred_days || [],
+    avoidDays: c.avoid_days || [],
+  }))
 }
 
-function getSlotCapacity(day: string, slot: string): number {
-  const reduced = CONSTRAINTS.reducedSlots.find(r => r.day === day && r.slot === slot)
-  if (reduced) {
-    return Math.floor(CONSTRAINTS.maxCoachesPerSlot * (1 - reduced.reduction))
+async function loadConstraintsFromDB() {
+  const { data } = await supabase.from('schedule_constraints').select('*').order('priority', { ascending: false })
+  return data || []
+}
+
+function getSlotCapacity(day: string, slot: string, constraints: any[], maxCoaches: number): number {
+  for (const c of constraints) {
+    if (!c.enabled || c.constraint_type !== 'reduce_slot') continue
+    const val = typeof c.value === 'string' ? JSON.parse(c.value) : c.value
+    if (val.day === day && val.slot === slot) {
+      return Math.floor(maxCoaches * (1 - val.reduction / 100))
+    }
   }
-  return CONSTRAINTS.maxCoachesPerSlot
+  return maxCoaches
 }
 
 // POST - Generate schedule
@@ -64,6 +65,12 @@ export async function POST(request: NextRequest) {
     if (!boys || boys.length === 0) {
       return NextResponse.json({ error: 'No boys found. Please add boys first.' }, { status: 400 })
     }
+
+    // Load coaches and constraints from DB
+    const dbCoaches = await loadCoachesFromDB()
+    const dbConstraints = await loadConstraintsFromDB()
+    const maxCoachesConstraint = dbConstraints.find((c: any) => c.id === 'c1')
+    const maxCoachesVal = maxCoachesConstraint?.enabled ? (typeof maxCoachesConstraint.value === 'string' ? JSON.parse(maxCoachesConstraint.value) : maxCoachesConstraint.value).maxCoaches || 6 : 7
 
     // Fetch existing locked entries (manual overrides)
     const { data: lockedEntries } = await supabase
@@ -121,7 +128,7 @@ export async function POST(request: NextRequest) {
       boyLessonCount[b.id] = 0
       boyScheduledDays[b.id] = []
     })
-    COACHES.forEach(c => {
+    dbCoaches.forEach((c: any) => {
       coachDayCount[c.id] = {}
       DAYS.forEach(d => { coachDayCount[c.id][d] = 0 })
     })
@@ -155,7 +162,7 @@ export async function POST(request: NextRequest) {
       if (blockedMap[boy.id]?.has(key)) return -Infinity
 
       // 2. Slot at capacity
-      const capacity = getSlotCapacity(day, slot)
+      const capacity = getSlotCapacity(day, slot, dbConstraints, maxCoachesVal)
       if (slotUsage[key] >= capacity) return -Infinity
 
       // 3. Coach already teaching in this slot
@@ -166,14 +173,28 @@ export async function POST(request: NextRequest) {
       const boyBusy = schedule.some(e => e.day === day && e.slot === slot && e.boyId === boy.id)
       if (boyBusy) return -Infinity
 
-      // 5. Coach max 3 sessions per day
-      if ((coachDayCount[coachId]?.[day] || 0) >= 3) return -Infinity
+      // 5. Coach max sessions per day (from DB preferences)
+      const coachPref = dbCoaches.find((c: any) => c.id === coachId)
+      const maxPerDay = coachPref?.maxSessionsPerDay || 3
+      if ((coachDayCount[coachId]?.[day] || 0) >= maxPerDay) return -Infinity
 
       // SOFT CONSTRAINTS (adjust score)
       let score = 1000
 
       // Coach preference match (+100)
       if (boy.coach_preference === coachId) score += 100
+
+      // Coach preferred slots from DB (+50)
+      if (coachPref?.preferredSlots?.includes(slot)) score += 50
+
+      // Coach avoid slots from DB (-100)
+      if (coachPref?.avoidSlots?.includes(slot)) score -= 100
+
+      // Coach preferred days from DB (+30)
+      if (coachPref?.preferredDays?.includes(day)) score += 30
+
+      // Coach avoid days from DB (-80)
+      if (coachPref?.avoidDays?.includes(day)) score -= 80
 
       // Spread lessons across different days (+50 if new day)
       if (!boyScheduledDays[boy.id]?.includes(day)) score += 50
@@ -187,7 +208,7 @@ export async function POST(request: NextRequest) {
       }
 
       // Prefer lower utilization slots (+10 per available spot)
-      score += (capacity - slotUsage[key]) * 10
+      score += (getSlotCapacity(day, slot, dbConstraints, maxCoachesVal) - slotUsage[key]) * 10
 
       // Balance coach load (-15 per existing lesson on same day)
       score -= (coachDayCount[coachId]?.[day] || 0) * 15
@@ -225,8 +246,8 @@ export async function POST(request: NextRequest) {
         // Determine coach: preference first, then round-robin
         const preferredCoach = boy.coach_preference
         const coachOrder = preferredCoach
-          ? [preferredCoach, ...COACHES.map(c => c.id).filter(id => id !== preferredCoach)]
-          : COACHES.map(c => c.id)
+          ? [preferredCoach, ...dbCoaches.map((c: any) => c.id).filter((id: string) => id !== preferredCoach)]
+          : dbCoaches.map((c: any) => c.id)
 
         let bestAssignment: { coachId: string; day: Day; slot: Slot; score: number } | null = null
 
@@ -292,15 +313,15 @@ export async function POST(request: NextRequest) {
     // Calculate stats
     const unscheduled = boys.filter((b: any) => (boyLessonCount[b.id] || 0) < (b.lessons_per_week || 2))
     const coachUtilization: Record<string, number> = {}
-    COACHES.forEach(c => {
+    dbCoaches.forEach((c: any) => {
       coachUtilization[c.name] = schedule.filter(e => e.coachId === c.id).length
     })
 
     return NextResponse.json({
       schedule: schedule.map(e => ({
         ...e,
-        coachName: COACHES.find(c => c.id === e.coachId)?.name || e.coachId,
-        coachColor: COACHES.find(c => c.id === e.coachId)?.color || '#999',
+        coachName: dbCoaches.find((c: any) => c.id === e.coachId)?.name || e.coachId,
+        coachColor: dbCoaches.find((c: any) => c.id === e.coachId)?.color || '#999',
       })),
       stats: {
         totalLessons: schedule.length,
@@ -312,7 +333,7 @@ export async function POST(request: NextRequest) {
         })),
         coachUtilization,
       },
-      coaches: COACHES,
+      coaches: dbCoaches.map((c: any) => ({ id: c.id, name: c.name, color: c.color })),
     })
   } catch (error: any) {
     return NextResponse.json({ error: error.message }, { status: 500 })
@@ -338,16 +359,33 @@ export async function GET(request: NextRequest) {
     return NextResponse.json({ error: error.message }, { status: 500 })
   }
 
+  // Load coaches from DB for name/color mapping
+  const dbCoaches = await loadCoachesFromDB()
+
   const schedule = (entries || []).map((e: any) => ({
     boyId: e.boy_id,
     boyName: e.boys?.name || 'Unknown',
     coachId: e.coach_id,
-    coachName: COACHES.find(c => c.id === e.coach_id)?.name || e.coach_id,
-    coachColor: COACHES.find(c => c.id === e.coach_id)?.color || '#999',
+    coachName: dbCoaches.find((c: any) => c.id === e.coach_id)?.name || e.coach_id,
+    coachColor: dbCoaches.find((c: any) => c.id === e.coach_id)?.color || '#999',
     day: e.day,
     slot: e.slot,
     isLocked: e.is_locked,
   }))
 
-  return NextResponse.json({ schedule, coaches: COACHES })
+  // Also get latest generation info
+  const { data: latestGen } = await supabase
+    .from('timetable_generation')
+    .select('*')
+    .eq('term', term)
+    .eq('is_published', true)
+    .order('created_at', { ascending: false })
+    .limit(1)
+
+  return NextResponse.json({
+    schedule,
+    coaches: dbCoaches.map((c: any) => ({ id: c.id, name: c.name, color: c.color })),
+    isPublished: !!latestGen?.[0],
+    publishedAt: latestGen?.[0]?.published_at || null,
+  })
 }

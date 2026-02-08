@@ -176,6 +176,12 @@ export default function AdminPage() {
   const [loadingBookings, setLoadingBookings] = useState(false)
   const [qbStatus, setQbStatus] = useState<{ connected: boolean; error?: string; refreshToken?: { daysRemaining: number; expiringSoon: boolean; warning: string | null } } | null>(null)
 
+  // Teacher readiness state
+  const [teacherReadiness, setTeacherReadiness] = useState<{ teachers: any[]; allComplete: boolean; totalTeachers: number; completedTeachers: number; latestGeneration: any } | null>(null)
+  const [selectedTerm, setSelectedTerm] = useState('Summer 2026')
+  const [isPublishing, setIsPublishing] = useState(false)
+  const [publishMessage, setPublishMessage] = useState<{ type: 'success' | 'error'; text: string } | null>(null)
+
   // Fetch bookings from database
   const fetchBookings = useCallback(async () => {
     setLoadingBookings(true)
@@ -199,6 +205,80 @@ export default function AdminPage() {
   useEffect(() => {
     fetchBookings()
   }, [fetchBookings])
+
+  // Fetch teacher readiness
+  const fetchReadiness = useCallback(async () => {
+    try {
+      const res = await fetch(`/api/teacher/readiness?term=${encodeURIComponent(selectedTerm)}`)
+      const data = await res.json()
+      setTeacherReadiness(data)
+    } catch {}
+  }, [selectedTerm])
+
+  useEffect(() => {
+    fetchReadiness()
+  }, [fetchReadiness])
+
+  // Generate & Publish timetable (admin only)
+  const handleGenerateAndPublish = async () => {
+    setIsPublishing(true)
+    setPublishMessage(null)
+    try {
+      // 1. Generate schedule
+      const genRes = await fetch('/api/teacher/schedule', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ term: selectedTerm }),
+      })
+      const genData = await genRes.json()
+      if (!genRes.ok) throw new Error(genData.error)
+
+      // 2. Publish
+      await fetch('/api/teacher/readiness', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          action: 'publish_timetable',
+          term: selectedTerm,
+          totalLessons: genData.stats.totalLessons,
+          totalBoys: genData.stats.totalBoys,
+          unscheduledCount: genData.stats.unscheduledBoys.length,
+        }),
+      })
+
+      setSchedule(genData.schedule.map((e: any) => ({
+        day: e.day, slot: e.slot, coachId: e.coachId,
+        studentId: e.boyId, studentName: e.boyName, locked: e.isLocked,
+      })))
+      setPublishMessage({ type: 'success', text: `Published! ${genData.stats.totalLessons} lessons for ${genData.stats.totalBoys} boys. All teachers and coaches can now view the timetable.` })
+      fetchReadiness()
+    } catch (err: any) {
+      setPublishMessage({ type: 'error', text: err.message })
+    }
+    setIsPublishing(false)
+  }
+
+  // Save coach preference to DB
+  const saveCoachPreferenceToDB = async (coachId: string, field: string, value: any) => {
+    try {
+      await fetch('/api/teacher/preferences', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ action: 'update_coach', coach_id: coachId, [field]: value }),
+      })
+    } catch {}
+  }
+
+  // Save constraint toggle to DB
+  const saveConstraintToDB = async (constraintId: string, enabled: boolean) => {
+    try {
+      await fetch('/api/teacher/preferences', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ action: 'toggle_constraint', constraint_id: constraintId, enabled }),
+      })
+    } catch {}
+  }
 
   // Use allBookings (from DB or sample) for filtering
   const bookingsToFilter = useMemo(() => {
@@ -299,11 +379,16 @@ export default function AdminPage() {
     ))
   }
 
-  // Toggle constraint
+  // Toggle constraint (local + DB)
   const toggleConstraint = (constraintId: string) => {
-    setConstraints(prev => prev.map(c => 
-      c.id === constraintId ? { ...c, enabled: !c.enabled } : c
-    ))
+    setConstraints(prev => {
+      const updated = prev.map(c => 
+        c.id === constraintId ? { ...c, enabled: !c.enabled } : c
+      )
+      const target = updated.find(c => c.id === constraintId)
+      if (target) saveConstraintToDB(constraintId, target.enabled)
+      return updated
+    })
   }
 
   // Advanced Scheduling Algorithm with Constraint Satisfaction
@@ -804,8 +889,118 @@ export default function AdminPage() {
         {/* LUDGROVE TIMETABLE SCHEDULER - Always visible at bottom */}
         <div className="mt-12 mb-8">
           <div className="bg-gradient-to-r from-green-600 to-green-700 rounded-xl p-6 mb-6">
-            <h2 className="text-2xl font-bold text-white mb-2">Ludgrove Timetable Scheduler</h2>
-            <p className="text-green-100">Generate weekly coaching timetables for all 7 coaches (Mon-Fri, Breakfast/Fruit/Rest)</p>
+            <div className="flex items-center justify-between">
+              <div>
+                <h2 className="text-2xl font-bold text-white mb-2">Ludgrove Timetable Scheduler</h2>
+                <p className="text-green-100">Generate weekly coaching timetables for all 7 coaches (Mon-Fri, Breakfast/Fruit/Rest)</p>
+              </div>
+              <select
+                value={selectedTerm}
+                onChange={e => setSelectedTerm(e.target.value)}
+                className="px-4 py-2 rounded-lg text-sm font-bold border-0"
+                style={{ backgroundColor: 'rgba(255,255,255,0.2)', color: '#FFF' }}
+              >
+                {['Spring 2026', 'Summer 2026', 'Autumn 2026', 'Spring 2027'].map(t => (
+                  <option key={t} value={t} style={{ color: '#1E2333' }}>{t}</option>
+                ))}
+              </select>
+            </div>
+          </div>
+
+          {/* Teacher Readiness Dashboard */}
+          <div className="bg-white rounded-xl p-6 shadow-sm mb-6">
+            <div className="flex items-center justify-between mb-4">
+              <div>
+                <h3 className="font-bold text-lg" style={{ color: '#1E2333' }}>
+                  <GraduationCap size={20} className="inline mr-2" style={{ color: '#F87D4D' }} />
+                  Div Master Upload Status — {selectedTerm}
+                </h3>
+                <p className="text-sm mt-1" style={{ color: '#676D82' }}>
+                  {teacherReadiness?.completedTeachers || 0} of {teacherReadiness?.totalTeachers || 0} teachers have completed their uploads
+                </p>
+              </div>
+              <div className="flex items-center gap-3">
+                <button onClick={fetchReadiness} className="p-2 rounded-lg hover:bg-gray-100">
+                  <RefreshCw size={16} style={{ color: '#676D82' }} />
+                </button>
+                <button
+                  onClick={handleGenerateAndPublish}
+                  disabled={isPublishing || !teacherReadiness || teacherReadiness.totalTeachers === 0}
+                  className="flex items-center gap-2 px-6 py-3 rounded-xl font-bold text-sm text-white transition-all hover:scale-[1.02] hover:shadow-lg disabled:opacity-50"
+                  style={{ backgroundColor: teacherReadiness?.allComplete ? '#65B863' : '#F87D4D' }}
+                >
+                  {isPublishing ? (
+                    <><RefreshCw size={16} className="animate-spin" /> Publishing...</>
+                  ) : (
+                    <><Zap size={16} /> Generate &amp; Publish Timetable</>
+                  )}
+                </button>
+              </div>
+            </div>
+
+            {/* Progress bar */}
+            <div className="w-full h-3 rounded-full mb-4" style={{ backgroundColor: '#F7F9FA' }}>
+              <div
+                className="h-full rounded-full transition-all duration-500"
+                style={{
+                  width: `${teacherReadiness?.totalTeachers ? (teacherReadiness.completedTeachers / teacherReadiness.totalTeachers) * 100 : 0}%`,
+                  backgroundColor: teacherReadiness?.allComplete ? '#65B863' : '#F87D4D',
+                }}
+              ></div>
+            </div>
+
+            {/* Teacher list */}
+            {teacherReadiness && teacherReadiness.teachers.length > 0 ? (
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3">
+                {teacherReadiness.teachers.map((t: any) => (
+                  <div key={t.teacherId} className="flex items-center gap-3 p-3 rounded-xl" style={{ backgroundColor: '#F7F9FA' }}>
+                    <div className={`w-8 h-8 rounded-full flex items-center justify-center text-xs font-bold text-white`}
+                      style={{ backgroundColor: t.isComplete ? '#65B863' : '#F87D4D' }}>
+                      {t.isComplete ? '✓' : t.teacherName.charAt(0)}
+                    </div>
+                    <div className="flex-1 min-w-0">
+                      <p className="text-sm font-bold truncate" style={{ color: '#1E2333' }}>{t.teacherName}</p>
+                      <p className="text-[10px]" style={{ color: '#676D82' }}>
+                        {t.division || 'No division'} • {t.boysCount} boys • {t.blockedSlotsCount} blocked slots
+                      </p>
+                    </div>
+                    <span className="text-[10px] font-bold px-2 py-1 rounded-full"
+                      style={{
+                        backgroundColor: t.isComplete ? '#F0FDF4' : '#FEF9C3',
+                        color: t.isComplete ? '#16A34A' : '#CA8A04',
+                      }}>
+                      {t.isComplete ? 'Done' : 'Pending'}
+                    </span>
+                  </div>
+                ))}
+              </div>
+            ) : (
+              <div className="text-center py-6" style={{ color: '#AFB0B3' }}>
+                <p className="text-sm">No teachers registered yet. Teachers can register at <a href="/teacher-admin" className="underline" style={{ color: '#F87D4D' }}>/teacher-admin</a></p>
+              </div>
+            )}
+
+            {/* Last generation info */}
+            {teacherReadiness?.latestGeneration && (
+              <div className="mt-4 pt-4 border-t flex items-center gap-2" style={{ borderColor: '#EAEDE6' }}>
+                <CheckCircle size={14} style={{ color: '#65B863' }} />
+                <span className="text-xs" style={{ color: '#676D82' }}>
+                  Last published: {new Date(teacherReadiness.latestGeneration.published_at || teacherReadiness.latestGeneration.created_at).toLocaleString()} — {teacherReadiness.latestGeneration.total_lessons} lessons, {teacherReadiness.latestGeneration.total_boys} boys
+                </span>
+              </div>
+            )}
+
+            {/* Publish message */}
+            {publishMessage && (
+              <div className="mt-4 p-3 rounded-xl text-sm" style={{
+                backgroundColor: publishMessage.type === 'success' ? '#F0FDF4' : '#FEF2F2',
+                color: publishMessage.type === 'success' ? '#16A34A' : '#DC2626',
+                border: `1px solid ${publishMessage.type === 'success' ? '#BBF7D0' : '#FECACA'}`,
+              }}>
+                {publishMessage.type === 'success' ? <CheckCircle size={14} className="inline mr-1" /> : <AlertCircle size={14} className="inline mr-1" />}
+                {publishMessage.text}
+              </div>
+            )}
           </div>
         </div>
 

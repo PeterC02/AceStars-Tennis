@@ -26,16 +26,23 @@ async function run() {
     `)
     console.log('✓ Trigger function ready')
 
-    const sql = readFileSync('supabase-teacher-schema.sql', 'utf8')
-    console.log('Executing schema...')
-    await client.query(sql)
+    const sql1 = readFileSync('supabase-teacher-schema.sql', 'utf8')
+    console.log('Executing teacher schema...')
+    await client.query(sql1)
+    console.log('✓ Teacher tables created')
+
+    const sql2 = readFileSync('supabase-shared-schedule-schema.sql', 'utf8')
+    console.log('Executing shared schedule schema...')
+    await client.query(sql2)
+    console.log('✓ Shared schedule tables created')
+
     console.log('✅ All tables created successfully!')
 
     // Verify tables exist
     const res = await client.query(`
       SELECT table_name FROM information_schema.tables 
       WHERE table_schema = 'public' 
-      AND table_name IN ('div_masters', 'boys', 'boy_blocked_slots', 'tennis_schedule')
+      AND table_name IN ('div_masters', 'boys', 'boy_blocked_slots', 'tennis_schedule', 'coach_preferences', 'schedule_constraints', 'teacher_upload_status', 'timetable_generation')
       ORDER BY table_name
     `)
     console.log('\nVerified tables:')

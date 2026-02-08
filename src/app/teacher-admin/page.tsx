@@ -88,8 +88,10 @@ export default function TeacherAdminPage() {
   const [coaches, setCoaches] = useState<Coach[]>([])
   const [stats, setStats] = useState<ScheduleStats | null>(null)
   const [loading, setLoading] = useState(false)
-  const [generating, setGenerating] = useState(false)
   const [message, setMessage] = useState<{ type: 'success' | 'error'; text: string } | null>(null)
+  const [isUploadComplete, setIsUploadComplete] = useState(false)
+  const [isPublished, setIsPublished] = useState(false)
+  const [publishedAt, setPublishedAt] = useState<string | null>(null)
 
   // Boy form
   const [showAddBoy, setShowAddBoy] = useState(false)
@@ -149,11 +151,28 @@ export default function TeacherAdminPage() {
       const data = await res.json()
       setSchedule(data.schedule || [])
       setCoaches(data.coaches || [])
+      setIsPublished(data.isPublished || false)
+      setPublishedAt(data.publishedAt || null)
     } catch (err: any) {
       setMessage({ type: 'error', text: err.message })
     }
     setLoading(false)
   }, [teacher, term])
+
+  // Fetch upload completion status
+  const fetchUploadStatus = useCallback(async () => {
+    if (!teacher) return
+    try {
+      const res = await fetch(`/api/teacher/readiness?term=${encodeURIComponent(term)}`)
+      const data = await res.json()
+      const myStatus = (data.teachers || []).find((t: any) => t.teacherId === teacher.id)
+      setIsUploadComplete(myStatus?.isComplete || false)
+    } catch {}
+  }, [teacher, term])
+
+  useEffect(() => {
+    if (teacher) fetchUploadStatus()
+  }, [teacher, term, fetchUploadStatus])
 
   useEffect(() => {
     if (teacher && activeTab === 'schedule') fetchSchedule()
@@ -326,30 +345,25 @@ export default function TeacherAdminPage() {
     reader.readAsText(file)
   }
 
-  // Generate schedule
-  const handleGenerateSchedule = async () => {
+  // Mark upload as complete
+  const handleMarkComplete = async () => {
     if (!teacher) return
-    setGenerating(true)
-    setMessage(null)
-
     try {
-      const res = await fetch('/api/teacher/schedule', {
+      const res = await fetch('/api/teacher/readiness', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ term }),
+        body: JSON.stringify({
+          action: isUploadComplete ? 'mark_incomplete' : 'mark_complete',
+          divMasterId: teacher.id,
+          term,
+        }),
       })
-      const data = await res.json()
-      if (!res.ok) throw new Error(data.error)
-
-      setSchedule(data.schedule || [])
-      setCoaches(data.coaches || [])
-      setStats(data.stats || null)
-      setMessage({ type: 'success', text: `Schedule generated: ${data.stats.totalLessons} lessons for ${data.stats.totalBoys} boys` })
-      setActiveTab('schedule')
+      if (!res.ok) throw new Error('Failed to update status')
+      setIsUploadComplete(!isUploadComplete)
+      setMessage({ type: 'success', text: isUploadComplete ? 'Upload marked as in progress' : 'Upload marked as complete — the admin will generate the timetable once all teachers are ready' })
     } catch (err: any) {
       setMessage({ type: 'error', text: err.message })
     }
-    setGenerating(false)
   }
 
   // Export schedule CSV
@@ -618,13 +632,13 @@ export default function TeacherAdminPage() {
               </div>
               <div className="flex gap-2">
                 <button
-                  onClick={handleGenerateSchedule}
-                  disabled={generating || boys.length === 0}
+                  onClick={handleMarkComplete}
+                  disabled={boys.length === 0}
                   className="flex items-center gap-2 px-5 py-2.5 rounded-xl font-bold text-sm transition-all hover:scale-[1.02] hover:shadow-lg disabled:opacity-50"
-                  style={{ backgroundColor: '#65B863', color: '#FFF' }}
+                  style={{ backgroundColor: isUploadComplete ? '#676D82' : '#65B863', color: '#FFF' }}
                 >
-                  {generating ? <RefreshCw size={16} className="animate-spin" /> : <Zap size={16} />}
-                  Generate Schedule
+                  {isUploadComplete ? <CheckCircle size={16} /> : <Upload size={16} />}
+                  {isUploadComplete ? 'Upload Complete ✓' : 'Mark Upload Complete'}
                 </button>
                 <button
                   onClick={() => { setShowAddBoy(true); setEditingBoyId(null); setBoyForm({ name: '', yearGroup: '', division: '', coachPreference: '', lessonsPerWeek: 2, notes: '' }) }}
@@ -975,6 +989,11 @@ Oliver Brown, , History, , Maths, ...`}
                 <h2 className="text-xl font-bold font-heading" style={{ color: '#1E2333' }}>Tennis Schedule — {term}</h2>
                 <p className="text-sm" style={{ color: '#676D82' }}>
                   {schedule.length} lessons scheduled across {coaches.length} coaches
+                  {isPublished && publishedAt && (
+                    <span className="ml-2 text-xs px-2 py-0.5 rounded-full" style={{ backgroundColor: '#F0FDF4', color: '#16A34A' }}>
+                      Published {new Date(publishedAt).toLocaleDateString()}
+                    </span>
+                  )}
                 </p>
               </div>
               <div className="flex gap-2">
@@ -1000,11 +1019,11 @@ Oliver Brown, , History, , Maths, ...`}
                     List
                   </button>
                 </div>
-                <button onClick={handleGenerateSchedule} disabled={generating}
-                  className="flex items-center gap-2 px-4 py-2 rounded-xl font-bold text-xs text-white disabled:opacity-50"
+                <button onClick={fetchSchedule}
+                  className="flex items-center gap-2 px-4 py-2 rounded-xl font-bold text-xs text-white"
                   style={{ backgroundColor: '#65B863' }}>
-                  {generating ? <RefreshCw size={14} className="animate-spin" /> : <RefreshCw size={14} />}
-                  Regenerate
+                  <RefreshCw size={14} />
+                  Refresh
                 </button>
                 <button onClick={exportScheduleCSV} disabled={schedule.length === 0}
                   className="flex items-center gap-2 px-4 py-2 rounded-xl font-bold text-xs disabled:opacity-50"
@@ -1062,12 +1081,12 @@ Oliver Brown, , History, , Maths, ...`}
             {schedule.length === 0 ? (
               <div className="text-center py-20 rounded-2xl" style={{ backgroundColor: '#FFF', border: '2px dashed #EAEDE6' }}>
                 <Calendar size={48} className="mx-auto mb-4" style={{ color: '#EAEDE6' }} />
-                <h3 className="text-lg font-bold mb-2" style={{ color: '#1E2333' }}>No schedule generated yet</h3>
-                <p className="text-sm mb-4" style={{ color: '#676D82' }}>Add boys and upload timetables first, then generate the schedule</p>
-                <button onClick={handleGenerateSchedule} disabled={generating || boys.length === 0}
-                  className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl font-bold text-sm text-white disabled:opacity-50"
-                  style={{ backgroundColor: '#65B863' }}>
-                  <Zap size={16} /> Generate Schedule
+                <h3 className="text-lg font-bold mb-2" style={{ color: '#1E2333' }}>No schedule published yet</h3>
+                <p className="text-sm mb-4" style={{ color: '#676D82' }}>Once all teachers have uploaded their timetables and marked complete, the admin will generate and publish the schedule</p>
+                <button onClick={() => setActiveTab('boys')}
+                  className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl font-bold text-sm text-white"
+                  style={{ backgroundColor: '#F87D4D' }}>
+                  <Upload size={16} /> Upload Timetables
                 </button>
               </div>
             ) : scheduleView === 'grid' ? (
