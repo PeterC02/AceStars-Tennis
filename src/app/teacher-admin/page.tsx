@@ -8,7 +8,7 @@ import {
   Plus, X, Trash2, Edit3, Download, RefreshCw, ChevronDown,
   ChevronRight, CheckCircle, AlertCircle, FileText, Search,
   GraduationCap, BookOpen, Star, Eye, EyeOff, UserPlus,
-  Settings, BarChart3, Zap, Info, Shield
+  Settings, BarChart3, Zap, Info, Shield, Camera, ArrowRight, ImageIcon
 } from 'lucide-react'
 
 // Types
@@ -99,9 +99,11 @@ export default function TeacherAdminPage() {
   const [boyForm, setBoyForm] = useState({ name: '', yearGroup: '', division: '', coachPreference: '', lessonsPerWeek: 2, notes: '' })
   const [editingBoyId, setEditingBoyId] = useState<string | null>(null)
 
-  // Upload state
-  const [csvText, setCsvText] = useState('')
-  const [uploadResults, setUploadResults] = useState<any[] | null>(null)
+  // Photo upload sequential flow state
+  const [selectedBoyForUpload, setSelectedBoyForUpload] = useState<string | null>(null)
+  const [uploadedPhotos, setUploadedPhotos] = useState<Record<string, string>>({})
+  const [photoPreview, setPhotoPreview] = useState<string | null>(null)
+  const [uploadingPhoto, setUploadingPhoto] = useState(false)
 
   // Manual blocked slot editing
   const [editingBlockedBoyId, setEditingBlockedBoyId] = useState<string | null>(null)
@@ -327,44 +329,45 @@ export default function TeacherAdminPage() {
     }
   }
 
-  // CSV Upload
-  const handleCsvUpload = async () => {
-    if (!csvText.trim() || !teacher) return
-    setLoading(true)
-    setUploadResults(null)
+  // Photo timetable upload for a specific boy
+  const handlePhotoUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0]
+    if (!file || !selectedBoyForUpload) return
+    const reader = new FileReader()
+    reader.onload = (ev) => {
+      const dataUrl = ev.target?.result as string
+      setPhotoPreview(dataUrl)
+    }
+    reader.readAsDataURL(file)
+  }
 
+  const handleConfirmPhoto = async () => {
+    if (!photoPreview || !selectedBoyForUpload || !teacher) return
+    setUploadingPhoto(true)
     try {
-      const res = await fetch('/api/teacher/timetable', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          action: 'parse_csv',
-          csvData: csvText,
-          term,
-          divMasterId: teacher.id,
-        }),
-      })
-      const data = await res.json()
-      if (!res.ok) throw new Error(data.error)
+      // Store photo reference (in production this would upload to storage)
+      setUploadedPhotos(prev => ({ ...prev, [selectedBoyForUpload]: photoPreview }))
+      setMessage({ type: 'success', text: `Timetable photo saved for ${boys.find(b => b.id === selectedBoyForUpload)?.name || 'boy'}` })
 
-      setUploadResults(data.results)
-      setMessage({ type: 'success', text: `Timetable processed for ${data.results.length} boys` })
-      fetchBoys()
+      // Move to next boy without a photo
+      const boysWithoutPhoto = boys.filter(b => !uploadedPhotos[b.id] && b.id !== selectedBoyForUpload)
+      if (boysWithoutPhoto.length > 0) {
+        setSelectedBoyForUpload(boysWithoutPhoto[0].id)
+        setPhotoPreview(null)
+      } else {
+        setSelectedBoyForUpload(null)
+        setPhotoPreview(null)
+        setMessage({ type: 'success', text: 'All boys have timetable photos uploaded!' })
+      }
     } catch (err: any) {
       setMessage({ type: 'error', text: err.message })
     }
-    setLoading(false)
+    setUploadingPhoto(false)
   }
 
-  const handleFileUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const file = e.target.files?.[0]
-    if (!file) return
-    const reader = new FileReader()
-    reader.onload = (ev) => {
-      setCsvText(ev.target?.result as string || '')
-    }
-    reader.readAsText(file)
-  }
+  // Count boys with uploaded photos
+  const boysWithPhotos = boys.filter(b => uploadedPhotos[b.id]).length
+  const totalBoysForUpload = boys.length
 
   // Mark upload as complete
   const handleMarkComplete = async () => {
@@ -654,7 +657,7 @@ export default function TeacherAdminPage() {
           {[
             ...(!isCoach ? [
               { key: 'boys' as const, label: 'My Boys', icon: Users, count: boys.length },
-              { key: 'upload' as const, label: 'Upload Timetable', icon: Upload },
+              { key: 'upload' as const, label: 'Upload Photos', icon: Camera },
             ] : []),
             { key: 'schedule' as const, label: 'Tennis Schedule', icon: Calendar },
           ].map(tab => (
@@ -690,27 +693,20 @@ export default function TeacherAdminPage() {
             {/* Header */}
             <div className="flex items-center justify-between mb-6">
               <div>
-                <h2 className="text-xl font-bold font-heading" style={{ color: '#1E2333' }}>My Boys</h2>
-                <p className="text-sm" style={{ color: '#676D82' }}>Manage boys in your division and their blocked school slots</p>
+                <h2 className="text-xl font-bold font-heading" style={{ color: '#1E2333' }}>My Division Boys</h2>
+                <p className="text-sm" style={{ color: '#676D82' }}>Boys assigned to your division from booking data. View their details and blocked school slots.</p>
               </div>
               <div className="flex gap-2">
-                <button
-                  onClick={handleMarkComplete}
-                  disabled={boys.length === 0}
-                  className="flex items-center gap-2 px-5 py-2.5 rounded-xl font-bold text-sm transition-all hover:scale-[1.02] hover:shadow-lg disabled:opacity-50"
-                  style={{ backgroundColor: isUploadComplete ? '#676D82' : '#65B863', color: '#FFF' }}
-                >
-                  {isUploadComplete ? <CheckCircle size={16} /> : <Upload size={16} />}
-                  {isUploadComplete ? 'Upload Complete ✓' : 'Mark Upload Complete'}
-                </button>
-                <button
-                  onClick={() => { setShowAddBoy(true); setEditingBoyId(null); setBoyForm({ name: '', yearGroup: '', division: '', coachPreference: '', lessonsPerWeek: 2, notes: '' }) }}
-                  className="flex items-center gap-2 px-5 py-2.5 rounded-xl font-bold text-sm transition-all hover:scale-[1.02] hover:shadow-lg"
-                  style={{ backgroundColor: '#F87D4D', color: '#FFF' }}
-                >
-                  <Plus size={16} />
-                  Add Boy
-                </button>
+                {boys.length > 0 && (
+                  <button
+                    onClick={() => setActiveTab('upload')}
+                    className="flex items-center gap-2 px-5 py-2.5 rounded-xl font-bold text-sm transition-all hover:scale-[1.02] hover:shadow-lg"
+                    style={{ backgroundColor: '#F87D4D', color: '#FFF' }}
+                  >
+                    <Camera size={16} />
+                    Upload Timetables
+                  </button>
+                )}
               </div>
             </div>
 
@@ -799,15 +795,8 @@ export default function TeacherAdminPage() {
             ) : boys.length === 0 ? (
               <div className="text-center py-20 rounded-2xl" style={{ backgroundColor: '#FFF', border: '2px dashed #EAEDE6' }}>
                 <Users size={48} className="mx-auto mb-4" style={{ color: '#EAEDE6' }} />
-                <h3 className="text-lg font-bold mb-2" style={{ color: '#1E2333' }}>No boys added yet</h3>
-                <p className="text-sm mb-4" style={{ color: '#676D82' }}>Add boys from your division to start managing their tennis schedule</p>
-                <button
-                  onClick={() => setShowAddBoy(true)}
-                  className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl font-bold text-sm text-white"
-                  style={{ backgroundColor: '#F87D4D' }}
-                >
-                  <Plus size={16} /> Add First Boy
-                </button>
+                <h3 className="text-lg font-bold mb-2" style={{ color: '#1E2333' }}>No boys assigned to your division yet</h3>
+                <p className="text-sm" style={{ color: '#676D82' }}>The admin will add boys from Ludgrove booking data. Check back soon.</p>
               </div>
             ) : (
               <div className="space-y-3">
@@ -919,127 +908,183 @@ export default function TeacherAdminPage() {
           </div>
         )}
 
-        {/* ─── UPLOAD TAB ─── */}
+        {/* ─── UPLOAD TAB — Photo Timetable Upload (Sequential) ─── */}
         {activeTab === 'upload' && (
           <div>
-            <div className="mb-6">
-              <h2 className="text-xl font-bold font-heading" style={{ color: '#1E2333' }}>Upload School Timetable</h2>
-              <p className="text-sm" style={{ color: '#676D82' }}>
-                Upload a CSV of boys&apos; school timetables. The system will automatically detect which tennis slots are blocked.
-              </p>
+            <div className="flex items-center justify-between mb-6">
+              <div>
+                <h2 className="text-xl font-bold font-heading" style={{ color: '#1E2333' }}>Upload School Timetables</h2>
+                <p className="text-sm" style={{ color: '#676D82' }}>
+                  Take a photo of each boy&apos;s school timetable. Select a boy, upload the photo, then move to the next.
+                </p>
+              </div>
+              {totalBoysForUpload > 0 && (
+                <div className="flex items-center gap-3">
+                  <div className="text-right">
+                    <p className="text-xs font-bold" style={{ color: '#676D82' }}>{boysWithPhotos} / {totalBoysForUpload} uploaded</p>
+                    <div className="w-32 h-2 rounded-full mt-1" style={{ backgroundColor: '#EAEDE6' }}>
+                      <div className="h-full rounded-full transition-all" style={{ width: `${totalBoysForUpload > 0 ? (boysWithPhotos / totalBoysForUpload) * 100 : 0}%`, backgroundColor: boysWithPhotos === totalBoysForUpload ? '#65B863' : '#F87D4D' }}></div>
+                    </div>
+                  </div>
+                  <button
+                    onClick={handleMarkComplete}
+                    disabled={boysWithPhotos === 0}
+                    className="flex items-center gap-2 px-5 py-2.5 rounded-xl font-bold text-sm transition-all hover:scale-[1.02] disabled:opacity-50"
+                    style={{ backgroundColor: isUploadComplete ? '#676D82' : '#65B863', color: '#FFF' }}
+                  >
+                    {isUploadComplete ? <CheckCircle size={16} /> : <Upload size={16} />}
+                    {isUploadComplete ? 'Complete ✓' : 'Mark Complete'}
+                  </button>
+                </div>
+              )}
             </div>
 
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-              {/* Upload Area */}
-              <div className="rounded-2xl p-6" style={{ backgroundColor: '#FFF', border: '1px solid #EAEDE6' }}>
-                <h3 className="font-bold text-sm mb-4" style={{ color: '#1E2333' }}>
-                  <Upload size={16} className="inline mr-2" style={{ color: '#F87D4D' }} />
-                  Upload CSV File
-                </h3>
-
-                <div className="mb-4">
-                  <label className="flex items-center justify-center gap-3 p-8 rounded-xl cursor-pointer transition-all hover:border-[#F87D4D]"
-                    style={{ border: '2px dashed #EAEDE6', backgroundColor: '#F7F9FA' }}>
-                    <FileText size={24} style={{ color: '#676D82' }} />
-                    <div>
-                      <p className="text-sm font-bold" style={{ color: '#1E2333' }}>Click to upload CSV</p>
-                      <p className="text-xs" style={{ color: '#676D82' }}>or paste data below</p>
+            {boys.length === 0 ? (
+              <div className="text-center py-20 rounded-2xl" style={{ backgroundColor: '#FFF', border: '2px dashed #EAEDE6' }}>
+                <Users size={48} className="mx-auto mb-4" style={{ color: '#EAEDE6' }} />
+                <h3 className="text-lg font-bold mb-2" style={{ color: '#1E2333' }}>No boys in your division yet</h3>
+                <p className="text-sm" style={{ color: '#676D82' }}>The admin will add boys from booking data. Check back soon.</p>
+              </div>
+            ) : (
+              <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+                {/* Left: Boy List */}
+                <div className="lg:col-span-1">
+                  <div className="rounded-2xl overflow-hidden" style={{ backgroundColor: '#FFF', border: '1px solid #EAEDE6' }}>
+                    <div className="px-5 py-4 border-b" style={{ borderColor: '#EAEDE6', backgroundColor: '#F7F9FA' }}>
+                      <h3 className="font-bold text-sm" style={{ color: '#1E2333' }}>Select Boy</h3>
+                      <p className="text-[10px] mt-0.5" style={{ color: '#676D82' }}>Choose a boy to upload their school timetable photo</p>
                     </div>
-                    <input type="file" accept=".csv,.txt" className="hidden" onChange={handleFileUpload} />
-                  </label>
+                    <div className="divide-y" style={{ borderColor: '#EAEDE6' }}>
+                      {boys.map((boy, idx) => {
+                        const hasPhoto = !!uploadedPhotos[boy.id]
+                        const isSelected = selectedBoyForUpload === boy.id
+                        return (
+                          <button
+                            key={boy.id}
+                            onClick={() => { setSelectedBoyForUpload(boy.id); setPhotoPreview(uploadedPhotos[boy.id] || null) }}
+                            className="w-full px-5 py-3.5 flex items-center gap-3 text-left transition-all hover:bg-gray-50"
+                            style={{ backgroundColor: isSelected ? 'rgba(248,125,77,0.06)' : undefined, borderLeft: isSelected ? '3px solid #F87D4D' : '3px solid transparent' }}
+                          >
+                            <div className="w-8 h-8 rounded-full flex items-center justify-center text-xs font-bold flex-shrink-0"
+                              style={{ backgroundColor: hasPhoto ? 'rgba(101,184,99,0.15)' : 'rgba(248,125,77,0.15)', color: hasPhoto ? '#65B863' : '#F87D4D' }}>
+                              {hasPhoto ? <CheckCircle size={14} /> : <span>{idx + 1}</span>}
+                            </div>
+                            <div className="flex-1 min-w-0">
+                              <p className="text-sm font-bold truncate" style={{ color: '#1E2333' }}>{boy.name}</p>
+                              <p className="text-[10px]" style={{ color: '#676D82' }}>
+                                {boy.year_group && `${boy.year_group}`}{boy.division && ` • ${boy.division}`}
+                              </p>
+                            </div>
+                            {hasPhoto ? (
+                              <span className="text-[10px] px-2 py-1 rounded-full font-bold" style={{ backgroundColor: '#F0FDF4', color: '#16A34A' }}>Done</span>
+                            ) : (
+                              <span className="text-[10px] px-2 py-1 rounded-full font-bold" style={{ backgroundColor: '#FEF2F2', color: '#EF4444' }}>Pending</span>
+                            )}
+                          </button>
+                        )
+                      })}
+                    </div>
+                  </div>
                 </div>
 
-                <div className="mb-4">
-                  <label className="block text-xs font-bold mb-1.5" style={{ color: '#1E2333' }}>Or paste CSV data</label>
-                  <textarea
-                    value={csvText}
-                    onChange={e => setCsvText(e.target.value)}
-                    className="w-full px-4 py-3 rounded-xl text-xs font-mono border-2 outline-none focus:border-[#F87D4D] resize-none"
-                    style={{ borderColor: '#EAEDE6', minHeight: '200px' }}
-                    placeholder={`Boy Name, Mon 08:00-08:40, Mon 10:50-11:30, Mon 13:50-14:25, Tue 08:00-08:40, ...
-James Smith, Maths, , English, Science, ...
-Oliver Brown, , History, , Maths, ...`}
-                  />
-                </div>
-
-                <button
-                  onClick={handleCsvUpload}
-                  disabled={!csvText.trim() || loading}
-                  className="w-full py-3 rounded-xl font-bold text-sm text-white transition-all hover:scale-[1.02] disabled:opacity-50"
-                  style={{ backgroundColor: '#F87D4D' }}
-                >
-                  {loading ? 'Processing...' : 'Process Timetable'}
-                </button>
-
-                {/* Upload Results */}
-                {uploadResults && (
-                  <div className="mt-4 p-4 rounded-xl" style={{ backgroundColor: '#F0FDF4', border: '1px solid #BBF7D0' }}>
-                    <h4 className="font-bold text-sm mb-2" style={{ color: '#16A34A' }}>
-                      <CheckCircle size={14} className="inline mr-1" /> Upload Complete
-                    </h4>
-                    <div className="space-y-1">
-                      {uploadResults.map((r: any, i: number) => (
-                        <div key={i} className="flex items-center justify-between text-xs">
-                          <span style={{ color: '#1E2333' }}>{r.boyName}</span>
-                          <span className="font-bold" style={{ color: r.blockedCount > 0 ? '#EF4444' : '#16A34A' }}>
-                            {r.blockedCount} blocked slot{r.blockedCount !== 1 ? 's' : ''}
-                          </span>
+                {/* Right: Photo Upload Area */}
+                <div className="lg:col-span-2">
+                  {!selectedBoyForUpload ? (
+                    <div className="text-center py-20 rounded-2xl" style={{ backgroundColor: '#FFF', border: '2px dashed #EAEDE6' }}>
+                      <Camera size={48} className="mx-auto mb-4" style={{ color: '#EAEDE6' }} />
+                      <h3 className="text-lg font-bold mb-2" style={{ color: '#1E2333' }}>Select a boy from the list</h3>
+                      <p className="text-sm" style={{ color: '#676D82' }}>Choose a boy to upload their school timetable photo</p>
+                    </div>
+                  ) : (
+                    <div className="rounded-2xl p-6" style={{ backgroundColor: '#FFF', border: '1px solid #EAEDE6' }}>
+                      {/* Current boy header */}
+                      <div className="flex items-center justify-between mb-5">
+                        <div className="flex items-center gap-3">
+                          <div className="w-10 h-10 rounded-full flex items-center justify-center text-sm font-bold"
+                            style={{ backgroundColor: 'rgba(248,125,77,0.15)', color: '#F87D4D' }}>
+                            {boys.find(b => b.id === selectedBoyForUpload)?.name.charAt(0)}
+                          </div>
+                          <div>
+                            <h3 className="font-bold text-base" style={{ color: '#1E2333' }}>
+                              {boys.find(b => b.id === selectedBoyForUpload)?.name}
+                            </h3>
+                            <p className="text-xs" style={{ color: '#676D82' }}>Upload a photo of their school timetable</p>
+                          </div>
                         </div>
-                      ))}
-                    </div>
-                  </div>
-                )}
-              </div>
-
-              {/* Format Guide */}
-              <div className="space-y-4">
-                <div className="rounded-2xl p-6" style={{ backgroundColor: '#FFF', border: '1px solid #EAEDE6' }}>
-                  <h3 className="font-bold text-sm mb-3" style={{ color: '#1E2333' }}>
-                    <BookOpen size={16} className="inline mr-2" style={{ color: '#3B82F6' }} />
-                    CSV Format Guide
-                  </h3>
-
-                  <div className="space-y-4">
-                    <div>
-                      <p className="text-xs font-bold mb-1" style={{ color: '#F87D4D' }}>Format 1: Time-based columns</p>
-                      <div className="p-3 rounded-lg font-mono text-[10px] leading-relaxed overflow-x-auto" style={{ backgroundColor: '#F7F9FA' }}>
-                        <p style={{ color: '#676D82' }}>Boy Name, Mon 08:00-08:40, Mon 10:50-11:30, Mon 13:50-14:25, Tue 08:00-08:40, ...</p>
-                        <p style={{ color: '#1E2333' }}>James Smith, Maths, , English, Science, ...</p>
-                        <p style={{ color: '#1E2333' }}>Oliver Brown, , History, , Maths, ...</p>
+                        {uploadedPhotos[selectedBoyForUpload] && (
+                          <span className="flex items-center gap-1.5 text-xs font-bold px-3 py-1.5 rounded-full" style={{ backgroundColor: '#F0FDF4', color: '#16A34A' }}>
+                            <CheckCircle size={12} /> Photo uploaded
+                          </span>
+                        )}
                       </div>
-                      <p className="text-[10px] mt-1" style={{ color: '#676D82' }}>Empty cells = free period. Filled cells = school lesson (blocks tennis).</p>
-                    </div>
 
-                    <div>
-                      <p className="text-xs font-bold mb-1" style={{ color: '#F87D4D' }}>Format 2: Row-based</p>
-                      <div className="p-3 rounded-lg font-mono text-[10px] leading-relaxed overflow-x-auto" style={{ backgroundColor: '#F7F9FA' }}>
-                        <p style={{ color: '#676D82' }}>Boy Name, Day, Time Start, Time End, Lesson</p>
-                        <p style={{ color: '#1E2333' }}>James Smith, Monday, 08:00, 08:40, Maths</p>
-                        <p style={{ color: '#1E2333' }}>James Smith, Monday, 13:50, 14:25, English</p>
+                      {/* Photo upload zone */}
+                      {!photoPreview ? (
+                        <label className="flex flex-col items-center justify-center gap-4 p-12 rounded-xl cursor-pointer transition-all hover:border-[#F87D4D] hover:bg-orange-50/30"
+                          style={{ border: '2px dashed #EAEDE6', backgroundColor: '#F7F9FA' }}>
+                          <div className="w-16 h-16 rounded-2xl flex items-center justify-center" style={{ backgroundColor: 'rgba(248,125,77,0.1)' }}>
+                            <Camera size={32} style={{ color: '#F87D4D' }} />
+                          </div>
+                          <div className="text-center">
+                            <p className="text-sm font-bold" style={{ color: '#1E2333' }}>Take or upload a photo</p>
+                            <p className="text-xs mt-1" style={{ color: '#676D82' }}>Tap to open camera or select from gallery</p>
+                            <p className="text-[10px] mt-2" style={{ color: '#AFB0B3' }}>Supports JPG, PNG, HEIC</p>
+                          </div>
+                          <input type="file" accept="image/*" capture="environment" className="hidden" onChange={handlePhotoUpload} />
+                        </label>
+                      ) : (
+                        <div>
+                          {/* Photo preview */}
+                          <div className="relative rounded-xl overflow-hidden mb-4" style={{ border: '1px solid #EAEDE6' }}>
+                            <img src={photoPreview} alt="Timetable preview" className="w-full max-h-[400px] object-contain" style={{ backgroundColor: '#F7F9FA' }} />
+                            <button
+                              onClick={() => setPhotoPreview(null)}
+                              className="absolute top-3 right-3 p-2 rounded-full bg-white/90 shadow-lg hover:bg-white transition-all"
+                            >
+                              <X size={16} style={{ color: '#EF4444' }} />
+                            </button>
+                          </div>
+
+                          {/* Action buttons */}
+                          <div className="flex gap-3">
+                            <label className="flex-1 flex items-center justify-center gap-2 py-3 rounded-xl font-bold text-sm cursor-pointer transition-all hover:scale-[1.01]"
+                              style={{ backgroundColor: '#F7F9FA', color: '#676D82', border: '1px solid #EAEDE6' }}>
+                              <Camera size={16} />
+                              Retake Photo
+                              <input type="file" accept="image/*" capture="environment" className="hidden" onChange={handlePhotoUpload} />
+                            </label>
+                            <button
+                              onClick={handleConfirmPhoto}
+                              disabled={uploadingPhoto}
+                              className="flex-1 flex items-center justify-center gap-2 py-3 rounded-xl font-bold text-sm text-white transition-all hover:scale-[1.01] disabled:opacity-50"
+                              style={{ backgroundColor: '#65B863' }}
+                            >
+                              {uploadingPhoto ? <RefreshCw size={16} className="animate-spin" /> : <CheckCircle size={16} />}
+                              {uploadingPhoto ? 'Saving...' : 'Confirm & Next Boy'}
+                              {!uploadingPhoto && <ArrowRight size={16} />}
+                            </button>
+                          </div>
+                        </div>
+                      )}
+
+                      {/* Tennis slot reference */}
+                      <div className="mt-6 p-4 rounded-xl" style={{ backgroundColor: '#F7F9FA', border: '1px solid #EAEDE6' }}>
+                        <h4 className="text-xs font-bold mb-2 flex items-center gap-1.5" style={{ color: '#676D82' }}>
+                          <Clock size={12} /> Tennis Slot Times (for reference)
+                        </h4>
+                        <div className="flex flex-wrap gap-2">
+                          {SLOTS.map(slot => (
+                            <span key={slot} className="text-[10px] px-3 py-1.5 rounded-lg font-bold" style={{ backgroundColor: '#FFF', color: '#1E2333', border: '1px solid #EAEDE6' }}>
+                              {SLOT_LABELS[slot]}: {SLOT_TIMES[slot]}
+                            </span>
+                          ))}
+                        </div>
                       </div>
                     </div>
-                  </div>
+                  )}
                 </div>
-
-                <div className="rounded-2xl p-6" style={{ backgroundColor: '#FFF', border: '1px solid #EAEDE6' }}>
-                  <h3 className="font-bold text-sm mb-3" style={{ color: '#1E2333' }}>
-                    <Clock size={16} className="inline mr-2" style={{ color: '#65B863' }} />
-                    Tennis Slot Times
-                  </h3>
-                  <div className="space-y-2">
-                    {SLOTS.map(slot => (
-                      <div key={slot} className="flex items-center justify-between p-3 rounded-lg" style={{ backgroundColor: '#F7F9FA' }}>
-                        <span className="text-sm font-bold" style={{ color: '#1E2333' }}>{SLOT_LABELS[slot]}</span>
-                        <span className="text-sm" style={{ color: '#676D82' }}>{SLOT_TIMES[slot]}</span>
-                      </div>
-                    ))}
-                  </div>
-                  <p className="text-[10px] mt-3" style={{ color: '#AFB0B3' }}>
-                    If a boy has a school lesson overlapping any of these times, that tennis slot is automatically blocked.
-                  </p>
-                </div>
               </div>
-            </div>
+            )}
           </div>
         )}
 

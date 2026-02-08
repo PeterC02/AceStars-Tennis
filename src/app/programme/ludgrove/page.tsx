@@ -278,7 +278,7 @@ export default function LudgroveProgrammePage() {
                       key={prog.id}
                       className="bg-white rounded-xl overflow-hidden transition-all hover:shadow-lg cursor-pointer flex flex-col"
                       style={{ border: '1px solid #EAEDE6', minHeight: '480px' }}
-                      onClick={() => setSelectedProgramme(prog)}
+                      onClick={() => {}}
                     >
                       <div className="h-2" style={{ backgroundColor: prog.color }}></div>
                       <div className="p-6 flex flex-col flex-grow">
