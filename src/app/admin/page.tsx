@@ -46,7 +46,7 @@ type Booking = {
   childName: string
   childAge: string
   programme: string
-  venue: 'Ludgrove' | 'Edgbarrow' | 'AceStars'
+  venue: 'Ludgrove' | 'Edgbarrow' | 'AceStars' | 'Yateley Manor'
   stream: string
   status: 'pending' | 'confirmed' | 'cancelled'
   date: string
@@ -122,6 +122,9 @@ const sampleBookings: Booking[] = [
   { id: 'A001', parentName: 'Robert Davis', parentEmail: 'robert@email.com', parentPhone: '07700 900007', childName: 'Charlie Davis', childAge: '8', programme: 'Orange/Green Ball', venue: 'AceStars', stream: 'Term Time', status: 'confirmed', date: '2026-04-21', price: '£107.88' },
   { id: 'A002', parentName: 'Jennifer White', parentEmail: 'jennifer@email.com', parentPhone: '07700 900008', childName: 'Lucy White', childAge: '7', programme: 'Mini Red', venue: 'AceStars', stream: 'Term Time', status: 'confirmed', date: '2026-04-26', price: '£107.88' },
   { id: 'A003', parentName: 'Thomas Martin', parentEmail: 'thomas@email.com', parentPhone: '07700 900009', childName: 'Jack Martin', childAge: '9', programme: 'Easter Camp Week 1', venue: 'AceStars', stream: 'Holiday Camps', status: 'pending', date: '2026-04-07', price: '£120' },
+  // Yateley Manor
+  { id: 'Y001', parentName: 'Andrew Clarke', parentEmail: 'andrew@email.com', parentPhone: '07700 900010', childName: 'George Clarke', childAge: '10', programme: 'Standard 1-2-1', venue: 'Yateley Manor', stream: 'Private Coaching', status: 'confirmed', date: '2026-04-22', price: '£280' },
+  { id: 'Y002', parentName: 'Rachel Green', parentEmail: 'rachel@email.com', parentPhone: '07700 900011', childName: 'Freddie Green', childAge: '11', programme: 'Group Session', venue: 'Yateley Manor', stream: 'Group Coaching', status: 'pending', date: '2026-04-23', price: '£150' },
 ]
 
 // Coaches data with colors for visual distinction
@@ -156,10 +159,37 @@ const slotLabels: Record<TimeSlot, string> = { breakfast: 'Breakfast', fruit: 'F
 const slotTimes: Record<TimeSlot, string> = { breakfast: '7:30-8:15am', fruit: '10:30-11:15am', rest: '2:00-2:45pm' }
 
 export default function AdminPage() {
+  // Admin login state
+  const [isAdminLoggedIn, setIsAdminLoggedIn] = useState(false)
+  const [adminPin, setAdminPin] = useState('')
+  const [adminError, setAdminError] = useState('')
+
+  // Check persisted login
+  useEffect(() => {
+    const saved = typeof window !== 'undefined' && localStorage.getItem('admin-auth')
+    if (saved === 'true') setIsAdminLoggedIn(true)
+  }, [])
+
+  const handleAdminLogin = (e: React.FormEvent) => {
+    e.preventDefault()
+    if (adminPin === '2580') {
+      setIsAdminLoggedIn(true)
+      localStorage.setItem('admin-auth', 'true')
+      setAdminError('')
+    } else {
+      setAdminError('Incorrect PIN')
+    }
+  }
+
+  const handleAdminLogout = () => {
+    setIsAdminLoggedIn(false)
+    localStorage.removeItem('admin-auth')
+  }
+
   const [activeTab, setActiveTab] = useState<'bookings' | 'scheduler'>('bookings')
-  const [selectedVenue, setSelectedVenue] = useState<'all' | 'Ludgrove' | 'Edgbarrow' | 'AceStars'>('all')
+  const [selectedVenue, setSelectedVenue] = useState<'all' | 'Ludgrove' | 'Edgbarrow' | 'AceStars' | 'Yateley Manor'>('all')
   const [searchTerm, setSearchTerm] = useState('')
-  const [expandedVenues, setExpandedVenues] = useState<string[]>(['Ludgrove', 'Edgbarrow', 'AceStars'])
+  const [expandedVenues, setExpandedVenues] = useState<string[]>(['Ludgrove', 'Edgbarrow', 'AceStars', 'Yateley Manor'])
   
   // Scheduler state
   const [coaches, setCoaches] = useState<Coach[]>(initialCoaches)
@@ -670,6 +700,50 @@ export default function AdminPage() {
   const paidBookings = filteredBookings.filter(b => b.paymentStatus === 'paid').length
   const totalStudents = coaches.reduce((sum, c) => sum + c.students.length, 0)
 
+  // Admin login gate
+  if (!isAdminLoggedIn) {
+    return (
+      <div className="min-h-screen flex items-center justify-center" style={{ background: 'linear-gradient(135deg, #1E2333 0%, #2a3050 50%, #1E2333 100%)' }}>
+        <div className="w-full max-w-sm mx-4">
+          <div className="text-center mb-8">
+            <Link href="/">
+              <p className="text-3xl font-bold text-white mb-1">AceStars <span style={{ color: '#dfd300' }}>Admin</span></p>
+            </Link>
+            <p className="text-sm" style={{ color: '#AFB0B3' }}>Enter your admin PIN to continue</p>
+          </div>
+          <div className="rounded-2xl p-8 shadow-2xl" style={{ backgroundColor: '#FFF' }}>
+            <form onSubmit={handleAdminLogin} className="space-y-4">
+              <div>
+                <label className="block text-xs font-bold mb-1.5" style={{ color: '#1E2333' }}>Admin PIN</label>
+                <input
+                  type="password" required value={adminPin}
+                  onChange={e => setAdminPin(e.target.value.replace(/\D/g, '').slice(0, 6))}
+                  className="w-full px-4 py-3 rounded-xl text-sm border-2 outline-none transition-all text-center text-2xl tracking-widest"
+                  style={{ borderColor: '#EAEDE6', color: '#1E2333' }}
+                  placeholder="••••"
+                  inputMode="numeric" maxLength={6} autoFocus
+                />
+              </div>
+              {adminError && (
+                <div className="flex items-center gap-2 p-3 rounded-xl text-sm" style={{ backgroundColor: '#FEF2F2', color: '#DC2626' }}>
+                  <AlertCircle size={16} /> {adminError}
+                </div>
+              )}
+              <button type="submit" className="w-full py-3.5 rounded-xl font-bold text-white text-sm transition-all hover:scale-[1.02]" style={{ backgroundColor: '#dfd300', color: '#1E2333' }}>
+                Sign In
+              </button>
+            </form>
+            <div className="mt-4 text-center">
+              <Link href="/teacher-admin" className="text-xs hover:underline" style={{ color: '#F87D4D' }}>
+                Div Master / Coach? Login here →
+              </Link>
+            </div>
+          </div>
+        </div>
+      </div>
+    )
+  }
+
   return (
     <div className="min-h-screen" style={{ backgroundColor: '#F7F9FA' }}>
       {/* Header */}
@@ -681,13 +755,17 @@ export default function AdminPage() {
                 AceStars <span style={{ color: '#dfd300' }}>Admin</span>
               </Link>
             </div>
-            <Link 
-              href="/"
-              className="px-4 py-2 rounded-lg text-sm font-medium"
-              style={{ backgroundColor: '#EAEDE6', color: '#676D82' }}
-            >
-              Back to Site
-            </Link>
+            <div className="flex items-center gap-3">
+              <Link href="/teacher-admin" className="px-3 py-2 rounded-lg text-xs font-medium" style={{ backgroundColor: '#F7F9FA', color: '#676D82' }}>
+                Div Master Portal
+              </Link>
+              <Link href="/" className="px-3 py-2 rounded-lg text-xs font-medium" style={{ backgroundColor: '#EAEDE6', color: '#676D82' }}>
+                Back to Site
+              </Link>
+              <button onClick={handleAdminLogout} className="px-3 py-2 rounded-lg text-xs font-medium text-white" style={{ backgroundColor: '#EF4444' }}>
+                Logout
+              </button>
+            </div>
           </div>
         </div>
       </div>
@@ -787,7 +865,7 @@ export default function AdminPage() {
                   />
                 </div>
                 <div className="flex gap-2">
-                  {(['all', 'Ludgrove', 'Edgbarrow', 'AceStars'] as const).map(venue => (
+                  {(['all', 'Ludgrove', 'Edgbarrow', 'AceStars', 'Yateley Manor'] as const).map(venue => (
                     <button
                       key={venue}
                       onClick={() => setSelectedVenue(venue)}
@@ -823,6 +901,7 @@ export default function AdminPage() {
                       {venue === 'Ludgrove' && <GraduationCap size={24} style={{ color: '#F87D4D' }} />}
                       {venue === 'Edgbarrow' && <Building2 size={24} style={{ color: '#65B863' }} />}
                       {venue === 'AceStars' && <CircleDot size={24} style={{ color: '#dfd300' }} />}
+                      {venue === 'Yateley Manor' && <MapPin size={24} style={{ color: '#8B5CF6' }} />}
                       <h3 className="text-xl font-bold" style={{ color: '#1E2333' }}>{venue}</h3>
                       <span className="px-2 py-1 rounded-full text-xs font-medium" style={{ backgroundColor: '#F7F9FA', color: '#676D82' }}>
                         {Object.values(streams).flat().length} bookings
