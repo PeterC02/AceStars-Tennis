@@ -172,7 +172,7 @@ export default function AdminPage() {
 
   const handleAdminLogin = (e: React.FormEvent) => {
     e.preventDefault()
-    if (adminPin === '2580') {
+    if (adminPin === '2002') {
       setIsAdminLoggedIn(true)
       localStorage.setItem('admin-auth', 'true')
       setAdminError('')

@@ -75,7 +75,8 @@ const TERMS = ['Spring 2026', 'Summer 2026', 'Autumn 2026', 'Spring 2027']
 export default function TeacherAdminPage() {
   // Auth state
   const [teacher, setTeacher] = useState<Teacher | null>(null)
-  const [authMode, setAuthMode] = useState<'login' | 'register'>('login')
+  const [authMode, setAuthMode] = useState<'login' | 'register' | 'coach'>('login')
+  const [isCoach, setIsCoach] = useState(false)
   const [authForm, setAuthForm] = useState({ name: '', email: '', pin: '', division: '' })
   const [authError, setAuthError] = useState('')
   const [authLoading, setAuthLoading] = useState(false)
@@ -113,7 +114,11 @@ export default function TeacherAdminPage() {
   useEffect(() => {
     const saved = localStorage.getItem('teacher-auth')
     if (saved) {
-      try { setTeacher(JSON.parse(saved)) } catch {}
+      try {
+        const parsed = JSON.parse(saved)
+        setTeacher(parsed)
+        if (parsed.id === 'coach-account') setIsCoach(true)
+      } catch {}
     }
   }, [])
 
@@ -184,6 +189,21 @@ export default function TeacherAdminPage() {
     setAuthError('')
     setAuthLoading(true)
 
+    // Coach login — fixed PIN, no DB
+    if (authMode === 'coach') {
+      if (authForm.pin === '2026') {
+        setTeacher({ id: 'coach-account', name: 'Coach', email: 'coach@acestars.co.uk', division: null })
+        setIsCoach(true)
+        setActiveTab('schedule')
+        setAuthForm({ name: '', email: '', pin: '', division: '' })
+      } else {
+        setAuthError('Incorrect coach PIN')
+      }
+      setAuthLoading(false)
+      return
+    }
+
+    // Div master login / register
     try {
       const res = await fetch('/api/teacher/auth', {
         method: 'POST',
@@ -199,6 +219,7 @@ export default function TeacherAdminPage() {
       const data = await res.json()
       if (!res.ok) throw new Error(data.error)
       setTeacher(data.teacher)
+      setIsCoach(false)
       setAuthForm({ name: '', email: '', pin: '', division: '' })
     } catch (err: any) {
       setAuthError(err.message)
@@ -433,17 +454,17 @@ export default function TeacherAdminPage() {
             <div className="flex rounded-xl overflow-hidden mb-6" style={{ backgroundColor: '#F7F9FA' }}>
               <button
                 onClick={() => { setAuthMode('login'); setAuthError('') }}
-                className="flex-1 py-3 text-sm font-bold transition-all"
+                className="flex-1 py-3 text-xs font-bold transition-all"
                 style={{
                   backgroundColor: authMode === 'login' ? '#F87D4D' : 'transparent',
                   color: authMode === 'login' ? '#FFF' : '#676D82',
                 }}
               >
-                Sign In
+                Div Master
               </button>
               <button
                 onClick={() => { setAuthMode('register'); setAuthError('') }}
-                className="flex-1 py-3 text-sm font-bold transition-all"
+                className="flex-1 py-3 text-xs font-bold transition-all"
                 style={{
                   backgroundColor: authMode === 'register' ? '#F87D4D' : 'transparent',
                   color: authMode === 'register' ? '#FFF' : '#676D82',
@@ -451,55 +472,85 @@ export default function TeacherAdminPage() {
               >
                 Register
               </button>
+              <button
+                onClick={() => { setAuthMode('coach'); setAuthError('') }}
+                className="flex-1 py-3 text-xs font-bold transition-all"
+                style={{
+                  backgroundColor: authMode === 'coach' ? '#65B863' : 'transparent',
+                  color: authMode === 'coach' ? '#FFF' : '#676D82',
+                }}
+              >
+                Coach
+              </button>
             </div>
 
             <form onSubmit={handleAuth} className="space-y-4">
-              {authMode === 'register' && (
+              {authMode === 'coach' ? (
                 <>
+                  <p className="text-sm text-center" style={{ color: '#676D82' }}>Enter the coach PIN to view the published timetable</p>
                   <div>
-                    <label className="block text-xs font-bold mb-1.5" style={{ color: '#1E2333' }}>Full Name</label>
+                    <label className="block text-xs font-bold mb-1.5" style={{ color: '#1E2333' }}>Coach PIN</label>
                     <input
-                      type="text" required value={authForm.name}
-                      onChange={e => setAuthForm({ ...authForm, name: e.target.value })}
+                      type="password" required value={authForm.pin}
+                      onChange={e => setAuthForm({ ...authForm, pin: e.target.value.replace(/\D/g, '').slice(0, 6) })}
+                      className="w-full px-4 py-3 rounded-xl text-sm border-2 outline-none transition-all focus:border-[#65B863] text-center text-2xl tracking-widest"
+                      style={{ borderColor: '#EAEDE6', color: '#1E2333' }}
+                      placeholder="••••"
+                      maxLength={6}
+                      inputMode="numeric"
+                    />
+                  </div>
+                </>
+              ) : (
+                <>
+                  {authMode === 'register' && (
+                    <>
+                      <div>
+                        <label className="block text-xs font-bold mb-1.5" style={{ color: '#1E2333' }}>Full Name</label>
+                        <input
+                          type="text" required value={authForm.name}
+                          onChange={e => setAuthForm({ ...authForm, name: e.target.value })}
+                          className="w-full px-4 py-3 rounded-xl text-sm border-2 outline-none transition-all focus:border-[#F87D4D]"
+                          style={{ borderColor: '#EAEDE6', color: '#1E2333' }}
+                          placeholder="Mr. Smith"
+                        />
+                      </div>
+                      <div>
+                        <label className="block text-xs font-bold mb-1.5" style={{ color: '#1E2333' }}>Division / Form</label>
+                        <input
+                          type="text" value={authForm.division}
+                          onChange={e => setAuthForm({ ...authForm, division: e.target.value })}
+                          className="w-full px-4 py-3 rounded-xl text-sm border-2 outline-none transition-all focus:border-[#F87D4D]"
+                          style={{ borderColor: '#EAEDE6', color: '#1E2333' }}
+                          placeholder="e.g. Year 5 Division A"
+                        />
+                      </div>
+                    </>
+                  )}
+                  <div>
+                    <label className="block text-xs font-bold mb-1.5" style={{ color: '#1E2333' }}>Email Address</label>
+                    <input
+                      type="email" required value={authForm.email}
+                      onChange={e => setAuthForm({ ...authForm, email: e.target.value })}
                       className="w-full px-4 py-3 rounded-xl text-sm border-2 outline-none transition-all focus:border-[#F87D4D]"
                       style={{ borderColor: '#EAEDE6', color: '#1E2333' }}
-                      placeholder="Mr. Smith"
+                      placeholder="teacher@ludgrove.co.uk"
                     />
                   </div>
                   <div>
-                    <label className="block text-xs font-bold mb-1.5" style={{ color: '#1E2333' }}>Division / Form</label>
+                    <label className="block text-xs font-bold mb-1.5" style={{ color: '#1E2333' }}>PIN (4-6 digits)</label>
                     <input
-                      type="text" value={authForm.division}
-                      onChange={e => setAuthForm({ ...authForm, division: e.target.value })}
+                      type="password" required value={authForm.pin}
+                      onChange={e => setAuthForm({ ...authForm, pin: e.target.value.replace(/\D/g, '').slice(0, 6) })}
                       className="w-full px-4 py-3 rounded-xl text-sm border-2 outline-none transition-all focus:border-[#F87D4D]"
                       style={{ borderColor: '#EAEDE6', color: '#1E2333' }}
-                      placeholder="e.g. Year 5 Division A"
+                      placeholder="••••"
+                      maxLength={6}
+                      inputMode="numeric"
                     />
                   </div>
                 </>
               )}
-              <div>
-                <label className="block text-xs font-bold mb-1.5" style={{ color: '#1E2333' }}>Email Address</label>
-                <input
-                  type="email" required value={authForm.email}
-                  onChange={e => setAuthForm({ ...authForm, email: e.target.value })}
-                  className="w-full px-4 py-3 rounded-xl text-sm border-2 outline-none transition-all focus:border-[#F87D4D]"
-                  style={{ borderColor: '#EAEDE6', color: '#1E2333' }}
-                  placeholder="teacher@ludgrove.co.uk"
-                />
-              </div>
-              <div>
-                <label className="block text-xs font-bold mb-1.5" style={{ color: '#1E2333' }}>PIN (4-6 digits)</label>
-                <input
-                  type="password" required value={authForm.pin}
-                  onChange={e => setAuthForm({ ...authForm, pin: e.target.value.replace(/\D/g, '').slice(0, 6) })}
-                  className="w-full px-4 py-3 rounded-xl text-sm border-2 outline-none transition-all focus:border-[#F87D4D]"
-                  style={{ borderColor: '#EAEDE6', color: '#1E2333' }}
-                  placeholder="••••"
-                  maxLength={6}
-                  inputMode="numeric"
-                />
-              </div>
 
               {authError && (
                 <div className="flex items-center gap-2 p-3 rounded-xl text-sm" style={{ backgroundColor: '#FEF2F2', color: '#DC2626' }}>
@@ -511,9 +562,9 @@ export default function TeacherAdminPage() {
               <button
                 type="submit" disabled={authLoading}
                 className="w-full py-3.5 rounded-xl font-bold text-white text-sm transition-all hover:scale-[1.02] hover:shadow-lg disabled:opacity-50"
-                style={{ backgroundColor: '#F87D4D' }}
+                style={{ backgroundColor: authMode === 'coach' ? '#65B863' : '#F87D4D' }}
               >
-                {authLoading ? 'Please wait...' : authMode === 'login' ? 'Sign In' : 'Create Account'}
+                {authLoading ? 'Please wait...' : authMode === 'coach' ? 'View Schedule' : authMode === 'login' ? 'Sign In' : 'Create Account'}
               </button>
             </form>
 
@@ -591,8 +642,10 @@ export default function TeacherAdminPage() {
       <div className="border-b" style={{ borderColor: '#EAEDE6', backgroundColor: '#FFF' }}>
         <div className="max-w-7xl mx-auto px-4 flex gap-1">
           {[
-            { key: 'boys' as const, label: 'My Boys', icon: Users, count: boys.length },
-            { key: 'upload' as const, label: 'Upload Timetable', icon: Upload },
+            ...(!isCoach ? [
+              { key: 'boys' as const, label: 'My Boys', icon: Users, count: boys.length },
+              { key: 'upload' as const, label: 'Upload Timetable', icon: Upload },
+            ] : []),
             { key: 'schedule' as const, label: 'Tennis Schedule', icon: Calendar },
           ].map(tab => (
             <button
@@ -1082,12 +1135,16 @@ Oliver Brown, , History, , Maths, ...`}
               <div className="text-center py-20 rounded-2xl" style={{ backgroundColor: '#FFF', border: '2px dashed #EAEDE6' }}>
                 <Calendar size={48} className="mx-auto mb-4" style={{ color: '#EAEDE6' }} />
                 <h3 className="text-lg font-bold mb-2" style={{ color: '#1E2333' }}>No schedule published yet</h3>
-                <p className="text-sm mb-4" style={{ color: '#676D82' }}>Once all teachers have uploaded their timetables and marked complete, the admin will generate and publish the schedule</p>
-                <button onClick={() => setActiveTab('boys')}
-                  className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl font-bold text-sm text-white"
-                  style={{ backgroundColor: '#F87D4D' }}>
-                  <Upload size={16} /> Upload Timetables
-                </button>
+                <p className="text-sm mb-4" style={{ color: '#676D82' }}>
+                  {isCoach ? 'The admin has not yet published a timetable. Check back later.' : 'Once all teachers have uploaded their timetables and marked complete, the admin will generate and publish the schedule'}
+                </p>
+                {!isCoach && (
+                  <button onClick={() => setActiveTab('boys')}
+                    className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl font-bold text-sm text-white"
+                    style={{ backgroundColor: '#F87D4D' }}>
+                    <Upload size={16} /> Upload Timetables
+                  </button>
+                )}
               </div>
             ) : scheduleView === 'grid' ? (
               /* Grid View - Coach × Day/Slot */
