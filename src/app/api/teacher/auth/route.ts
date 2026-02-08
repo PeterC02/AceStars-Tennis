@@ -56,8 +56,76 @@ async function sendVerificationEmail(email: string, code: string, name: string):
   }
 }
 
-// In-memory verification store (for simplicity; in production use Supabase table)
-const verificationCodes = new Map<string, { code: string; expiresAt: number; teacherData: any; action: string }>()
+// Rate limiting: track attempts per email
+const authAttempts = new Map<string, { count: number; resetAt: number }>()
+const MAX_AUTH_ATTEMPTS = 5
+const AUTH_WINDOW_MS = 15 * 60 * 1000 // 15 minutes
+
+function checkAuthRateLimit(email: string): boolean {
+  const now = Date.now()
+  const record = authAttempts.get(email)
+  if (!record || now > record.resetAt) {
+    authAttempts.set(email, { count: 1, resetAt: now + AUTH_WINDOW_MS })
+    return true
+  }
+  if (record.count >= MAX_AUTH_ATTEMPTS) return false
+  record.count++
+  return true
+}
+
+// Persistent verification codes via Supabase (with in-memory fallback)
+const verificationCodesFallback = new Map<string, { code: string; expiresAt: number; teacherData: any; action: string }>()
+
+async function storeVerificationCode(email: string, code: string, teacherData: any, action: string) {
+  const expiresAt = new Date(Date.now() + 10 * 60 * 1000).toISOString()
+  try {
+    await supabase.from('verification_codes').upsert({
+      email,
+      code,
+      teacher_data: teacherData,
+      action,
+      expires_at: expiresAt,
+    }, { onConflict: 'email' })
+  } catch {
+    // Fallback to in-memory if table doesn't exist
+    verificationCodesFallback.set(email, { code, expiresAt: Date.now() + 10 * 60 * 1000, teacherData, action })
+  }
+}
+
+async function getVerificationCode(email: string): Promise<{ code: string; teacherData: any; action: string; expired: boolean } | null> {
+  try {
+    const { data, error } = await supabase
+      .from('verification_codes')
+      .select('*')
+      .eq('email', email)
+      .single()
+
+    if (error || !data) {
+      // Fallback to in-memory
+      const fallback = verificationCodesFallback.get(email)
+      if (!fallback) return null
+      return { code: fallback.code, teacherData: fallback.teacherData, action: fallback.action, expired: Date.now() > fallback.expiresAt }
+    }
+
+    return {
+      code: data.code,
+      teacherData: data.teacher_data,
+      action: data.action,
+      expired: new Date(data.expires_at).getTime() < Date.now(),
+    }
+  } catch {
+    const fallback = verificationCodesFallback.get(email)
+    if (!fallback) return null
+    return { code: fallback.code, teacherData: fallback.teacherData, action: fallback.action, expired: Date.now() > fallback.expiresAt }
+  }
+}
+
+async function deleteVerificationCode(email: string) {
+  try {
+    await supabase.from('verification_codes').delete().eq('email', email)
+  } catch {}
+  verificationCodesFallback.delete(email)
+}
 
 // POST - Login with email + PIN + email verification
 export async function POST(request: NextRequest) {
@@ -67,10 +135,15 @@ export async function POST(request: NextRequest) {
 
     // Step 1: Login — validate credentials, then send verification code
     if (action === 'login') {
+      const emailKey = email?.toLowerCase().trim()
+      if (!emailKey || !checkAuthRateLimit(emailKey)) {
+        return NextResponse.json({ error: 'Too many attempts. Please try again in 15 minutes.' }, { status: 429 })
+      }
+
       const { data: teacher, error } = await supabase
         .from('div_masters')
         .select('*')
-        .eq('email', email.toLowerCase().trim())
+        .eq('email', emailKey)
         .eq('is_active', true)
         .single()
 
@@ -84,14 +157,7 @@ export async function POST(request: NextRequest) {
 
       // Generate and send verification code
       const verifyCode = generateCode()
-      const emailKey = email.toLowerCase().trim()
-      verificationCodes.set(emailKey, {
-        code: verifyCode,
-        expiresAt: Date.now() + 10 * 60 * 1000, // 10 minutes
-        teacherData: { id: teacher.id, name: teacher.name, email: teacher.email, division: teacher.division },
-        action: 'login',
-      })
-
+      await storeVerificationCode(emailKey, verifyCode, { id: teacher.id, name: teacher.name, email: teacher.email, division: teacher.division }, 'login')
       await sendVerificationEmail(emailKey, verifyCode, teacher.name)
 
       return NextResponse.json({
@@ -106,6 +172,11 @@ export async function POST(request: NextRequest) {
         return NextResponse.json({ error: 'Name, email and PIN are required' }, { status: 400 })
       }
 
+      const emailKey = email.toLowerCase().trim()
+      if (!checkAuthRateLimit(emailKey)) {
+        return NextResponse.json({ error: 'Too many attempts. Please try again in 15 minutes.' }, { status: 429 })
+      }
+
       if (pin.length < 4 || pin.length > 6) {
         return NextResponse.json({ error: 'PIN must be 4-6 digits' }, { status: 400 })
       }
@@ -114,7 +185,7 @@ export async function POST(request: NextRequest) {
       const { data: existing } = await supabase
         .from('div_masters')
         .select('id')
-        .eq('email', email.toLowerCase().trim())
+        .eq('email', emailKey)
         .single()
 
       if (existing) {
@@ -123,14 +194,7 @@ export async function POST(request: NextRequest) {
 
       // Generate and send verification code (don't create account yet)
       const verifyCode = generateCode()
-      const emailKey = email.toLowerCase().trim()
-      verificationCodes.set(emailKey, {
-        code: verifyCode,
-        expiresAt: Date.now() + 10 * 60 * 1000,
-        teacherData: { name, email: emailKey, pin_hash: hashPin(pin), division: division || null },
-        action: 'register',
-      })
-
+      await storeVerificationCode(emailKey, verifyCode, { name, email: emailKey, pin_hash: hashPin(pin), division: division || null }, 'register')
       await sendVerificationEmail(emailKey, verifyCode, name)
 
       return NextResponse.json({
@@ -146,14 +210,14 @@ export async function POST(request: NextRequest) {
       }
 
       const emailKey = email.toLowerCase().trim()
-      const stored = verificationCodes.get(emailKey)
+      const stored = await getVerificationCode(emailKey)
 
       if (!stored) {
         return NextResponse.json({ error: 'No verification code found. Please try logging in again.' }, { status: 400 })
       }
 
-      if (Date.now() > stored.expiresAt) {
-        verificationCodes.delete(emailKey)
+      if (stored.expired) {
+        await deleteVerificationCode(emailKey)
         return NextResponse.json({ error: 'Verification code has expired. Please try again.' }, { status: 400 })
       }
 
@@ -162,7 +226,7 @@ export async function POST(request: NextRequest) {
       }
 
       // Code is valid — clean up
-      verificationCodes.delete(emailKey)
+      await deleteVerificationCode(emailKey)
 
       if (stored.action === 'login') {
         return NextResponse.json({ teacher: stored.teacherData })
@@ -198,17 +262,15 @@ export async function POST(request: NextRequest) {
       }
 
       const emailKey = email.toLowerCase().trim()
-      const stored = verificationCodes.get(emailKey)
+      const stored = await getVerificationCode(emailKey)
 
       if (!stored) {
         return NextResponse.json({ error: 'No pending verification. Please try logging in again.' }, { status: 400 })
       }
 
-      // Generate new code
+      // Generate new code and update
       const newCode = generateCode()
-      stored.code = newCode
-      stored.expiresAt = Date.now() + 10 * 60 * 1000
-      verificationCodes.set(emailKey, stored)
+      await storeVerificationCode(emailKey, newCode, stored.teacherData, stored.action)
 
       await sendVerificationEmail(emailKey, newCode, stored.teacherData.name)
 

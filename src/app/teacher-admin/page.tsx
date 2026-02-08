@@ -203,15 +203,27 @@ export default function TeacherAdminPage() {
     setAuthError('')
     setAuthLoading(true)
 
-    // Coach login — fixed PIN, no DB
+    // Coach login — server-side PIN validation
     if (authMode === 'coach') {
-      if (authForm.pin === '2026') {
-        setTeacher({ id: 'coach-account', name: 'Coach', email: 'coach@acestars.co.uk', division: null })
-        setIsCoach(true)
-        setActiveTab('schedule')
-        setAuthForm({ name: '', email: '', pin: '', division: '' })
-      } else {
-        setAuthError('Incorrect coach PIN')
+      try {
+        const res = await fetch('/api/admin/auth', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ action: 'login', pin: authForm.pin }),
+        })
+        const data = await res.json()
+        if (!res.ok) throw new Error(data.error)
+        if (data.role === 'coach') {
+          setTeacher({ id: 'coach-account', name: 'Coach', email: 'coach@acestars.co.uk', division: null })
+          setIsCoach(true)
+          setActiveTab('schedule')
+          setAuthForm({ name: '', email: '', pin: '', division: '' })
+          localStorage.setItem('coach-auth-token', data.token)
+        } else {
+          setAuthError('This PIN is not for coach access')
+        }
+      } catch (err: any) {
+        setAuthError(err.message)
       }
       setAuthLoading(false)
       return
@@ -407,9 +419,22 @@ export default function TeacherAdminPage() {
     if (!photoPreview || !selectedBoyForUpload || !teacher) return
     setUploadingPhoto(true)
     try {
-      // Store photo reference (in production this would upload to storage)
+      const boy = boys.find(b => b.id === selectedBoyForUpload)
+      // Persist to API (Supabase Storage + DB)
+      await fetch('/api/teacher/photos', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          boyId: selectedBoyForUpload,
+          boyName: boy?.name || '',
+          divMasterId: teacher.id,
+          term,
+          photoData: photoPreview,
+        }),
+      })
+
       setUploadedPhotos(prev => ({ ...prev, [selectedBoyForUpload]: photoPreview }))
-      setMessage({ type: 'success', text: `Timetable photo saved for ${boys.find(b => b.id === selectedBoyForUpload)?.name || 'boy'}` })
+      setMessage({ type: 'success', text: `Timetable photo saved for ${boy?.name || 'boy'}` })
 
       // Move to next boy without a photo
       const boysWithoutPhoto = boys.filter(b => !uploadedPhotos[b.id] && b.id !== selectedBoyForUpload)
@@ -426,6 +451,24 @@ export default function TeacherAdminPage() {
     }
     setUploadingPhoto(false)
   }
+
+  // Fetch previously uploaded photos on load
+  const fetchUploadedPhotos = useCallback(async () => {
+    if (!teacher || teacher.id === 'coach-account') return
+    try {
+      const res = await fetch(`/api/teacher/photos?divMasterId=${teacher.id}&term=${encodeURIComponent(term)}`)
+      const data = await res.json()
+      if (data.photos?.length > 0) {
+        const photoMap: Record<string, string> = {}
+        data.photos.forEach((p: any) => { photoMap[p.boy_id] = p.public_url || 'uploaded' })
+        setUploadedPhotos(photoMap)
+      }
+    } catch {}
+  }, [teacher, term])
+
+  useEffect(() => {
+    if (teacher) fetchUploadedPhotos()
+  }, [teacher, term, fetchUploadedPhotos])
 
   // Count boys with uploaded photos
   const boysWithPhotos = boys.filter(b => uploadedPhotos[b.id]).length

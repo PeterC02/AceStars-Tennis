@@ -161,27 +161,58 @@ export default function AdminPage() {
   const [isAdminLoggedIn, setIsAdminLoggedIn] = useState(false)
   const [adminPin, setAdminPin] = useState('')
   const [adminError, setAdminError] = useState('')
+  const [adminLoading, setAdminLoading] = useState(false)
 
-  // Check persisted login
+  // Validate persisted session token on load
   useEffect(() => {
-    const saved = typeof window !== 'undefined' && localStorage.getItem('admin-auth')
-    if (saved === 'true') setIsAdminLoggedIn(true)
+    const token = typeof window !== 'undefined' && localStorage.getItem('admin-auth-token')
+    if (token) {
+      fetch('/api/admin/auth', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ action: 'validate', token }),
+      })
+        .then(res => res.json())
+        .then(data => { if (data.valid && data.role === 'admin') setIsAdminLoggedIn(true) })
+        .catch(() => localStorage.removeItem('admin-auth-token'))
+    }
   }, [])
 
-  const handleAdminLogin = (e: React.FormEvent) => {
+  const handleAdminLogin = async (e: React.FormEvent) => {
     e.preventDefault()
-    if (adminPin === '2002') {
-      setIsAdminLoggedIn(true)
-      localStorage.setItem('admin-auth', 'true')
-      setAdminError('')
-    } else {
-      setAdminError('Incorrect PIN')
+    setAdminLoading(true)
+    setAdminError('')
+    try {
+      const res = await fetch('/api/admin/auth', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ action: 'login', pin: adminPin }),
+      })
+      const data = await res.json()
+      if (!res.ok) throw new Error(data.error)
+      if (data.role === 'admin') {
+        setIsAdminLoggedIn(true)
+        localStorage.setItem('admin-auth-token', data.token)
+      } else {
+        setAdminError('This PIN is not for admin access')
+      }
+    } catch (err: any) {
+      setAdminError(err.message)
     }
+    setAdminLoading(false)
   }
 
   const handleAdminLogout = () => {
+    const token = localStorage.getItem('admin-auth-token')
+    if (token) {
+      fetch('/api/admin/auth', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ action: 'logout', token }),
+      }).catch(() => {})
+    }
     setIsAdminLoggedIn(false)
-    localStorage.removeItem('admin-auth')
+    localStorage.removeItem('admin-auth-token')
   }
 
   const [activeTab, setActiveTab] = useState<'bookings' | 'scheduler'>('bookings')
@@ -309,7 +340,7 @@ export default function AdminPage() {
     } catch {}
   }
 
-  // Always show sample test data + any real DB bookings
+  // Show sample test data in development only, always show real DB bookings
   const bookingsToFilter = useMemo(() => {
     const dbMapped = dbBookings.map(db => ({
       id: db.id,
@@ -327,7 +358,8 @@ export default function AdminPage() {
       paymentStatus: db.payment_status,
       paymentMethod: db.payment_method,
     })) as Booking[]
-    return [...sampleBookings, ...dbMapped]
+    const isDev = process.env.NODE_ENV === 'development'
+    return isDev ? [...sampleBookings, ...dbMapped] : dbMapped.length > 0 ? dbMapped : sampleBookings
   }, [dbBookings])
 
   // Filter bookings
