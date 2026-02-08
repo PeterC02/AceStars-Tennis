@@ -97,14 +97,40 @@ export default function FAQPage() {
   return (
     <div className="pt-20">
       {/* Hero Section */}
-      <section className="relative py-24 bg-gradient-to-br from-primary via-primary-dark to-primary">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h1 className="text-4xl md:text-6xl font-bold text-white mb-6 font-heading">
+      <section 
+        className="relative min-h-[50vh] flex items-center justify-center overflow-hidden"
+        style={{ 
+          backgroundImage: 'url(/images/uploads/2019/03/Depositphotos_115174380_xl-2015-wide-outlined.jpg)',
+          backgroundSize: 'cover',
+          backgroundPosition: 'center',
+        }}
+      >
+        <div className="absolute inset-0" style={{ backgroundColor: 'rgba(30, 35, 51, 0.85)' }}></div>
+        <div 
+          className="absolute inset-0 opacity-20"
+          style={{
+            backgroundImage: 'url(/images/uploads/2020/03/wave3-homepage.svg)',
+            backgroundRepeat: 'repeat-x',
+            backgroundPosition: 'left bottom',
+            backgroundSize: 'contain',
+          }}
+        ></div>
+        <div 
+          className="absolute bottom-0 left-0 right-0 h-20"
+          style={{
+            backgroundImage: 'url(/images/uploads/2020/02/wave-1.svg)',
+            backgroundRepeat: 'repeat-x',
+            backgroundPosition: 'center bottom',
+            backgroundSize: 'auto 100%',
+          }}
+        ></div>
+        <div className="relative z-10 max-w-4xl mx-auto px-4 text-center">
+          <h1 className="text-5xl md:text-7xl font-bold text-white mb-6 font-heading">
             Frequently Asked Questions
           </h1>
-          <p className="text-xl text-white/70 max-w-2xl mx-auto">
+          <h5 className="text-xl max-w-3xl mx-auto mb-8" style={{ color: '#AFB0B3' }}>
             Everything you need to know about our tennis coaching programmes
-          </p>
+          </h5>
         </div>
       </section>
 
