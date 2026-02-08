@@ -109,24 +109,21 @@ type ScheduleStats = {
   constraintViolations: string[]
 }
 
-// Sample data
+// Sample data — 1 test entry per category per venue
 const sampleBookings: Booking[] = [
-  // Ludgrove
-  { id: 'L001', parentName: 'John Smith', parentEmail: 'john@email.com', parentPhone: '07700 900001', childName: 'James Smith', childAge: '10', programme: 'Standard 1-2-1', venue: 'Ludgrove', stream: 'Private Coaching', status: 'confirmed', date: '2026-04-22', price: '£324', paymentStatus: 'paid' },
-  { id: 'L002', parentName: 'Sarah Johnson', parentEmail: 'sarah@email.com', parentPhone: '07700 900002', childName: 'Oliver Johnson', childAge: '11', programme: 'Standard 1-2-1', venue: 'Ludgrove', stream: 'Private Coaching', status: 'confirmed', date: '2026-04-22', price: '£324', paymentStatus: 'paid' },
-  { id: 'L003', parentName: 'Michael Brown', parentEmail: 'michael@email.com', parentPhone: '07700 900003', childName: 'William Brown', childAge: '9', programme: 'Sunday Clinic', venue: 'Ludgrove', stream: 'Clinics', status: 'pending', date: '2026-04-26', price: '£90' },
-  // Edgbarrow
-  { id: 'E001', parentName: 'Emma Wilson', parentEmail: 'emma@email.com', parentPhone: '07700 900004', childName: 'Sophie Wilson', childAge: '12', programme: 'Performance Girls', venue: 'Edgbarrow', stream: 'Performance', status: 'confirmed', date: '2026-04-14', price: '£216', paymentStatus: 'paid' },
-  { id: 'E002', parentName: 'David Taylor', parentEmail: 'david@email.com', parentPhone: '07700 900005', childName: 'Harry Taylor', childAge: '13', programme: 'Development Y7/8', venue: 'Edgbarrow', stream: 'Development', status: 'confirmed', date: '2026-04-14', price: '£144', paymentStatus: 'paid' },
-  { id: 'E003', parentName: 'Lisa Anderson', parentEmail: 'lisa@email.com', parentPhone: '07700 900006', childName: 'Emily Anderson', childAge: '12', programme: 'Y7 AfterSchool Club', venue: 'Edgbarrow', stream: 'AfterSchool Club', status: 'pending', date: '2026-04-13', price: '£78' },
-  // AceStars
-  { id: 'A001', parentName: 'Robert Davis', parentEmail: 'robert@email.com', parentPhone: '07700 900007', childName: 'Charlie Davis', childAge: '8', programme: 'Orange/Green Ball', venue: 'AceStars', stream: 'Term Time Programme', status: 'confirmed', date: '2026-04-21', price: '£107.88', paymentStatus: 'paid' },
-  { id: 'A002', parentName: 'Jennifer White', parentEmail: 'jennifer@email.com', parentPhone: '07700 900008', childName: 'Lucy White', childAge: '7', programme: 'Mini Red', venue: 'AceStars', stream: 'Term Time Programme', status: 'confirmed', date: '2026-04-26', price: '£107.88', paymentStatus: 'paid' },
-  { id: 'A003', parentName: 'Thomas Martin', parentEmail: 'thomas@email.com', parentPhone: '07700 900009', childName: 'Jack Martin', childAge: '9', programme: 'Easter Camp Week 1', venue: 'AceStars', stream: 'Holiday Camp', status: 'pending', date: '2026-04-07', price: '£120' },
-  // AceStars - more samples
-  { id: 'A004', parentName: 'Claire Hughes', parentEmail: 'claire@email.com', parentPhone: '07700 900010', childName: 'Mia Hughes', childAge: '6', programme: 'Mini Red Saturday', venue: 'AceStars', stream: 'Term Time Programme', status: 'confirmed', date: '2026-04-26', price: '£107.88', paymentStatus: 'paid' },
-  { id: 'A005', parentName: 'Daniel Evans', parentEmail: 'daniel@email.com', parentPhone: '07700 900011', childName: 'Noah Evans', childAge: '10', programme: 'Easter Camp Week 2', venue: 'AceStars', stream: 'Holiday Camp', status: 'pending', date: '2026-04-14', price: '£120' },
-  { id: 'A006', parentName: 'Sophie Turner', parentEmail: 'sophie@email.com', parentPhone: '07700 900012', childName: 'Ella Turner', childAge: '11', programme: 'Half Term Camp', venue: 'AceStars', stream: 'Holiday Camp', status: 'confirmed', date: '2026-05-26', price: '£135', paymentStatus: 'paid' },
+  // ── Ludgrove ──
+  { id: 'L001', parentName: 'John Smith', parentEmail: 'john.smith@email.com', parentPhone: '07700 900001', childName: 'James Smith', childAge: '10', programme: 'Standard 1-2-1 (Summer Term)', venue: 'Ludgrove', stream: 'Private Coaching', status: 'confirmed', date: '2026-04-22', price: '£324', paymentStatus: 'paid' },
+  { id: 'L002', parentName: 'Michael Brown', parentEmail: 'michael.brown@email.com', parentPhone: '07700 900003', childName: 'William Brown', childAge: '9', programme: 'Sunday Clinic', venue: 'Ludgrove', stream: 'Sunday Clinic', status: 'pending', date: '2026-04-26', price: '£90' },
+  { id: 'L003', parentName: 'Sarah Johnson', parentEmail: 'sarah.j@email.com', parentPhone: '07700 900002', childName: 'Oliver Johnson', childAge: '11', programme: 'Group Session (3 boys)', venue: 'Ludgrove', stream: 'Group Coaching', status: 'confirmed', date: '2026-04-23', price: '£180', paymentStatus: 'paid' },
+  // ── Edgbarrow ──
+  { id: 'E001', parentName: 'Emma Wilson', parentEmail: 'emma.wilson@email.com', parentPhone: '07700 900004', childName: 'Sophie Wilson', childAge: '12', programme: 'Performance Girls', venue: 'Edgbarrow', stream: 'Performance Programme', status: 'confirmed', date: '2026-04-14', price: '£216', paymentStatus: 'paid' },
+  { id: 'E002', parentName: 'David Taylor', parentEmail: 'david.taylor@email.com', parentPhone: '07700 900005', childName: 'Harry Taylor', childAge: '13', programme: 'Development Y7/8', venue: 'Edgbarrow', stream: 'Development Programme', status: 'confirmed', date: '2026-04-14', price: '£144', paymentStatus: 'paid' },
+  { id: 'E003', parentName: 'Lisa Anderson', parentEmail: 'lisa.a@email.com', parentPhone: '07700 900006', childName: 'Emily Anderson', childAge: '12', programme: 'Y7 AfterSchool Club', venue: 'Edgbarrow', stream: 'AfterSchool Club', status: 'pending', date: '2026-04-13', price: '£78' },
+  { id: 'E004', parentName: 'Mark Phillips', parentEmail: 'mark.p@email.com', parentPhone: '07700 900013', childName: 'Ben Phillips', childAge: '11', programme: 'Easter Tennis Camp', venue: 'Edgbarrow', stream: 'Holiday Camp', status: 'confirmed', date: '2026-04-07', price: '£130', paymentStatus: 'paid' },
+  // ── AceStars Tennis ──
+  { id: 'A001', parentName: 'Robert Davis', parentEmail: 'robert.davis@email.com', parentPhone: '07700 900007', childName: 'Charlie Davis', childAge: '8', programme: 'Orange/Green Ball (Sat)', venue: 'AceStars', stream: 'Term Time Programme', status: 'confirmed', date: '2026-04-21', price: '£107.88', paymentStatus: 'paid' },
+  { id: 'A002', parentName: 'Thomas Martin', parentEmail: 'thomas.m@email.com', parentPhone: '07700 900009', childName: 'Jack Martin', childAge: '9', programme: 'Easter Camp Week 1', venue: 'AceStars', stream: 'Holiday Camp', status: 'pending', date: '2026-04-07', price: '£120' },
+  { id: 'A003', parentName: 'Claire Hughes', parentEmail: 'claire.h@email.com', parentPhone: '07700 900010', childName: 'Mia Hughes', childAge: '7', programme: 'Private 1-2-1 Lesson', venue: 'AceStars', stream: 'Private Coaching', status: 'confirmed', date: '2026-04-28', price: '£45', paymentStatus: 'paid' },
 ]
 
 // Coaches data with colors for visual distinction
@@ -190,6 +187,7 @@ export default function AdminPage() {
 
   const [activeTab, setActiveTab] = useState<'bookings' | 'scheduler'>('bookings')
   const [selectedVenue, setSelectedVenue] = useState<'all' | 'Ludgrove' | 'Edgbarrow' | 'AceStars'>('all')
+  const [ludgroveTab, setLudgroveTab] = useState<'bookings' | 'timetable'>('bookings')
   const [searchTerm, setSearchTerm] = useState('')
   const [expandedVenues, setExpandedVenues] = useState<string[]>(['Ludgrove', 'Edgbarrow', 'AceStars'])
   
@@ -860,46 +858,68 @@ export default function AdminPage() {
         {/* BOOKINGS SECTION - Always visible */}
         {(
           <>
-            {/* Search and Filters */}
-            <div className="bg-white rounded-xl p-4 shadow-sm mb-6">
-              <div className="flex flex-wrap gap-4 items-center">
+            {/* Venue Selector + Search */}
+            <div className="bg-white rounded-xl shadow-sm mb-6 overflow-hidden">
+              <div className="p-4 flex flex-wrap gap-4 items-center">
+                <div className="relative">
+                  <select
+                    value={selectedVenue}
+                    onChange={e => { setSelectedVenue(e.target.value as any); if (e.target.value !== 'Ludgrove') setLudgroveTab('bookings') }}
+                    className="appearance-none pl-4 pr-10 py-2.5 rounded-xl text-sm font-bold border-2 outline-none cursor-pointer transition-all focus:ring-2 focus:ring-[#dfd300]/30"
+                    style={{ borderColor: '#EAEDE6', color: '#1E2333', backgroundColor: '#FFF', minWidth: '180px' }}
+                  >
+                    <option value="all">All Venues</option>
+                    <option value="Ludgrove">Ludgrove School</option>
+                    <option value="Edgbarrow">Edgbarrow School</option>
+                    <option value="AceStars">AceStars Tennis</option>
+                  </select>
+                  <ChevronDown size={16} className="absolute right-3 top-1/2 -translate-y-1/2 pointer-events-none" style={{ color: '#676D82' }} />
+                </div>
                 <div className="flex-1 min-w-[200px] relative">
-                  <Search className="absolute left-3 top-1/2 -translate-y-1/2" size={18} style={{ color: '#AFB0B3' }} />
+                  <Search className="absolute left-3 top-1/2 -translate-y-1/2" size={16} style={{ color: '#AFB0B3' }} />
                   <input
                     type="text"
-                    placeholder="Search by name, programme..."
+                    placeholder="Search by name, programme, email..."
                     value={searchTerm}
                     onChange={(e) => setSearchTerm(e.target.value)}
-                    className="w-full pl-10 pr-4 py-2 rounded-lg border focus:outline-none focus:ring-2"
-                    style={{ borderColor: '#EAEDE6' }}
+                    className="w-full pl-10 pr-4 py-2.5 rounded-xl text-sm border-2 outline-none transition-all focus:ring-2 focus:ring-[#dfd300]/30"
+                    style={{ borderColor: '#EAEDE6', color: '#1E2333' }}
                   />
                 </div>
-                <div className="flex gap-2">
-                  {(['all', 'Ludgrove', 'Edgbarrow', 'AceStars'] as const).map(venue => (
-                    <button
-                      key={venue}
-                      onClick={() => setSelectedVenue(venue)}
-                      className={`px-4 py-2 rounded-lg text-sm font-medium transition-all`}
-                      style={{
-                        backgroundColor: selectedVenue === venue ? '#1E2333' : '#F7F9FA',
-                        color: selectedVenue === venue ? '#FFFFFF' : '#676D82'
-                      }}
-                    >
-                      {venue === 'all' ? 'All Venues' : venue}
-                    </button>
-                  ))}
-                </div>
                 <button
-                  className="px-4 py-2 rounded-lg text-sm font-medium flex items-center gap-2"
+                  className="px-4 py-2.5 rounded-xl text-sm font-bold flex items-center gap-2 transition-all hover:scale-[1.02]"
                   style={{ backgroundColor: '#dfd300', color: '#1E2333' }}
                 >
-                  <Download size={16} />
+                  <Download size={14} />
                   Export
                 </button>
               </div>
+
+              {/* Ludgrove sub-tabs */}
+              {selectedVenue === 'Ludgrove' && (
+                <div className="px-4 pb-0 border-t" style={{ borderColor: '#EAEDE6' }}>
+                  <div className="flex gap-1 -mb-px">
+                    <button
+                      onClick={() => setLudgroveTab('bookings')}
+                      className="px-5 py-3 text-sm font-bold border-b-2 transition-all"
+                      style={{ borderColor: ludgroveTab === 'bookings' ? '#F87D4D' : 'transparent', color: ludgroveTab === 'bookings' ? '#F87D4D' : '#676D82' }}
+                    >
+                      Bookings &amp; Students
+                    </button>
+                    <button
+                      onClick={() => setLudgroveTab('timetable')}
+                      className="px-5 py-3 text-sm font-bold border-b-2 transition-all"
+                      style={{ borderColor: ludgroveTab === 'timetable' ? '#65B863' : 'transparent', color: ludgroveTab === 'timetable' ? '#65B863' : '#676D82' }}
+                    >
+                      Timetable Scheduler
+                    </button>
+                  </div>
+                </div>
+              )}
             </div>
 
-            {/* Bookings List */}
+            {/* Bookings List — hidden when Ludgrove Timetable tab is active */}
+            {!(selectedVenue === 'Ludgrove' && ludgroveTab === 'timetable') && (
             <div className="space-y-4">
               {Object.entries(groupedByVenue).map(([venue, streams]) => (
                 <div key={venue} className="bg-white rounded-xl shadow-sm overflow-hidden">
@@ -1010,11 +1030,12 @@ export default function AdminPage() {
                 </div>
               ))}
             </div>
+            )}
           </>
         )}
 
-        {/* LUDGROVE TIMETABLE SCHEDULER - Only visible when Ludgrove selected */}
-        {selectedVenue === 'Ludgrove' && (
+        {/* LUDGROVE TIMETABLE SCHEDULER - Only visible when Ludgrove timetable tab active */}
+        {selectedVenue === 'Ludgrove' && ludgroveTab === 'timetable' && (
         <div className="mt-8 mb-8 space-y-6">
           <div className="bg-gradient-to-r from-green-600 to-green-700 rounded-xl p-6 mb-6">
             <div className="flex items-center justify-between">
