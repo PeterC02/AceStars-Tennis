@@ -1,5 +1,6 @@
 import Link from 'next/link'
 import { Award, Users, MapPin, Calendar, ChevronRight } from 'lucide-react'
+import { coaches as sharedCoaches } from '@/lib/coaches'
 
 const clubs = [
   'Iver Heath Tennis Club',
@@ -24,64 +25,10 @@ const credentials = [
   'Established tennis programmes in the UK & Internationally.',
 ]
 
-const coaches = [
-  {
-    id: 1,
-    name: 'Wojtek Specylak',
-    title: 'Head Coach',
-    role: 'RPT National Master Professional',
-    image: '/images/uploads/2020/02/wojtek-400.png',
-    description: `Wojtek is an RPT National Master Professional and the founder of Acestars Tennis Coaching. With over 20 years of coaching experience, he has worked with players of all levels from beginners to international competitors.`,
-  },
-  {
-    id: 2,
-    name: 'Peter Collier',
-    title: 'Operations Director',
-    role: 'Operations Director',
-    image: '/images/uploads/2020/02/don-400.png',
-    description: `Peter is the Operations Director at Acestars Tennis Coaching, responsible for overseeing the day-to-day operations and ensuring the smooth running of all coaching programmes across our venues.`,
-  },
-  {
-    id: 3,
-    name: 'Andy Fryatt',
-    title: 'Coach',
-    role: 'Head Coach at Iver Heath Tennis Club',
-    image: '/images/uploads/2020/06/lewis.png',
-    description: `Andy is Head Coach at Iver Heath Tennis Club and a Coach at Crowthorne Tennis Club with LTA & PTR experience. He works with juniors, adults of all standards.`,
-  },
-  {
-    id: 4,
-    name: 'Tom Mawby',
-    title: 'Coach',
-    role: 'LTA Accredited Coach',
-    image: '/images/uploads/2020/02/wojtek-400.png',
-    description: `Tom is an LTA accredited coach with a passion for developing players of all ages and abilities. He brings enthusiasm and energy to every session.`,
-  },
-  {
-    id: 5,
-    name: 'Oliver Walker',
-    title: 'Coach',
-    role: 'Head Coach at Farnborough Tennis Club',
-    image: '/images/uploads/2020/02/don-400.png',
-    description: `Oliver is the Head Coach at Farnborough Tennis Club. He is an LTA accredited coach with extensive experience working with players of all levels.`,
-  },
-  {
-    id: 6,
-    name: 'Jake Griffiths',
-    title: 'Coach',
-    role: 'LTA Accredited Coach',
-    image: '/images/uploads/2020/06/lewis.png',
-    description: `Jake is an LTA accredited coach who brings a dynamic and engaging coaching style to Acestars. With experience in both individual and group coaching.`,
-  },
-  {
-    id: 7,
-    name: 'James Newman',
-    title: 'Coach',
-    role: 'LTA Accredited Coach',
-    image: '/images/uploads/2020/02/wojtek-400.png',
-    description: `James is an LTA accredited coach with a wealth of experience in tennis coaching. He is dedicated to helping players of all ages and abilities improve their game.`,
-  },
-]
+const coaches = sharedCoaches.map(c => ({
+  ...c,
+  description: c.shortBio,
+}))
 
 export default function Home() {
   return (

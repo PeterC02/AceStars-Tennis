@@ -1,20 +1,13 @@
 import Link from 'next/link'
 import { ChevronRight, Shield, Users, Phone } from 'lucide-react'
+import { coaches } from '@/lib/coaches'
 
 export const metadata = {
   title: 'Safeguarding',
   description: 'Acestars Tennis Coaching safeguarding policy. All our coaches hold safeguarding certificates issued by the LTA.',
 }
 
-const safeguardedCoaches = [
-  { name: 'Wojtek Specylak', role: 'Head Coach' },
-  { name: 'Peter Collier', role: 'Operations Director' },
-  { name: 'Andy Fryatt', role: 'Coach' },
-  { name: 'Tom Mawby', role: 'Coach' },
-  { name: 'Oliver Walker', role: 'Coach' },
-  { name: 'Jake Griffiths', role: 'Coach' },
-  { name: 'James Newman', role: 'Coach' },
-]
+const safeguardedCoaches = coaches.map(c => ({ name: c.name, role: c.title }))
 
 export default function SafeguardingPage() {
   return (
