@@ -5,9 +5,8 @@ import Link from 'next/link'
 import {
   Shield, TrendingUp, TrendingDown, DollarSign, PieChart, BarChart3,
   ChevronRight, ChevronDown, Plus, X, Edit3, Download, RefreshCw,
-  Building2, Users, Calendar, AlertCircle, CheckCircle, ArrowRight,
-  Wallet, Receipt, Banknote, Calculator, FileText, Settings, Info,
-  ArrowUpRight, ArrowDownRight, Minus
+  Users, AlertCircle, CheckCircle, Upload,
+  Wallet, Receipt, Banknote, FileText
 } from 'lucide-react'
 
 // ─── Types ───────────────────────────────────────────────────────────────────
@@ -62,8 +61,6 @@ type MonthlyForecast = {
   dividendsPeter: number
   dividendsWojtek: number
 }
-
-type FinancialPeriod = 'monthly' | 'termly' | 'annual'
 
 // ─── Default Data (Foundation — user will replace with real spreadsheet data) ─
 
@@ -132,8 +129,10 @@ function formatCurrency(amount: number): string {
 }
 
 function formatCompact(amount: number): string {
-  if (Math.abs(amount) >= 1000) {
-    return `£${(amount / 1000).toFixed(1)}k`
+  const sign = amount < 0 ? '-' : ''
+  const abs = Math.abs(amount)
+  if (abs >= 1000) {
+    return `${sign}£${(abs / 1000).toFixed(1)}k`
   }
   return formatCurrency(amount)
 }
@@ -242,13 +241,9 @@ export default function FinancialsPage() {
 
   // UI state
   const [activeTab, setActiveTab] = useState<'dashboard' | 'revenue' | 'expenses' | 'payroll' | 'cashflow' | 'pnl'>('dashboard')
-  const [period, setPeriod] = useState<FinancialPeriod>('monthly')
   const [expandedVenues, setExpandedVenues] = useState<string[]>([])
   const [editingProgramme, setEditingProgramme] = useState<string | null>(null)
   const [editingExpense, setEditingExpense] = useState<string | null>(null)
-  const [showAddProgramme, setShowAddProgramme] = useState(false)
-  const [showAddExpense, setShowAddExpense] = useState(false)
-  const [newProgrammeVenueId, setNewProgrammeVenueId] = useState('')
 
   // Load saved state
   useEffect(() => {
@@ -449,6 +444,90 @@ export default function FinancialsPage() {
     }
   }
 
+  // ─── CSV Import ─────────────────────────────────────────────────────────
+
+  const [importStatus, setImportStatus] = useState<string | null>(null)
+
+  const handleCSVImport = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0]
+    if (!file) return
+    const reader = new FileReader()
+    reader.onload = (evt) => {
+      try {
+        const text = evt.target?.result as string
+        const lines = text.split(/\r?\n/).map(l => l.split(',').map(c => c.trim().replace(/^"|"$/g, '')))
+        let section = ''
+        const importedProgrammes: Programme[] = []
+        const importedExpenses: ExpenseCategory[] = []
+        const importedDirectors: DirectorPay[] = []
+        let importedOpening = openingBalance
+        let importedYear = financialYear
+
+        for (const cols of lines) {
+          const first = cols[0]?.toLowerCase() || ''
+          // Detect section headers
+          if (first.includes('financial year')) { importedYear = cols[1] || financialYear; continue }
+          if (first.includes('opening balance')) { importedOpening = parseFloat(cols[1]) || 0; continue }
+          if (first === 'revenue') { section = 'revenue'; continue }
+          if (first.includes('operating expenses') || first === 'expenses') { section = 'expenses'; continue }
+          if (first.includes('director wages') || first.includes('director') && first.includes('wage')) { section = 'directors'; continue }
+          if (first.includes('profit') || first.includes('cash flow') || first.includes('dividend')) { section = ''; continue }
+          if (first.startsWith('total') || first === '' || first.startsWith('venue') || first.startsWith('category') || first.startsWith('name')) continue
+
+          if (section === 'revenue' && cols.length >= 7) {
+            const venueName = cols[0]
+            const venue = venues.find(v => v.name.toLowerCase().includes(venueName.toLowerCase())) || venues[0]
+            importedProgrammes.push({
+              id: `imp-${Date.now()}-${Math.random().toString(36).slice(2, 6)}`,
+              venueId: venue.id,
+              name: cols[1] || 'Imported Programme',
+              category: cols[2] || 'General',
+              pricePerStudent: parseFloat(cols[3]) || 0,
+              studentsEnrolled: parseInt(cols[4]) || 0,
+              weeksPerTerm: parseInt(cols[5]) || 12,
+              termsPerYear: parseInt(cols[6]) || 3,
+              sessionsPerWeek: parseInt(cols[7]) || 1,
+              notes: '',
+            })
+          } else if (section === 'expenses' && cols.length >= 3) {
+            importedExpenses.push({
+              id: `exp-${Date.now()}-${Math.random().toString(36).slice(2, 6)}`,
+              name: cols[0],
+              type: (cols[1]?.toLowerCase() as 'fixed' | 'variable' | 'one-off') || 'fixed',
+              monthlyAmount: parseFloat(cols[2]) || 0,
+              notes: cols[4] || '',
+            })
+          } else if (section === 'directors' && cols.length >= 3) {
+            importedDirectors.push({
+              name: cols[0],
+              role: cols[1] || 'Director',
+              monthlyWage: parseFloat(cols[2]) || 0,
+            })
+          }
+        }
+
+        if (importedProgrammes.length > 0) setProgrammes(importedProgrammes)
+        if (importedExpenses.length > 0) setExpenses(importedExpenses)
+        if (importedDirectors.length > 0) setDirectors(importedDirectors)
+        setOpeningBalance(importedOpening)
+        setFinancialYear(importedYear)
+
+        const counts = [
+          importedProgrammes.length > 0 ? `${importedProgrammes.length} programmes` : '',
+          importedExpenses.length > 0 ? `${importedExpenses.length} expenses` : '',
+          importedDirectors.length > 0 ? `${importedDirectors.length} directors` : '',
+        ].filter(Boolean).join(', ')
+        setImportStatus(counts ? `Imported: ${counts}` : 'No data rows found — check CSV format')
+        setTimeout(() => setImportStatus(null), 5000)
+      } catch {
+        setImportStatus('Import failed — check file format')
+        setTimeout(() => setImportStatus(null), 5000)
+      }
+    }
+    reader.readAsText(file)
+    e.target.value = ''
+  }
+
   // ─── Render: Login Gate ──────────────────────────────────────────────────
 
   if (!isAdminLoggedIn) {
@@ -520,7 +599,6 @@ export default function FinancialsPage() {
 
   // Max bar height for cash flow chart
   const maxCashFlow = Math.max(...monthlyForecast.map(m => Math.abs(m.cumulativeCash)), 1)
-  const maxRevenue = Math.max(...monthlyForecast.map(m => m.revenue), 1)
 
   return (
     <div className="min-h-screen" style={{ backgroundColor: '#F8F9FA' }}>
@@ -549,6 +627,10 @@ export default function FinancialsPage() {
                   <option key={y} value={y}>{y}</option>
                 ))}
               </select>
+              <label className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-sm font-bold transition-all hover:opacity-80 cursor-pointer" style={{ backgroundColor: '#3B82F6', color: '#FFF' }}>
+                <Upload size={14} /> Import CSV
+                <input type="file" accept=".csv,.txt" onChange={handleCSVImport} className="hidden" />
+              </label>
               <button onClick={exportCSV} className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-sm font-bold transition-all hover:opacity-80" style={{ backgroundColor: '#65B863', color: '#FFF' }}>
                 <Download size={14} /> Export
               </button>
@@ -586,6 +668,17 @@ export default function FinancialsPage() {
           </div>
         </div>
       </div>
+
+      {/* Import Status Banner */}
+      {importStatus && (
+        <div className="max-w-[1600px] mx-auto px-4 sm:px-6 pt-4">
+          <div className="flex items-center gap-2 p-3 rounded-xl text-sm font-bold" style={{ backgroundColor: importStatus.startsWith('Imported') ? '#F0FDF4' : '#FEF2F2', color: importStatus.startsWith('Imported') ? '#166534' : '#DC2626' }}>
+            {importStatus.startsWith('Imported') ? <CheckCircle size={16} /> : <AlertCircle size={16} />}
+            {importStatus}
+            <button onClick={() => setImportStatus(null)} className="ml-auto p-0.5 rounded hover:opacity-70"><X size={14} /></button>
+          </div>
+        </div>
+      )}
 
       {/* Content */}
       <div className="max-w-[1600px] mx-auto px-4 sm:px-6 py-6">
