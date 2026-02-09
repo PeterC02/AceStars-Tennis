@@ -796,6 +796,9 @@ export default function AdminPage() {
               <Link href="/teacher-admin" className="px-3 py-2 rounded-lg text-xs font-medium" style={{ backgroundColor: '#F7F9FA', color: '#676D82' }}>
                 Div Master Portal
               </Link>
+              <Link href="/admin/financials" className="px-3 py-2 rounded-lg text-xs font-bold" style={{ backgroundColor: '#1E2333', color: '#dfd300' }}>
+                💰 Business Financials
+              </Link>
               <Link href="/" className="px-3 py-2 rounded-lg text-xs font-medium" style={{ backgroundColor: '#EAEDE6', color: '#676D82' }}>
                 Back to Site
               </Link>
