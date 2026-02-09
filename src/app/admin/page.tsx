@@ -215,6 +215,7 @@ export default function AdminPage() {
     localStorage.removeItem('admin-auth-token')
   }
 
+  const [adminView, setAdminView] = useState<'hub' | 'bookings'>('hub')
   const [activeTab, setActiveTab] = useState<'bookings' | 'scheduler'>('bookings')
   const [selectedVenue, setSelectedVenue] = useState<'all' | 'Ludgrove' | 'Edgbarrow' | 'AceStars'>('all')
   const [ludgroveTab, setLudgroveTab] = useState<'bookings' | 'timetable'>('bookings')
@@ -766,20 +767,70 @@ export default function AdminPage() {
                 Sign In to Dashboard
               </button>
             </form>
-            <div className="mt-5 pt-5 border-t flex flex-col items-center gap-3" style={{ borderColor: '#EAEDE6' }}>
-              <Link href="/admin/financials" className="w-full py-2.5 rounded-xl font-bold text-sm text-center transition-all hover:opacity-90 flex items-center justify-center gap-2" style={{ backgroundColor: '#1E2333', color: '#dfd300' }}>
-                <TrendingUp size={14} /> Business Financials
+            <div className="mt-5 pt-5 border-t flex items-center justify-center gap-4" style={{ borderColor: '#EAEDE6' }}>
+              <Link href="/teacher-admin" className="text-xs font-medium hover:underline flex items-center gap-1" style={{ color: '#F87D4D' }}>
+                <GraduationCap size={12} /> Div Master Portal
               </Link>
-              <div className="flex items-center justify-center gap-4">
-                <Link href="/teacher-admin" className="text-xs font-medium hover:underline flex items-center gap-1" style={{ color: '#F87D4D' }}>
-                  <GraduationCap size={12} /> Div Master Portal
-                </Link>
-                <span className="text-xs" style={{ color: '#EAEDE6' }}>|</span>
-                <Link href="/teacher-admin" className="text-xs font-medium hover:underline flex items-center gap-1" style={{ color: '#65B863' }}>
-                  <Dumbbell size={12} /> Coach Portal
-                </Link>
-              </div>
+              <span className="text-xs" style={{ color: '#EAEDE6' }}>|</span>
+              <Link href="/teacher-admin" className="text-xs font-medium hover:underline flex items-center gap-1" style={{ color: '#65B863' }}>
+                <Dumbbell size={12} /> Coach Portal
+              </Link>
             </div>
+          </div>
+        </div>
+      </div>
+    )
+  }
+
+  // Admin navigation hub — choose between Financial Hub or Bookings & Timetable
+  if (adminView === 'hub') {
+    return (
+      <div className="min-h-screen flex items-center justify-center relative overflow-hidden" style={{ background: 'linear-gradient(135deg, #1E2333 0%, #2a3050 50%, #1E2333 100%)' }}>
+        <div className="absolute inset-0 opacity-[0.03]" style={{ backgroundImage: 'radial-gradient(circle at 1px 1px, white 1px, transparent 0)', backgroundSize: '40px 40px' }} />
+        <div className="w-full max-w-lg mx-4 relative z-10">
+          <div className="text-center mb-10">
+            <div className="w-16 h-16 rounded-2xl mx-auto mb-5 flex items-center justify-center" style={{ backgroundColor: 'rgba(223,211,0,0.15)', border: '1px solid rgba(223,211,0,0.2)' }}>
+              <Shield size={28} style={{ color: '#dfd300' }} />
+            </div>
+            <p className="text-2xl font-bold text-white mb-1">AceStars <span style={{ color: '#dfd300' }}>Admin</span></p>
+            <p className="text-sm mt-2" style={{ color: '#AFB0B3' }}>Choose your destination</p>
+          </div>
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            {/* Business Financial Hub */}
+            <Link
+              href="/admin/financials"
+              className="group rounded-2xl p-6 shadow-2xl transition-all hover:scale-[1.03] hover:shadow-[0_20px_60px_rgba(223,211,0,0.15)] cursor-pointer"
+              style={{ backgroundColor: '#FFF', border: '2px solid #EAEDE6' }}
+            >
+              <div className="w-12 h-12 rounded-xl mb-4 flex items-center justify-center" style={{ backgroundColor: '#1E2333' }}>
+                <TrendingUp size={22} style={{ color: '#dfd300' }} />
+              </div>
+              <h3 className="text-lg font-bold mb-1" style={{ color: '#1E2333' }}>Business Financial Hub</h3>
+              <p className="text-xs leading-relaxed" style={{ color: '#AFB0B3' }}>Revenue forecasting, P&amp;L, director wages, dividends &amp; cash flow</p>
+              <div className="flex items-center gap-1 mt-4 text-xs font-bold transition-all group-hover:gap-2" style={{ color: '#dfd300' }}>
+                Open <ChevronRight size={12} />
+              </div>
+            </Link>
+            {/* Bookings Data & Timetable */}
+            <button
+              onClick={() => setAdminView('bookings')}
+              className="group rounded-2xl p-6 shadow-2xl transition-all hover:scale-[1.03] hover:shadow-[0_20px_60px_rgba(101,184,99,0.15)] cursor-pointer text-left"
+              style={{ backgroundColor: '#FFF', border: '2px solid #EAEDE6' }}
+            >
+              <div className="w-12 h-12 rounded-xl mb-4 flex items-center justify-center" style={{ backgroundColor: '#1E2333' }}>
+                <Calendar size={22} style={{ color: '#65B863' }} />
+              </div>
+              <h3 className="text-lg font-bold mb-1" style={{ color: '#1E2333' }}>Bookings Data &amp; Timetable</h3>
+              <p className="text-xs leading-relaxed" style={{ color: '#AFB0B3' }}>Manage bookings, Ludgrove scheduler, QuickBooks &amp; coach timetables</p>
+              <div className="flex items-center gap-1 mt-4 text-xs font-bold transition-all group-hover:gap-2" style={{ color: '#65B863' }}>
+                Open <ChevronRight size={12} />
+              </div>
+            </button>
+          </div>
+          <div className="flex items-center justify-center gap-4 mt-8">
+            <Link href="/" className="text-xs font-medium hover:underline" style={{ color: '#AFB0B3' }}>Back to Site</Link>
+            <span className="text-xs" style={{ color: '#3E4455' }}>|</span>
+            <button onClick={handleAdminLogout} className="text-xs font-medium hover:underline" style={{ color: '#EF4444' }}>Logout</button>
           </div>
         </div>
       </div>
@@ -798,11 +849,14 @@ export default function AdminPage() {
               </Link>
             </div>
             <div className="flex items-center gap-3">
+              <button onClick={() => setAdminView('hub')} className="px-3 py-2 rounded-lg text-xs font-bold" style={{ backgroundColor: '#1E2333', color: '#dfd300' }}>
+                ← Admin Hub
+              </button>
+              <Link href="/admin/financials" className="px-3 py-2 rounded-lg text-xs font-bold" style={{ backgroundColor: 'rgba(223,211,0,0.1)', color: '#dfd300', border: '1px solid rgba(223,211,0,0.3)' }}>
+                Financial Hub
+              </Link>
               <Link href="/teacher-admin" className="px-3 py-2 rounded-lg text-xs font-medium" style={{ backgroundColor: '#F7F9FA', color: '#676D82' }}>
                 Div Master Portal
-              </Link>
-              <Link href="/admin/financials" className="px-3 py-2 rounded-lg text-xs font-bold" style={{ backgroundColor: '#1E2333', color: '#dfd300' }}>
-                💰 Business Financials
               </Link>
               <Link href="/" className="px-3 py-2 rounded-lg text-xs font-medium" style={{ backgroundColor: '#EAEDE6', color: '#676D82' }}>
                 Back to Site
