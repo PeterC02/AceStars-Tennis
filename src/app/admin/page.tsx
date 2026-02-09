@@ -766,14 +766,19 @@ export default function AdminPage() {
                 Sign In to Dashboard
               </button>
             </form>
-            <div className="mt-5 pt-5 border-t flex items-center justify-center gap-4" style={{ borderColor: '#EAEDE6' }}>
-              <Link href="/teacher-admin" className="text-xs font-medium hover:underline flex items-center gap-1" style={{ color: '#F87D4D' }}>
-                <GraduationCap size={12} /> Div Master Portal
+            <div className="mt-5 pt-5 border-t flex flex-col items-center gap-3" style={{ borderColor: '#EAEDE6' }}>
+              <Link href="/admin/financials" className="w-full py-2.5 rounded-xl font-bold text-sm text-center transition-all hover:opacity-90 flex items-center justify-center gap-2" style={{ backgroundColor: '#1E2333', color: '#dfd300' }}>
+                <TrendingUp size={14} /> Business Financials
               </Link>
-              <span className="text-xs" style={{ color: '#EAEDE6' }}>|</span>
-              <Link href="/teacher-admin" className="text-xs font-medium hover:underline flex items-center gap-1" style={{ color: '#65B863' }}>
-                <Dumbbell size={12} /> Coach Portal
-              </Link>
+              <div className="flex items-center justify-center gap-4">
+                <Link href="/teacher-admin" className="text-xs font-medium hover:underline flex items-center gap-1" style={{ color: '#F87D4D' }}>
+                  <GraduationCap size={12} /> Div Master Portal
+                </Link>
+                <span className="text-xs" style={{ color: '#EAEDE6' }}>|</span>
+                <Link href="/teacher-admin" className="text-xs font-medium hover:underline flex items-center gap-1" style={{ color: '#65B863' }}>
+                  <Dumbbell size={12} /> Coach Portal
+                </Link>
+              </div>
             </div>
           </div>
         </div>
