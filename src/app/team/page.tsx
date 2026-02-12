@@ -79,11 +79,11 @@ export default function TeamPage() {
                 }}
               >
                 <div 
-                  className="absolute inset-0 bg-cover bg-top bg-no-repeat"
+                  className="absolute inset-0 bg-cover bg-center bg-no-repeat"
                   style={{ backgroundImage: `url(${coach.image})` }}
                 ></div>
                 <div className="absolute bottom-0 left-0 right-0 p-6 bg-gradient-to-t from-white via-white to-transparent">
-                  <p className="text-sm text-right mb-4 font-bold uppercase tracking-wide" style={{ color: '#65B863' }}>{coach.title}</p>
+                  <p className="text-sm text-right mb-4 font-bold uppercase tracking-wide" style={{ color: '#2E354E' }}>{coach.title}</p>
                   <h3 className="text-xl font-bold" style={{ color: '#1E2333' }}>{coach.name}</h3>
                 </div>
                 <div 
@@ -115,11 +115,11 @@ export default function TeamPage() {
                 }}
               >
                 <div 
-                  className="absolute inset-0 bg-cover bg-top bg-no-repeat"
+                  className="absolute inset-0 bg-cover bg-center bg-no-repeat"
                   style={{ backgroundImage: `url(${coach.image})` }}
                 ></div>
                 <div className="absolute bottom-0 left-0 right-0 p-6 bg-gradient-to-t from-white via-white to-transparent">
-                  <p className="text-sm text-right mb-4 font-bold uppercase tracking-wide" style={{ color: '#65B863' }}>{coach.title}</p>
+                  <p className="text-sm text-right mb-4 font-bold uppercase tracking-wide" style={{ color: '#2E354E' }}>{coach.title}</p>
                   <h3 className="text-xl font-bold" style={{ color: '#1E2333' }}>{coach.name}</h3>
                 </div>
                 <div 
@@ -152,13 +152,13 @@ export default function TeamPage() {
               >
                 {/* Coach Image */}
                 <div 
-                  className="absolute inset-0 bg-cover bg-top bg-no-repeat"
+                  className="absolute inset-0 bg-cover bg-center bg-no-repeat"
                   style={{ backgroundImage: `url(${coach.image})` }}
                 ></div>
                 
                 {/* Default Content */}
                 <div className="absolute bottom-0 left-0 right-0 p-6 bg-gradient-to-t from-white via-white to-transparent">
-                  <p className="text-sm text-right mb-4 font-bold uppercase tracking-wide" style={{ color: '#65B863' }}>{coach.title}</p>
+                  <p className="text-sm text-right mb-4 font-bold uppercase tracking-wide" style={{ color: '#2E354E' }}>{coach.title}</p>
                   <h3 className="text-xl font-bold" style={{ color: '#1E2333' }}>{coach.name}</h3>
                 </div>
 
@@ -225,7 +225,7 @@ export default function TeamPage() {
 
             {/* Header with Image */}
             <div 
-              className="relative h-72 bg-cover bg-top"
+              className="relative h-72 bg-cover bg-center"
               style={{ 
                 backgroundImage: `url(${selectedCoach.image})`,
                 backgroundColor: '#65B863'
