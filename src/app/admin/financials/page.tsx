@@ -64,34 +64,44 @@ type MonthlyForecast = {
 
 // ─── Default Data (Foundation — user will replace with real spreadsheet data) ─
 
+// Primary schools for financial tracking
 const DEFAULT_VENUES: Venue[] = [
   { id: 'ludgrove', name: 'Ludgrove School', type: 'school', colour: '#F87D4D' },
   { id: 'edgbarrow', name: 'Edgbarrow School', type: 'school', colour: '#65B863' },
   { id: 'yateley', name: 'Yateley Manor', type: 'school', colour: '#3B82F6' },
   { id: 'nine-mile', name: 'Nine Mile Ride', type: 'school', colour: '#8B5CF6' },
-  { id: 'luckley', name: 'Luckley House School', type: 'school', colour: '#EC4899' },
-  { id: 'cofe', name: 'C of E Primary', type: 'school', colour: '#14B8A6' },
-  { id: 'oaklands', name: 'Oaklands Junior', type: 'school', colour: '#F59E0B' },
-  { id: 'our-ladys', name: "Our Lady's Preparatory", type: 'school', colour: '#6366F1' },
-  { id: 'iver-heath', name: 'Iver Heath Tennis Club', type: 'club', colour: '#dfd300' },
-  { id: 'acestars-community', name: 'AceStars Community', type: 'community', colour: '#EF4444' },
-  { id: 'bucklers', name: "Buckler's Park Courts", type: 'community', colour: '#0EA5E9' },
-  { id: 'sandhurst', name: 'Sandhurst Memorial Park', type: 'community', colour: '#84CC16' },
+  { id: 'acestars-community', name: 'AceStars Community', type: 'community', colour: '#dfd300' },
 ]
 
+// Default programmes for each school - based on typical term structure
 const DEFAULT_PROGRAMMES: Programme[] = [
-  // Ludgrove
-  { id: 'lud-121', venueId: 'ludgrove', name: 'Standard 1-2-1', category: 'Private Coaching', pricePerStudent: 36, studentsEnrolled: 0, weeksPerTerm: 9, termsPerYear: 3, sessionsPerWeek: 1, notes: '' },
-  { id: 'lud-premium', venueId: 'ludgrove', name: 'Premium 1-2-1', category: 'Private Coaching', pricePerStudent: 45, studentsEnrolled: 0, weeksPerTerm: 9, termsPerYear: 3, sessionsPerWeek: 1, notes: '' },
-  { id: 'lud-group', venueId: 'ludgrove', name: 'Group Session (3 boys)', category: 'Group Coaching', pricePerStudent: 20, studentsEnrolled: 0, weeksPerTerm: 9, termsPerYear: 3, sessionsPerWeek: 1, notes: '' },
-  { id: 'lud-sunday', venueId: 'ludgrove', name: 'Sunday Clinic', category: 'Sunday Clinic', pricePerStudent: 15, studentsEnrolled: 0, weeksPerTerm: 9, termsPerYear: 3, sessionsPerWeek: 1, notes: '' },
-  // Edgbarrow
-  { id: 'edg-perf', venueId: 'edgbarrow', name: 'Performance Programme', category: 'Performance', pricePerStudent: 18, studentsEnrolled: 0, weeksPerTerm: 12, termsPerYear: 3, sessionsPerWeek: 1, notes: '' },
-  { id: 'edg-dev', venueId: 'edgbarrow', name: 'Development Programme', category: 'Development', pricePerStudent: 12, studentsEnrolled: 0, weeksPerTerm: 12, termsPerYear: 3, sessionsPerWeek: 1, notes: '' },
-  { id: 'edg-after', venueId: 'edgbarrow', name: 'AfterSchool Club', category: 'AfterSchool', pricePerStudent: 6.50, studentsEnrolled: 0, weeksPerTerm: 12, termsPerYear: 3, sessionsPerWeek: 1, notes: '' },
+  // Ludgrove School - Boarding school with 3 terms, 9 weeks each
+  { id: 'lud-121-standard', venueId: 'ludgrove', name: 'Standard 1-2-1 (Weekly)', category: 'Private Coaching', pricePerStudent: 36, studentsEnrolled: 0, weeksPerTerm: 9, termsPerYear: 3, sessionsPerWeek: 1, notes: '£36/lesson inc VAT' },
+  { id: 'lud-121-additional', venueId: 'ludgrove', name: 'Additional 1-2-1', category: 'Private Coaching', pricePerStudent: 36, studentsEnrolled: 0, weeksPerTerm: 9, termsPerYear: 3, sessionsPerWeek: 1, notes: 'Optional extra lesson' },
+  { id: 'lud-sunday', venueId: 'ludgrove', name: 'Sunday Clinic (Invite Only)', category: 'Group Coaching', pricePerStudent: 18, studentsEnrolled: 0, weeksPerTerm: 5, termsPerYear: 3, sessionsPerWeek: 1, notes: '5 clinics per term' },
+  
+  // Edgbarrow School - State school with 3 terms, 12 weeks each
+  { id: 'edg-perf-girls', venueId: 'edgbarrow', name: 'Performance Girls', category: 'Performance', pricePerStudent: 18, studentsEnrolled: 0, weeksPerTerm: 12, termsPerYear: 3, sessionsPerWeek: 1, notes: 'Tuesday 3:30-5:30pm' },
+  { id: 'edg-perf-boys', venueId: 'edgbarrow', name: 'Performance Boys', category: 'Performance', pricePerStudent: 18, studentsEnrolled: 0, weeksPerTerm: 12, termsPerYear: 3, sessionsPerWeek: 1, notes: 'Monday 3:30-5:30pm' },
+  { id: 'edg-dev-y78', venueId: 'edgbarrow', name: 'Development Y7/8', category: 'Development', pricePerStudent: 12, studentsEnrolled: 0, weeksPerTerm: 12, termsPerYear: 3, sessionsPerWeek: 1, notes: 'Tuesday 3:30-4:30pm' },
+  { id: 'edg-dev-y910', venueId: 'edgbarrow', name: 'Development Y9/10', category: 'Development', pricePerStudent: 12, studentsEnrolled: 0, weeksPerTerm: 12, termsPerYear: 3, sessionsPerWeek: 1, notes: 'Tuesday 3:30-4:30pm' },
+  { id: 'edg-club-y7', venueId: 'edgbarrow', name: 'AfterSchool Club Y7', category: 'AfterSchool', pricePerStudent: 6.50, studentsEnrolled: 0, weeksPerTerm: 12, termsPerYear: 3, sessionsPerWeek: 1, notes: 'Monday 3:30-4:20pm' },
+  { id: 'edg-club-y8', venueId: 'edgbarrow', name: 'AfterSchool Club Y8', category: 'AfterSchool', pricePerStudent: 6.50, studentsEnrolled: 0, weeksPerTerm: 12, termsPerYear: 3, sessionsPerWeek: 1, notes: 'Thursday 3:30-4:20pm' },
+  { id: 'edg-club-y910', venueId: 'edgbarrow', name: 'AfterSchool Club Y9/10', category: 'AfterSchool', pricePerStudent: 6.50, studentsEnrolled: 0, weeksPerTerm: 12, termsPerYear: 3, sessionsPerWeek: 1, notes: 'Wednesday 3:30-4:20pm' },
+  
+  // Yateley Manor - Prep school
+  { id: 'yat-121', venueId: 'yateley', name: 'Private 1-2-1', category: 'Private Coaching', pricePerStudent: 40, studentsEnrolled: 0, weeksPerTerm: 11, termsPerYear: 3, sessionsPerWeek: 1, notes: '' },
+  { id: 'yat-group', venueId: 'yateley', name: 'Group Coaching', category: 'Group Coaching', pricePerStudent: 15, studentsEnrolled: 0, weeksPerTerm: 11, termsPerYear: 3, sessionsPerWeek: 1, notes: '' },
+  { id: 'yat-after', venueId: 'yateley', name: 'AfterSchool Club', category: 'AfterSchool', pricePerStudent: 8, studentsEnrolled: 0, weeksPerTerm: 11, termsPerYear: 3, sessionsPerWeek: 1, notes: '' },
+  
+  // Nine Mile Ride - Primary school
+  { id: 'nmr-121', venueId: 'nine-mile', name: 'Private 1-2-1', category: 'Private Coaching', pricePerStudent: 35, studentsEnrolled: 0, weeksPerTerm: 12, termsPerYear: 3, sessionsPerWeek: 1, notes: '' },
+  { id: 'nmr-group', venueId: 'nine-mile', name: 'Group Coaching', category: 'Group Coaching', pricePerStudent: 12, studentsEnrolled: 0, weeksPerTerm: 12, termsPerYear: 3, sessionsPerWeek: 1, notes: '' },
+  { id: 'nmr-after', venueId: 'nine-mile', name: 'AfterSchool Club', category: 'AfterSchool', pricePerStudent: 6, studentsEnrolled: 0, weeksPerTerm: 12, termsPerYear: 3, sessionsPerWeek: 1, notes: '' },
+  
   // AceStars Community
-  { id: 'ace-term', venueId: 'acestars-community', name: 'Term Time Programme', category: 'Term Time', pricePerStudent: 8.99, studentsEnrolled: 0, weeksPerTerm: 12, termsPerYear: 3, sessionsPerWeek: 1, notes: '' },
-  { id: 'ace-camp', venueId: 'acestars-community', name: 'Holiday Camp', category: 'Holiday Camp', pricePerStudent: 30, studentsEnrolled: 0, weeksPerTerm: 4, termsPerYear: 3, sessionsPerWeek: 5, notes: '' },
+  { id: 'ace-term', venueId: 'acestars-community', name: 'Term Time Programme', category: 'Term Time', pricePerStudent: 8.99, studentsEnrolled: 0, weeksPerTerm: 12, termsPerYear: 3, sessionsPerWeek: 1, notes: 'Community sessions' },
+  { id: 'ace-camp', venueId: 'acestars-community', name: 'Holiday Camp (per day)', category: 'Holiday Camp', pricePerStudent: 30, studentsEnrolled: 0, weeksPerTerm: 6, termsPerYear: 3, sessionsPerWeek: 5, notes: '£30/day or £120/week' },
   { id: 'ace-private', venueId: 'acestars-community', name: 'Private 1-2-1', category: 'Private Coaching', pricePerStudent: 45, studentsEnrolled: 0, weeksPerTerm: 12, termsPerYear: 3, sessionsPerWeek: 1, notes: '' },
 ]
 

@@ -826,6 +826,36 @@ export default function AdminPage() {
                 Open <ChevronRight size={12} />
               </div>
             </button>
+            {/* Coach Invoices */}
+            <Link
+              href="/admin/invoices"
+              className="group rounded-2xl p-6 shadow-2xl transition-all hover:scale-[1.03] hover:shadow-[0_20px_60px_rgba(248,125,77,0.15)] cursor-pointer"
+              style={{ backgroundColor: '#FFF', border: '2px solid #EAEDE6' }}
+            >
+              <div className="w-12 h-12 rounded-xl mb-4 flex items-center justify-center" style={{ backgroundColor: '#1E2333' }}>
+                <FileCheck size={22} style={{ color: '#F87D4D' }} />
+              </div>
+              <h3 className="text-lg font-bold mb-1" style={{ color: '#1E2333' }}>Coach Invoices</h3>
+              <p className="text-xs leading-relaxed" style={{ color: '#AFB0B3' }}>Review, approve &amp; manage coach invoice submissions</p>
+              <div className="flex items-center gap-1 mt-4 text-xs font-bold transition-all group-hover:gap-2" style={{ color: '#F87D4D' }}>
+                Open <ChevronRight size={12} />
+              </div>
+            </Link>
+            {/* Coach Portal Link */}
+            <Link
+              href="/coach-portal"
+              className="group rounded-2xl p-6 shadow-2xl transition-all hover:scale-[1.03] hover:shadow-[0_20px_60px_rgba(101,184,99,0.15)] cursor-pointer"
+              style={{ backgroundColor: '#FFF', border: '2px solid #EAEDE6' }}
+            >
+              <div className="w-12 h-12 rounded-xl mb-4 flex items-center justify-center" style={{ backgroundColor: '#1E2333' }}>
+                <Dumbbell size={22} style={{ color: '#65B863' }} />
+              </div>
+              <h3 className="text-lg font-bold mb-1" style={{ color: '#1E2333' }}>Coach Portal</h3>
+              <p className="text-xs leading-relaxed" style={{ color: '#AFB0B3' }}>Access the coach portal for timetables, rules &amp; invoice submission</p>
+              <div className="flex items-center gap-1 mt-4 text-xs font-bold transition-all group-hover:gap-2" style={{ color: '#65B863' }}>
+                Open <ChevronRight size={12} />
+              </div>
+            </Link>
           </div>
           <div className="flex items-center justify-center gap-4 mt-8">
             <Link href="/" className="text-xs font-medium hover:underline" style={{ color: '#AFB0B3' }}>Back to Site</Link>

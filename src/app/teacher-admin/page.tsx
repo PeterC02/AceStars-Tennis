@@ -746,6 +746,10 @@ export default function TeacherAdminPage() {
 
                 <div className="mt-5 pt-5 border-t" style={{ borderColor: '#EAEDE6' }}>
                   <div className="flex items-center justify-center gap-4">
+                    <Link href="/coach-portal" className="text-xs font-medium hover:underline flex items-center gap-1" style={{ color: '#65B863' }}>
+                      <Star size={12} /> Coach Portal
+                    </Link>
+                    <span className="text-xs" style={{ color: '#EAEDE6' }}>|</span>
                     <Link href="/admin" className="text-xs font-medium hover:underline flex items-center gap-1" style={{ color: '#dfd300' }}>
                       <Shield size={12} /> Admin Dashboard
                     </Link>
