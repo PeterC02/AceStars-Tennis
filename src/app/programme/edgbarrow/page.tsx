@@ -147,7 +147,7 @@ export default function EdgbarrowProgrammePage() {
     <div className="pt-20">
       {/* Hero Section */}
       <section 
-        className="relative min-h-[50vh] flex items-center justify-center overflow-hidden"
+        className="relative min-h-[70vh] flex items-center justify-center overflow-hidden"
         style={{ 
           backgroundImage: 'url(/images/schools/edgbarrow.svg)',
           backgroundSize: 'cover',
@@ -173,11 +173,11 @@ export default function EdgbarrowProgrammePage() {
             backgroundSize: 'auto 100%',
           }}
         ></div>
-        <div className="relative z-10 max-w-4xl mx-auto px-4 text-center">
+        <div className="relative z-10 max-w-4xl mx-auto px-4 text-center pb-16">
           <h1 className="text-5xl md:text-7xl font-bold text-white mb-6 font-heading">
             Programme
           </h1>
-          <h5 className="text-xl max-w-3xl mx-auto mb-8" style={{ color: '#AFB0B3' }}>
+          <h5 className="text-xl max-w-3xl mx-auto mb-10" style={{ color: '#AFB0B3' }}>
             Summer Term 2026 - Tennis Coaching at Edgbarrow School
           </h5>
           <div className="flex justify-center gap-4">

@@ -14,7 +14,7 @@ export default function SafeguardingPage() {
     <div className="pt-20">
       {/* Hero Section */}
       <section 
-        className="relative min-h-[50vh] flex items-center justify-center overflow-hidden"
+        className="relative min-h-[70vh] flex items-center justify-center overflow-hidden"
         style={{ 
           backgroundImage: 'url(/images/uploads/2019/03/Depositphotos_115174380_xl-2015-wide-outlined.jpg)',
           backgroundSize: 'cover',
@@ -40,7 +40,7 @@ export default function SafeguardingPage() {
             backgroundSize: 'auto 100%',
           }}
         ></div>
-        <div className="relative z-10 max-w-4xl mx-auto px-4 text-center">
+        <div className="relative z-10 max-w-4xl mx-auto px-4 text-center pb-16">
           <h1 className="text-5xl md:text-7xl font-bold text-white mb-6 font-heading">
             Safeguarding
           </h1>

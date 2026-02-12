@@ -335,7 +335,7 @@ function BookingPageContent() {
     <div className="pt-20">
       {/* Hero */}
       <section 
-        className="relative min-h-[40vh] flex items-end overflow-hidden"
+        className="relative min-h-[70vh] flex items-end overflow-hidden"
         style={{ 
           backgroundImage: 'url(/images/uploads/2019/03/Depositphotos_115174380_xl-2015-wide-outlined.jpg)',
           backgroundSize: 'cover',
@@ -344,7 +344,7 @@ function BookingPageContent() {
       >
         <div className="absolute inset-0" style={{ backgroundColor: 'rgba(30, 35, 51, 0.88)' }}></div>
         <div 
-          className="absolute inset-0 opacity-15"
+          className="absolute inset-0 opacity-20"
           style={{
             backgroundImage: 'url(/images/uploads/2020/03/wave3-homepage.svg)',
             backgroundRepeat: 'repeat-x',
@@ -353,7 +353,7 @@ function BookingPageContent() {
           }}
         ></div>
         <div 
-          className="absolute bottom-0 left-0 right-0 h-16"
+          className="absolute bottom-0 left-0 right-0 h-20"
           style={{
             backgroundImage: 'url(/images/uploads/2020/02/wave-1.svg)',
             backgroundRepeat: 'repeat-x',

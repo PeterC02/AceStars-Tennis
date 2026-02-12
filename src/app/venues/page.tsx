@@ -99,24 +99,43 @@ export default function VenuesPage() {
     <div className="pt-20">
       {/* Hero Section - Banner with wave */}
       <section 
-        className="relative min-h-[60vh] flex items-center justify-center"
+        className="relative min-h-[70vh] flex items-center justify-center overflow-hidden"
         style={{ 
           backgroundImage: 'url(/images/uploads/2019/03/Depositphotos_115174380_xl-2015-wide-outlined.jpg)',
           backgroundSize: 'cover',
           backgroundPosition: 'center',
         }}
       >
-        <div className="absolute inset-0" style={{ backgroundColor: 'rgba(30, 35, 51, 0.7)' }}></div>
-        <div className="wave-bottom" style={{ backgroundImage: "url('/images/wave-2.svg')" }}></div>
+        <div className="absolute inset-0" style={{ backgroundColor: 'rgba(30, 35, 51, 0.85)' }}></div>
+        {/* Wave Background */}
+        <div 
+          className="absolute inset-0 opacity-20"
+          style={{
+            backgroundImage: 'url(/images/uploads/2020/03/wave3-homepage.svg)',
+            backgroundRepeat: 'repeat-x',
+            backgroundPosition: 'left bottom',
+            backgroundSize: 'contain',
+          }}
+        ></div>
+        {/* Wave Bottom */}
+        <div 
+          className="absolute bottom-0 left-0 right-0 h-20"
+          style={{
+            backgroundImage: 'url(/images/uploads/2020/02/wave-1.svg)',
+            backgroundRepeat: 'repeat-x',
+            backgroundPosition: 'center bottom',
+            backgroundSize: 'auto 100%',
+          }}
+        ></div>
         
-        <div className="relative z-10 max-w-4xl mx-auto px-4 text-center">
+        <div className="relative z-10 max-w-4xl mx-auto px-4 text-center pb-16">
           <h1 className="text-5xl md:text-7xl font-bold text-white mb-6 font-heading">
             Where we Coach
           </h1>
-          <h5 className="text-xl max-w-3xl mx-auto" style={{ color: '#676D82' }}>
+          <h5 className="text-xl max-w-3xl mx-auto mb-10" style={{ color: '#AFB0B3' }}>
             Acestars have been providing tennis coaching in schools & clubs covering Berkshire, Hampshire & Surrey.
           </h5>
-          <div className="flex justify-center gap-4 mt-8">
+          <div className="flex justify-center gap-4">
             <a href="#clubs" className="btn-primary">Our Clubs</a>
             <a href="#schools" className="btn-secondary">Our Schools</a>
           </div>

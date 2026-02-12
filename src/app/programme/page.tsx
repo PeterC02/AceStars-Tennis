@@ -187,7 +187,7 @@ export default function ProgrammePage() {
     <div className="pt-20">
       {/* Hero Section */}
       <section 
-        className="relative min-h-[50vh] flex items-center justify-center overflow-hidden"
+        className="relative min-h-[70vh] flex items-center justify-center overflow-hidden"
         style={{ 
           backgroundImage: 'url(/images/uploads/2019/03/Depositphotos_115174380_xl-2015-wide-outlined.jpg)',
           backgroundSize: 'cover',
@@ -215,16 +215,12 @@ export default function ProgrammePage() {
             backgroundSize: 'auto 100%',
           }}
         ></div>
-        <div className="relative z-10 max-w-4xl mx-auto px-4 text-center">
-          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full mb-6" style={{ backgroundColor: 'rgba(223, 211, 0, 0.2)' }}>
-            <MapPin size={16} style={{ color: '#dfd300' }} />
-            <span className="text-sm font-bold" style={{ color: '#dfd300' }}>Edgbarrow School, Crowthorne</span>
-          </div>
+        <div className="relative z-10 max-w-4xl mx-auto px-4 text-center pb-16">
           <h1 className="text-5xl md:text-7xl font-bold text-white mb-6 font-heading">
             Programmes
           </h1>
-          <p className="text-xl max-w-3xl mx-auto mb-8" style={{ color: '#AFB0B3' }}>
-            Summer Term 2026 — Professional tennis coaching for Edgbarrow students
+          <p className="text-xl max-w-3xl mx-auto mb-10" style={{ color: '#AFB0B3' }}>
+            Summer Term 2026 — Professional tennis coaching across all venues
           </p>
           <div className="flex flex-wrap justify-center gap-4">
             <a href="#programmes" className="btn-primary">View Programmes</a>
